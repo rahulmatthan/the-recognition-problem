@@ -210,13 +210,15 @@ def parse_canon_file(path: Path) -> Beat:
                 paragraph_idx = 0
             paragraph_idx += 1
             inner = content
-            is_coda = _is_em_only(inner)
             text = _html_to_plain(inner)
+            # Canon italic prose is just italic prose — do not classify it as
+            # branch-coda. The arrow + rule treatment is reserved for branch
+            # codas, which are injected at runtime with their own class.
             para = Paragraph(
                 id=f"{current_section.id}-p{paragraph_idx}",
                 text=text,
                 html=inner,
-                is_coda=is_coda,
+                is_coda=False,
             )
             current_section.paragraphs.append(para)
             continue
@@ -276,16 +278,26 @@ def parse_branch_file(path: Path) -> Branch | None:
     rendered = _md(prose_section)
     blocks = _split_top_level_blocks(rendered)
 
-    prose_paragraphs = []
-    saw_hr = False
-    for tag, content in blocks:
+    # Two-pass coda detection: only paragraphs after the LAST hr are coda
+    # candidates. Branches like b6-reset have multiple hrs in their prose
+    # (section breaks); only the final hr separates prose from coda.
+    last_hr_idx = -1
+    for i, (tag, _) in enumerate(blocks):
         if tag == "hr":
-            saw_hr = True
+            last_hr_idx = i
+
+    prose_paragraphs = []
+    for i, (tag, content) in enumerate(blocks):
+        if tag == "hr":
             continue
         if tag == "p":
             inner = content
-            is_coda = _is_em_only(inner) and saw_hr
+            is_coda = _is_em_only(inner) and i > last_hr_idx and last_hr_idx >= 0
             prose_paragraphs.append((inner, is_coda))
+        # H2 inside branch prose (e.g. b6-reset's preserved `## *Nana — Arrival*`)
+        # is silently dropped here; the italic content that follows it will
+        # render as the section's body, which is enough to mark the register
+        # change without the explicit heading.
 
     branch = Branch(
         id=str(fm["id"]),
@@ -303,6 +315,11 @@ def parse_branch_file(path: Path) -> Branch | None:
 
 
 def _extract_section(body: str, heading_text: str, stop_at=()):
+    """Extract the body between `## <heading_text>` and the next stop_at H2.
+
+    Only stops at H2 headings whose text appears in stop_at, so branch prose
+    can preserve canon-style italic H2s like `## *Nana — Arrival*`.
+    """
     lines = body.splitlines()
     start = None
     heading_re = re.compile(rf"^##\s+{re.escape(heading_text)}\s*$")
@@ -319,9 +336,10 @@ def _extract_section(body: str, heading_text: str, stop_at=()):
         m = h2_re.match(line)
         if m:
             stop_name = m.group(1).strip()
-            if not stop_at or stop_name in stop_at:
+            if stop_at and stop_name in stop_at:
                 break
-            break
+            # An H2 not in stop_at is part of the prose (e.g. preserved
+            # canon section heading in b6-reset). Keep walking.
         if h1_re.match(line):
             break
         out.append(line)
@@ -675,12 +693,17 @@ def emit_chapter_page(beat: Beat, branches_for_beat: list, beats: list,
         f'<a href="{root_path}beat-{next_n}/">Beat {next_n}</a>' if next_n <= len(beats) else ""
     )
 
-    subtitle_clause = f"· {html_lib.escape(beat.subtitle)}" if beat.subtitle else ""
+    # Extract the catalog title — strip "Beat N — " prefix from the subtitle.
+    # Canon convention: every H3 is "Beat N — <Catalog Title>".
+    catalog_title = beat.subtitle
+    m = re.match(r"^Beat\s+\d+\s*[—-]\s*(.+)$", catalog_title)
+    if m:
+        catalog_title = m.group(1).strip()
 
     body_map = {
         "beat_n": str(beat.n),
         "beat_title": html_lib.escape(beat.title) if beat.title else f"Beat {beat.n}",
-        "beat_subtitle_clause": subtitle_clause,
+        "beat_catalog_title": html_lib.escape(catalog_title),
         "beats_block": beats_block,
         "prev_link": prev_link,
         "next_link": next_link,
@@ -726,24 +749,8 @@ def emit_toc_page(beats: list, branches: list) -> None:
 
     rows = []
     for beat in beats:
-        bs = branches_by_beat.get(beat.n, [])
-        bs_sorted = sorted(bs, key=lambda b: b.id)
         title = html_lib.escape(beat.title) if beat.title else f"Beat {beat.n}"
-        sub = html_lib.escape(beat.subtitle) if beat.subtitle else ""
         date = html_lib.escape(beat.dateline) if beat.dateline else ""
-
-        branch_links = []
-        for b in bs_sorted:
-            branch_links.append(
-                f'<a href="beat-{beat.n}/{b.slug}/" class="toc-branch">'
-                f'{html_lib.escape(b.title)}</a>'
-            )
-
-        branch_block = (
-            f'<div class="toc-branches">{" · ".join(branch_links)}</div>'
-            if branch_links else ""
-        )
-        sub_block = f'<div class="toc-sub">{sub}</div>' if sub else ""
         date_block = f'<span class="toc-date">{date}</span>' if date else ""
 
         rows.append(
@@ -753,8 +760,6 @@ def emit_toc_page(beats: list, branches: list) -> None:
             f'<span class="toc-title">{title}</span>'
             f'{date_block}'
             f'</a>'
-            f'{sub_block}'
-            f'{branch_block}'
             f'</li>'
         )
 
@@ -770,11 +775,6 @@ def emit_toc_page(beats: list, branches: list) -> None:
         '.toc-main:hover .toc-title { color: var(--branch); }'
         '.toc-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.16em;'
         '  color: var(--ink-faint); margin-left: 0.8rem; }'
-        '.toc-sub { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.16em;'
-        '  text-transform: uppercase; color: var(--ink-soft); margin-top: 0.3rem; }'
-        '.toc-branches { font-size: 0.88rem; color: var(--ink-soft); margin-top: 0.6rem;'
-        '  font-style: italic; }'
-        '.toc-branch { color: var(--branch); }'
         '</style>'
         '<ul class="toc">' + "\n".join(rows) + '</ul>'
     )
