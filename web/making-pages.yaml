@@ -1,0 +1,67 @@
+# Making-section manifest. Read by build/build.py.
+#
+# Each `essays` entry is rendered against templates/making.html.
+# Each `notes` entry is rendered the same way but with a "source note"
+# header indicating it is a working document, not a public-facing essay.
+
+essays:
+  - slug: ""
+    title: "Making"
+    page_title: "Making"
+    description: "How the Recognition Forest was conceived, drafted, and built."
+    source: web/making/index.md
+
+  - slug: conception
+    title: "Conception · Making"
+    page_title: "How this was conceived"
+    description: "The origins of The Recognition Problem and the Forest Edition."
+    source: web/making/conception.md
+
+  - slug: voice
+    title: "Voice continuity · Making"
+    page_title: "On voice continuity"
+    description: "Holding one author's voice across ten chapters and twenty-three branches."
+    source: web/making/voice.md
+
+  - slug: agents
+    title: "The agent system · Making"
+    page_title: "The agent system"
+    description: "How Claude Code drafted and reviewed the branches."
+    source: web/making/agents.md
+
+  - slug: architecture
+    title: "Architectural threads · Making"
+    page_title: "Architectural threads"
+    description: "The recurring threads that hold the project together."
+    source: web/making/architecture.md
+
+notes:
+  - slug: bible
+    title: "Story bible v23 · Notes"
+    page_title: "Story bible v23"
+    description: "The story bible for The Recognition Problem."
+    source: bible/the-recognition-problem-story-bible-v23.md
+
+  - slug: ledger
+    title: "The ledger · Notes"
+    page_title: "The ledger"
+    description: "The spine of the project; the source of truth."
+    source: ledger.md
+
+  - slug: voice-profile
+    title: "Voice profile · Notes"
+    page_title: "Voice profile"
+    description: "The drafting and reviewing reference for voice continuity."
+    source: process/voice-profile.md
+
+  - slug: threads
+    title: "Architectural threads · Notes"
+    page_title: "Architectural threads (working doc)"
+    description: "The threads that hold all branches consistent with the project."
+    source: process/architectural-threads.md
+
+  - slug: workflow
+    title: "Workflow · Notes"
+    page_title: "Workflow"
+    description: "Per-branch flow, drafting order, parallelism rules."
+    source: process/workflow.md

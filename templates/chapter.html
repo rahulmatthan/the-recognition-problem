@@ -1,0 +1,30 @@
+<header class="masthead">
+  <div class="imprint"><a href="{root}">The Recognition Problem · Forest Edition</a></div>
+  <h1>{beat_title}</h1>
+  <div class="beat-number">Beat {beat_n} {beat_subtitle_clause}</div>
+  <button class="return-to-canon" id="returnBtn">↺ Return to canon</button>
+</header>
+
+<p class="reading-note">
+  Where a branch is available, a thin vertical mark <span class="key-mark"></span> appears
+  in the margin. Choosing a branch rewrites only the paragraphs that change. The rest holds still.
+  The change persists until you return to canon.
+</p>
+
+<article id="article">
+  {beats_block}
+</article>
+
+<footer>
+  <div class="branch-status" id="status">Reading: <span class="branch-name">canon</span></div>
+  <div class="system-note" id="systemNote"></div>
+  <div class="footer-nav">
+    {prev_link}
+    <a href="{root}">Contents</a>
+    {next_link}
+    <a href="{root}making/">Making</a>
+  </div>
+</footer>
+
+<div class="rewriting-pulse" id="pulse">Rewriting<span class="dot"></span></div>
+<div class="coda-tick" id="codaTick">+11ms</div>

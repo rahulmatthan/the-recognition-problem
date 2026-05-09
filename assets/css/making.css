@@ -1,0 +1,186 @@
+/* ============================================================
+ * making.css — /making/ pages (essays + working notes)
+ * Narrower column, no split-flap, no marginal marks.
+ * ============================================================ */
+
+.making-band {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-bottom: 1.2rem;
+}
+.making-band .sep {
+  margin: 0 0.6em;
+  color: var(--branch-faint);
+}
+.making-band .here {
+  color: var(--branch);
+}
+
+article.making {
+  max-width: var(--max-text-narrow);
+  margin: 0 auto;
+}
+
+article.making h1 {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin: 1.5rem 0 0.5rem;
+  text-align: center;
+}
+
+article.making h2 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-style: normal;
+  font-size: 1.2rem;
+  letter-spacing: -0.005em;
+  margin: 3rem 0 1rem;
+  color: var(--ink);
+}
+
+article.making h3 {
+  font-family: var(--mono);
+  font-weight: 500;
+  font-size: 0.78rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin: 2rem 0 0.8rem;
+}
+
+article.making h4 {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1rem;
+  margin: 1.6rem 0 0.4rem;
+  color: var(--ink);
+}
+
+article.making p {
+  font-size: 1rem;
+  line-height: 1.7;
+  margin-bottom: 1.2rem;
+}
+
+article.making blockquote {
+  border-left: 2px solid var(--branch-faint);
+  padding-left: 1rem;
+  margin: 1.4rem 0;
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+article.making ul, article.making ol {
+  margin: 1rem 0 1.4rem 1.5rem;
+  font-size: 1rem;
+  line-height: 1.65;
+}
+article.making li { margin-bottom: 0.4rem; }
+
+article.making code {
+  font-family: var(--mono);
+  font-size: 0.88em;
+  background: var(--paper-deep);
+  padding: 0.1em 0.3em;
+  border-radius: 1px;
+}
+
+article.making pre {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  background: var(--paper-deep);
+  padding: 1rem 1.2rem;
+  margin: 1.2rem 0;
+  overflow-x: auto;
+  line-height: 1.55;
+  border-left: 2px solid var(--ink-soft);
+}
+article.making pre code {
+  background: none;
+  padding: 0;
+}
+
+article.making hr {
+  border: none;
+  border-top: 1px solid var(--rule);
+  margin: 2.5rem auto;
+  width: 50%;
+}
+
+article.making table {
+  border-collapse: collapse;
+  width: 100%;
+  margin: 1.4rem 0;
+  font-size: 0.92rem;
+}
+article.making th, article.making td {
+  border-bottom: 1px solid var(--rule);
+  padding: 0.5rem 0.7rem;
+  text-align: left;
+  vertical-align: top;
+}
+article.making th {
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-soft);
+}
+
+/* --- Source-doc header (notes pages) ----------------------- */
+
+.source-note {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+  margin: 0 auto 2.5rem;
+  padding: 0.8rem 1rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  max-width: var(--max-text-narrow);
+}
+
+/* --- Index of notes (table) -------------------------------- */
+
+.notes-index {
+  list-style: none;
+  margin: 1.5rem 0 2rem;
+  padding: 0;
+}
+.notes-index li {
+  border-bottom: 1px solid var(--rule);
+  padding: 1rem 0;
+}
+.notes-index li:last-child { border-bottom: none; }
+.notes-index a {
+  display: block;
+  background: none;
+  padding: 0;
+}
+.notes-index .title {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 1.05rem;
+  color: var(--ink);
+  margin-bottom: 0.3rem;
+}
+.notes-index .desc {
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  font-style: italic;
+}
+.notes-index a:hover .title { color: var(--branch); }
+
+@media (max-width: 720px) {
+  article.making { padding: 0 0.5rem; }
+}

@@ -214,15 +214,15 @@ Source files for essays live in a new `web/making/` directory. Source files for 
 - `CNAME` file in `dist/` carries the custom domain.
 - DNS: Rahul configures the domain registrar; Apex `A` records to GitHub IPs + `www` `CNAME` to `<user>.github.io`.
 
-### CI
+### Deployment (manual, no CI)
 
-A small GitHub Actions workflow:
-1. Checkout main.
-2. Set up Python 3.
-3. Run `python3 build/build.py`.
-4. Push `dist/` to `gh-pages` branch (or use the official `actions/deploy-pages` action).
+Per Rahul (2026-05-09): the site won't change often once published; no GitHub Actions / auto-deploy.
 
-This deploys on every merge to main. No manual step.
+- Local development builds to `dist/` (gitignored).
+- A `--deploy` flag rsyncs `dist/` → `docs/` (tracked), which GitHub Pages serves from `main:/docs`.
+- Publish step: `python3 build/build.py --deploy && git add docs && git commit -m "Publish" && git push`.
+
+GitHub Pages → Settings → Pages → source = `main` branch, folder = `/docs`. CNAME inside `docs/`.
 
 ### Domain
 

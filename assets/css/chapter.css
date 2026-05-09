@@ -1,0 +1,360 @@
+/* ============================================================
+ * chapter.css — per-beat page: branches, marks, decision cards
+ * ============================================================ */
+
+/* --- Reading note (intro paragraph above article) ---------- */
+
+.reading-note {
+  max-width: var(--max-text);
+  margin: 0 auto 4rem;
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.7;
+  text-align: center;
+  padding: 0 1rem;
+}
+.reading-note .key-mark {
+  display: inline-block;
+  width: 2px;
+  height: 0.95em;
+  background: var(--branch);
+  vertical-align: -0.05em;
+  margin: 0 0.15em;
+}
+
+/* --- Beat structure ---------------------------------------- */
+
+.beat { margin-bottom: 5rem; }
+
+.beat-header {
+  text-align: center;
+  margin: 3rem 0 3rem;
+}
+
+.beat-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.6rem, 3.5vw, 2.2rem);
+  margin-bottom: 0.4rem;
+  color: var(--ink);
+}
+
+.beat-subtitle {
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+
+.beat-dateline {
+  font-style: italic;
+  font-size: 0.85rem;
+  color: var(--ink-faint);
+}
+
+/* --- Section --------------------------------------------- */
+
+.section {
+  margin-bottom: 4.5rem;
+  position: relative;
+}
+
+.section-mark {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.2em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+.section-mark::before,
+.section-mark::after {
+  content: "\2014";
+  margin: 0 0.8rem;
+  color: var(--branch-faint);
+}
+
+/* --- Drop cap (first paragraph of each beat) --------------- */
+
+.beat .section:first-of-type .section-mark + p::first-letter,
+.beat-opener::first-letter {
+  font-family: var(--serif);
+  font-weight: 600;
+  font-size: 3.2rem;
+  line-height: 0.9;
+  float: left;
+  padding: 0.35rem 0.5rem 0 0;
+  color: var(--ink);
+}
+
+/* --- Fork paragraph + branch mark -------------------------- */
+
+.fork-paragraph { position: relative; }
+
+.branch-mark {
+  position: absolute;
+  right: -2.8rem;
+  top: 0.45rem;
+  width: 2rem;
+  height: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 0.3em;
+  z-index: 5;
+  background: transparent;
+  border: none;
+  font-family: var(--mono);
+}
+
+.branch-mark::before {
+  content: "";
+  display: block;
+  width: 1px;
+  height: 2.8em;
+  background: var(--branch);
+  transition: width 200ms ease, height 200ms ease, background-color 200ms ease;
+}
+
+.branch-mark:hover::before,
+.branch-mark:focus::before {
+  width: 2px;
+  height: 3.4em;
+}
+
+.branch-mark .label {
+  position: absolute;
+  left: 1.2rem;
+  top: 0.4em;
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--branch);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 240ms ease;
+  pointer-events: none;
+}
+
+.branch-mark:hover .label,
+.branch-mark:focus .label { opacity: 1; }
+
+.branch-mark:focus-visible {
+  outline: 2px solid var(--branch);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+.branch-mark:focus { outline: none; }
+
+/* On a branch, dim other forks; hide the active one */
+body.branched .branch-mark,
+body.animating .branch-mark {
+  pointer-events: none;
+  opacity: 0.25;
+}
+body.branched .branch-mark.active-branch {
+  opacity: 0;
+  display: none;
+}
+
+/* --- Decision card ----------------------------------------- */
+
+.decision {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), margin 0.45s ease;
+  margin: 0;
+}
+.decision.open {
+  max-height: 24rem;
+  margin: 1.4rem 0 1.6rem;
+}
+
+.decision-inner {
+  background: var(--paper-deep);
+  border-left: 2px solid var(--branch);
+  padding: 1.4rem 1.6rem;
+  opacity: 0;
+  transform: translateY(8px);
+  transition: opacity 280ms cubic-bezier(0.4, 0, 0.2, 1) 100ms,
+              transform 280ms cubic-bezier(0.4, 0, 0.2, 1) 100ms;
+}
+.decision.open .decision-inner {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.decision-title {
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--branch);
+  font-weight: 500;
+  margin-bottom: 0.7rem;
+}
+
+.decision-summary {
+  font-style: italic;
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 1.2rem;
+}
+
+.decision-actions {
+  display: flex;
+  gap: 0.8rem;
+  flex-wrap: wrap;
+}
+
+.decision-btn {
+  background: none;
+  border: 1px solid var(--ink-soft);
+  color: var(--ink-soft);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.6rem 1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease, border-color 200ms ease;
+  border-radius: 1px;
+}
+.decision-btn:hover {
+  background: var(--ink);
+  color: var(--paper);
+  border-color: var(--ink);
+}
+.decision-btn.primary {
+  border-color: var(--branch);
+  color: var(--branch);
+}
+.decision-btn.primary:hover {
+  background: var(--branch);
+  color: var(--paper);
+  border-color: var(--branch);
+}
+
+/* --- Multi-section runtime fix (hide canon sections branch
+       does not replace; restore on return-to-canon). ----------- */
+
+.hidden-by-branch { display: none; }
+
+/* --- Post-fork wrapper (canon + branch share this slot) ---- */
+
+.post-fork { position: relative; }
+
+body.branched .post-fork {
+  border-left: 2px solid var(--branch);
+  padding-left: 1.2rem;
+  margin-left: -1.4rem;
+  transition: border-color 800ms ease;
+}
+
+/* --- Branch-coda line (the italic anomaly-log entry) ------- */
+
+.branch-coda-line {
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  line-height: 1.65;
+  font-style: normal;
+  display: block;
+  margin-top: 1.6rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid var(--rule);
+}
+.branch-coda-line::before {
+  content: "\2192 ";
+  color: var(--branch);
+  margin-right: 0.3em;
+}
+.branch-coda-line em {
+  font-style: italic;
+  color: var(--ink-soft);
+}
+
+/* --- Return-to-canon button -------------------------------- */
+
+.return-to-canon {
+  display: none;
+  margin-top: 1.2rem;
+  background: none;
+  border: 1px solid var(--branch);
+  color: var(--branch);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  padding: 0.55rem 1.1rem;
+  cursor: pointer;
+  transition: background-color 200ms ease, color 200ms ease;
+  border-radius: 1px;
+}
+body.branched .return-to-canon { display: inline-block; }
+.return-to-canon:hover { background: var(--branch); color: var(--paper); }
+.return-to-canon:disabled { opacity: 0.5; cursor: wait; }
+
+/* --- Rewriting pulse (shown during animation) -------------- */
+
+.rewriting-pulse {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--branch);
+  opacity: 0;
+  transition: opacity 0.4s;
+  z-index: 100;
+  background: var(--paper);
+  padding: 0.5rem 1rem;
+  border: 1px solid var(--branch);
+  border-radius: 1px;
+}
+.rewriting-pulse.show { opacity: 1; }
+.rewriting-pulse .dot {
+  display: inline-block;
+  width: 4px;
+  height: 4px;
+  background: var(--branch);
+  border-radius: 50%;
+  margin-left: 0.4rem;
+  animation: pulse 1.2s infinite;
+}
+
+/* --- 11ms timestamp Easter egg ----------------------------- */
+
+.coda-tick {
+  position: fixed;
+  bottom: 1.5rem;
+  right: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.18em;
+  color: var(--branch-faint);
+  opacity: 0;
+  z-index: 50;
+  pointer-events: none;
+}
+.coda-tick.show {
+  animation: coda-tick-in 1.4s ease-out;
+}
+
+/* --- Mobile ------------------------------------------------ */
+
+@media (max-width: 720px) {
+  .section { margin-bottom: 3.5rem; }
+  .branch-mark { right: auto; left: -1.6rem; width: 1.4rem; }
+  .branch-mark .label { left: -2rem; top: 3.2em; }
+  body.branched .post-fork { margin-left: -1rem; padding-left: 0.8rem; }
+}
