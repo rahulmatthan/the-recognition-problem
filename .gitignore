@@ -1,0 +1,24 @@
+# Build output
+dist/
+build/recognition-problem.html
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
+*~
+
+# Claude Code session-local
+.claude/scheduled_tasks.lock
+.claude/settings.local.json

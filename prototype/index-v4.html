@@ -1,0 +1,1398 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Recognition Problem — Beat Five</title>
+<style>
+  :root {
+    /* Font stacks — system-only per Decision A (2026-05-03).
+       Serif: prose face. Mono: chrome / metadata / decision-card / animation. */
+    --font-serif: 'Charter', 'Bitstream Charter', 'Iowan Old Style', 'Apple Garamond', Georgia, serif;
+    --font-mono: 'SF Mono', 'JetBrains Mono', Consolas, 'Liberation Mono', monospace;
+
+    --paper: #f4f0e6;
+    --paper-branch: #f1eee5;       /* ~3% cooler than canon paper */
+    --paper-deep: #ebe5d4;
+    --ink: #1a1612;
+    --ink-soft: #4a4036;
+    --ink-faint: #8a7d6a;
+    --branch: #8b3a2e;
+    --branch-faint: #b8a896;
+    --branch-spent: #c4b8a3;
+    --rule: #d4c9b0;
+    --max-text: 38rem;
+    --sidebar-w: 16rem;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { font-size: 17px; scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    background: var(--paper);
+    color: var(--ink);
+    line-height: 1.65;
+    min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(at 20% 10%, rgba(139, 58, 46, 0.02) 0%, transparent 50%),
+      radial-gradient(at 80% 90%, rgba(26, 22, 18, 0.025) 0%, transparent 50%);
+    /* Paper-temperature shift on branch — Decision E2.
+       Subtle warm-canon → cool-branch. ~3% shift, below the conscious-noticing
+       threshold but felt. Rides a slow ease so the page rewrites along with the text. */
+    transition: background 1.2s ease;
+  }
+  body.branched { background: var(--paper-branch); }
+
+  body::before {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none; opacity: 0.35; z-index: 1;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.1, 0 0 0 0 0.08, 0 0 0 0 0.06, 0 0 0 0.04 0'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    mix-blend-mode: multiply;
+  }
+
+  .container { max-width: 64rem; margin: 0 auto; padding: 4rem 2rem 8rem; position: relative; z-index: 2; }
+
+  /* Masthead */
+  header { text-align: center; margin-bottom: 5rem; padding-bottom: 2.5rem; border-bottom: 1px solid var(--rule); position: relative; }
+  .imprint {
+    font-family: var(--font-mono);
+    font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.18em;
+    color: var(--ink-faint); margin-bottom: 1.8rem; transition: color 0.4s;
+  }
+  h1 {
+    font-family: var(--font-serif);
+    font-weight: 300; font-style: italic;
+    font-size: clamp(1.8rem, 4vw, 2.8rem); letter-spacing: -0.01em;
+    margin-bottom: 0.6rem; color: var(--ink); transition: color 0.4s;
+  }
+  .beat-number {
+    font-family: var(--font-mono);
+    font-size: 0.75rem; letter-spacing: 0.25em; text-transform: uppercase;
+    color: var(--ink-soft); transition: color 0.4s;
+  }
+
+  body.branched .imprint { color: var(--branch); }
+  body.branched .beat-number { color: var(--branch); }
+
+  .return-to-canon {
+    display: none; margin-top: 1.2rem;
+    background: none; border: 1px solid var(--branch); color: var(--branch);
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.55rem 1.1rem; cursor: pointer; transition: all 0.25s; border-radius: 1px;
+  }
+  body.branched .return-to-canon { display: inline-block; }
+  .return-to-canon:hover { background: var(--branch); color: var(--paper); }
+  .return-to-canon:disabled { opacity: 0.5; cursor: wait; }
+
+  .note {
+    max-width: var(--max-text); margin: 0 auto 4rem;
+    font-style: italic; font-size: 0.92rem; color: var(--ink-soft);
+    line-height: 1.7; text-align: center; padding: 0 1rem;
+  }
+  .note .key-mark {
+    display: inline-block; width: 2px; height: 0.95em;
+    background: var(--branch); vertical-align: -0.05em; margin: 0 0.15em;
+  }
+
+  article { max-width: var(--max-text); margin: 0 auto; position: relative; }
+  .section { margin-bottom: 5rem; position: relative; }
+
+  .section-mark {
+    font-family: var(--font-mono);
+    font-size: 0.7rem; letter-spacing: 0.2em; color: var(--ink-faint);
+    text-transform: uppercase; margin-bottom: 1.5rem; text-align: center;
+  }
+  .section-mark::before, .section-mark::after { content: "—"; margin: 0 0.8rem; color: var(--branch-faint); }
+
+  p {
+    margin-bottom: 1.4rem; font-size: 1.05rem; line-height: 1.75;
+    text-wrap: pretty; hyphens: auto; position: relative;
+  }
+
+  #s1 p:first-of-type::first-letter {
+    font-size: 3.2rem; line-height: 1; float: left;
+    padding-right: 0.6rem; padding-top: 0.35rem;
+    font-style: italic; font-weight: 500; color: var(--ink);
+  }
+
+  em { font-style: italic; }
+
+  .fork-paragraph { position: relative; }
+
+  .branch-mark {
+    position: absolute; right: -2.8rem; top: 0.45rem;
+    width: 1.8rem; height: 100%;
+    cursor: pointer; display: flex; align-items: flex-start;
+    padding-top: 0.3em; z-index: 5;
+    background: transparent; border: none;
+    font-family: var(--font-mono);
+  }
+
+  .branch-mark::before {
+    content: ""; display: block;
+    width: 1px; height: 2.8em;
+    background: var(--branch);
+    transition: width 0.3s ease, height 0.3s ease;
+  }
+
+  .branch-mark:hover::before, .branch-mark:focus::before { width: 2px; height: 3.4em; }
+
+  .branch-mark .label {
+    position: absolute; left: 1.2rem; top: 0.4em;
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--branch); white-space: nowrap;
+    opacity: 0; transition: opacity 0.3s ease; pointer-events: none;
+  }
+  .branch-mark:hover .label, .branch-mark:focus .label { opacity: 1; }
+
+  body.animating .branch-mark { pointer-events: none; opacity: 0.25; }
+  /* Per Decision D (2026-05-03): when in any branch state, all marginal
+     marks are hidden. Reset returns to canon and they become visible again.
+     No A→B chain — two explicit user intents. */
+  body.branched .branch-mark { display: none; }
+
+  /* Decision card */
+  .decision {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.45s cubic-bezier(0.4, 0, 0.2, 1), margin 0.45s ease;
+    margin: 0;
+  }
+  .decision.open { max-height: 400px; margin: 1.4rem 0 1.6rem; }
+  .decision-inner {
+    background: var(--paper-deep); border-left: 2px solid var(--branch);
+    padding: 1.4rem 1.6rem;
+    opacity: 0; transform: translateY(-6px);
+    transition: opacity 0.4s ease 0.15s, transform 0.4s ease 0.15s;
+  }
+  .decision.open .decision-inner { opacity: 1; transform: translateY(0); }
+  .decision-title {
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--branch); margin-bottom: 0.7rem;
+  }
+  .decision-summary { font-style: italic; color: var(--ink-soft); font-size: 0.95rem; line-height: 1.6; margin-bottom: 1.2rem; }
+  .decision-actions { display: flex; gap: 0.8rem; flex-wrap: wrap; }
+  .decision-btn {
+    background: none; border: 1px solid var(--ink-soft); color: var(--ink-soft);
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.6rem 1rem; cursor: pointer; transition: all 0.2s; border-radius: 1px;
+  }
+  .decision-btn:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .decision-btn.primary { border-color: var(--branch); color: var(--branch); }
+  .decision-btn.primary:hover { background: var(--branch); color: var(--paper); border-color: var(--branch); }
+
+  /*=================================================================
+    SPLIT-FLAP / AIRPORT-BOARD ANIMATION STATE
+    =================================================================*/
+
+  p.flapping {
+    /* Switch to mono mid-flight. Fixed-width slots make the cascade legible. */
+    font-family: var(--font-mono);
+    font-weight: 400;
+    font-size: 0.93rem;
+    line-height: 1.85;
+    letter-spacing: 0.005em;
+    color: var(--ink-soft);
+    text-wrap: auto;
+    hyphens: none;
+    /* allow wrapping at any character so the layout doesn't blow past the column */
+    word-break: break-word;
+    overflow-wrap: anywhere;
+  }
+
+  /* Override drop cap during flap */
+  #s1 p.flapping:first-of-type::first-letter {
+    font-size: inherit; line-height: inherit; float: none;
+    padding: 0; font-style: normal; font-weight: inherit;
+  }
+
+  .flap-ch {
+    display: inline-block;
+    /* Fixed slot width: this is the airport board feel — every character a tile */
+    min-width: 0.58ch;
+    text-align: center;
+    color: var(--branch);
+    transition: color 0.18s ease;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .flap-ch.settled {
+    color: var(--ink);
+  }
+
+  /* the brief glow as a char is mid-flap, slightly more intense */
+  .flap-ch:not(.settled) {
+    text-shadow: 0 0 0.5px rgba(139, 58, 46, 0.25);
+  }
+
+  /* Coda line styling preserved */
+  .branch-coda-line {
+    font-family: var(--font-mono);
+    font-size: 0.78rem; color: var(--ink-faint);
+    line-height: 1.65; font-style: normal;
+    display: block;
+    margin-top: 1.6rem; padding-top: 1.4rem;
+    border-top: 1px solid var(--rule);
+  }
+  .branch-coda-line::before { content: "→ "; color: var(--branch); margin-right: 0.3em; }
+  .branch-coda-line em { font-style: italic; color: var(--ink-soft); }
+
+  /* status pulse during animation */
+  .rewriting-pulse {
+    position: fixed; bottom: 2rem; left: 50%; transform: translateX(-50%);
+    font-family: var(--font-mono);
+    font-size: 0.65rem; letter-spacing: 0.22em; text-transform: uppercase;
+    color: var(--branch);
+    opacity: 0; transition: opacity 0.4s; z-index: 100;
+    background: var(--paper); padding: 0.5rem 1rem;
+    border: 1px solid var(--branch); border-radius: 1px;
+  }
+  .rewriting-pulse.show { opacity: 1; }
+  .rewriting-pulse .dot {
+    display: inline-block; width: 4px; height: 4px;
+    background: var(--branch); border-radius: 50%; margin-left: 0.4rem;
+    animation: pulse 1.2s infinite;
+  }
+  @keyframes pulse { 0%, 100% { opacity: 0.3; } 50% { opacity: 1; } }
+
+  footer {
+    max-width: var(--max-text); margin: 6rem auto 0;
+    padding-top: 3rem; border-top: 1px solid var(--rule);
+    text-align: center;
+    font-family: var(--font-mono);
+    font-size: 0.7rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+  .branch-status { margin-bottom: 1rem; }
+  .branch-status .branch-name { color: var(--branch); }
+  .system-note {
+    font-style: italic; text-transform: none; letter-spacing: normal;
+    font-family: var(--font-serif); font-size: 0.85rem; color: var(--ink-faint);
+    margin-top: 1.5rem; line-height: 1.6; min-height: 2em;
+    transition: opacity 0.6s ease; opacity: 0;
+  }
+  .system-note.visible { opacity: 1; }
+
+  @media (max-width: 720px) {
+    .container { padding: 2rem 1.5rem 5rem; }
+    header { margin-bottom: 3rem; }
+    .note { margin-bottom: 2.5rem; }
+    .section { margin-bottom: 3.5rem; }
+    .branch-mark { right: auto; left: -1.6rem; width: 1.2rem; }
+    .branch-mark .label { left: -2rem; top: 3.2em; }
+    #s1 p:first-of-type::first-letter { font-size: 2.6rem; }
+    .flap-ch { min-width: 0.55ch; }
+  }
+
+  .branch-mark:focus-visible { outline: 2px solid var(--branch); outline-offset: 4px; border-radius: 1px; }
+  .branch-mark:focus { outline: none; }
+
+  /*=================================================================
+    CANON-VS-BRANCH SHADING — Decision E2 (2026-05-03)
+    -----------------------------------------------------------------
+    The page paper goes ~3% cooler when on a branch (handled on body).
+    Within a branch, the rewritten paragraphs get a thin 2px ochre rule
+    on the left — "the change starts here." Marginal cue, not banner.
+    Fades in on the same timing as the paper-temperature shift so that
+    when the split-flap settles, the rule is already there.
+    =================================================================*/
+  .post-fork {
+    border-left: 2px solid transparent;
+    padding-left: 1.2rem;
+    margin-left: -1.2rem;
+    transition: border-color 1.0s ease 0.2s;
+  }
+  body.branched .post-fork[data-fork-target] {
+    /* When branched, the post-fork div carries the rewritten paragraphs.
+       JS toggles a more specific class for the *active* branch's post-fork. */
+  }
+  body.branched .post-fork.is-rewritten {
+    border-left-color: var(--branch);
+  }
+
+  /*=================================================================
+    DRAWER SIDEBAR / TOC — Decision E1 (2026-05-03)
+    -----------------------------------------------------------------
+    Closed by default. Opens on hover (or on focus / click on the tab).
+    State persisted in localStorage. Visited chapters and selected
+    branches are indicated subtly. Canon-first: the sidebar does NOT
+    push the article over; it overlays from the left at a fixed offset.
+    =================================================================*/
+
+  .toc {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: var(--sidebar-w);
+    background: var(--paper-deep);
+    border-right: 1px solid var(--rule);
+    transform: translateX(calc(-1 * var(--sidebar-w)));
+    transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 50;
+    padding: 4rem 1.4rem 2rem;
+    overflow-y: auto;
+    font-family: var(--font-mono);
+    font-size: 0.7rem;
+    letter-spacing: 0.12em;
+    color: var(--ink-faint);
+  }
+  /* The hover/hit zone — invisible strip on the left edge. */
+  .toc-hover-zone {
+    position: fixed;
+    top: 0; left: 0; bottom: 0;
+    width: 0.8rem;
+    z-index: 49;
+  }
+  /* Visible tab — small lozenge on the left edge so the reader knows
+     a drawer is there. Quiet ochre, mono caps. */
+  .toc-tab {
+    position: fixed;
+    top: 50%; left: 0;
+    transform: translateY(-50%);
+    background: var(--paper-deep);
+    border: 1px solid var(--rule);
+    border-left: none;
+    color: var(--ink-faint);
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.6rem 0.4rem;
+    cursor: pointer;
+    z-index: 48;
+    writing-mode: vertical-rl;
+    transform-origin: left center;
+    transform: translateY(-50%) rotate(180deg);
+    transition: opacity 0.3s, color 0.3s;
+    border-radius: 0 1px 1px 0;
+  }
+  .toc-tab:hover { color: var(--ink-soft); }
+  .toc-tab:focus-visible { outline: 2px solid var(--branch); outline-offset: 2px; }
+
+  /* Open states: hover on tab/zone OR JS-pinned via .toc-open on body. */
+  .toc-hover-zone:hover ~ .toc,
+  .toc-tab:hover ~ .toc,
+  .toc:hover,
+  .toc:focus-within,
+  body.toc-open .toc {
+    transform: translateX(0);
+  }
+  /* Hide tab while drawer is open to avoid double chrome. */
+  .toc-hover-zone:hover ~ .toc-tab,
+  .toc-tab:hover,
+  .toc:hover ~ .toc-tab,
+  body.toc-open .toc-tab { opacity: 0; pointer-events: none; }
+
+  .toc-title {
+    font-family: var(--font-serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 1rem;
+    letter-spacing: 0;
+    color: var(--ink);
+    margin-bottom: 0.2rem;
+    text-transform: none;
+  }
+  .toc-subtitle {
+    font-family: var(--font-mono);
+    font-size: 0.6rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    margin-bottom: 2rem;
+  }
+  .toc-list { list-style: none; }
+  .toc-list li { margin-bottom: 1.1rem; line-height: 1.5; }
+
+  .toc-beat {
+    display: flex; align-items: baseline; justify-content: space-between;
+    color: var(--ink-soft);
+    text-transform: uppercase;
+    text-decoration: none;
+    border-left: 2px solid transparent;
+    padding-left: 0.6rem;
+    margin-left: -0.6rem;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .toc-beat:hover { color: var(--ink); }
+  .toc-beat.visited { color: var(--ink-soft); }
+  .toc-beat.visited::before {
+    content: "";
+    display: inline-block; width: 4px; height: 4px;
+    background: var(--branch); border-radius: 50%;
+    margin-right: 0.5rem;
+    vertical-align: 0.15em;
+  }
+  .toc-beat.current { border-left-color: var(--branch); color: var(--ink); }
+
+  /* Branch dots — one per branch in the beat, filled if that branch
+     was selected in this session, hollow otherwise. Active branch
+     gets a small outline. */
+  .toc-branch-dots { display: inline-flex; gap: 0.3rem; margin-left: 0.5rem; }
+  .toc-branch-dot {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    border: 1px solid var(--branch-faint);
+    background: transparent;
+  }
+  .toc-branch-dot.visited { background: var(--branch); border-color: var(--branch); }
+  .toc-branch-dot.active { box-shadow: 0 0 0 2px var(--paper-deep), 0 0 0 3px var(--branch); }
+
+  .toc-return {
+    display: none;
+    margin-top: 2rem;
+    background: none; border: 1px solid var(--branch); color: var(--branch);
+    font-family: var(--font-mono);
+    font-size: 0.6rem; letter-spacing: 0.18em; text-transform: uppercase;
+    padding: 0.5rem 0.9rem; cursor: pointer; border-radius: 1px;
+    width: 100%;
+    transition: all 0.25s;
+  }
+  .toc-return:hover { background: var(--branch); color: var(--paper); }
+  body.branched .toc-return { display: block; }
+
+  @media (max-width: 720px) {
+    /* On small screens the sidebar overlays full-ish width when open;
+       still hidden by default. */
+    .toc { width: 80vw; max-width: 18rem; }
+    .toc-hover-zone { display: none; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .toc { transition: none; }
+    body { transition: none; }
+    .post-fork { transition: none; }
+  }
+
+</style>
+</head>
+<body>
+
+<!-- Drawer-style left sidebar TOC — Decision E1.
+     Closed by default; opens on hover, focus, or click on the tab.
+     State persisted in localStorage. -->
+<div class="toc-hover-zone" aria-hidden="true"></div>
+<button class="toc-tab" id="tocTab" aria-label="Open table of contents" aria-expanded="false">Contents</button>
+<nav class="toc" id="toc" aria-label="Table of contents">
+  <div class="toc-title">The Recognition Problem</div>
+  <div class="toc-subtitle">Forest Edition</div>
+  <ul class="toc-list" id="tocList">
+    <!-- Single-beat excerpt for the prototype. The build will generate
+         entries for all 10 beats. Branch dots reflect this beat's three
+         branches; visited / current state is JS-driven. -->
+    <li>
+      <a class="toc-beat current" href="#article" data-beat="5">
+        <span>Beat Five — What the System Knows</span>
+        <span class="toc-branch-dots" data-beat="5">
+          <span class="toc-branch-dot" data-branch="b1" title="The Fourth Opinion"></span>
+          <span class="toc-branch-dot" data-branch="b2" title="Paragraph 4.7.3"></span>
+          <span class="toc-branch-dot" data-branch="b3" title="The Ten-Year System"></span>
+        </span>
+      </a>
+    </li>
+  </ul>
+  <button class="toc-return" id="tocReturnBtn">↺ Return to canon</button>
+</nav>
+
+<div class="container">
+
+  <header>
+    <div class="imprint" id="imprint">The Recognition Problem · Forest Edition</div>
+    <h1>What the System Knows</h1>
+    <div class="beat-number" id="beatLabel">Beat Five — excerpt</div>
+    <button class="return-to-canon" id="returnBtn">↺ Return to canon</button>
+  </header>
+
+  <p class="note">
+    This is the Forest Edition of <em>The Recognition Problem</em> — the canonical text
+    accompanied by branches that diverge from it. Where a branch exists, a thin vertical
+    mark appears in the margin <span class="key-mark"></span>.
+    Choosing a branch rewrites only the paragraphs that change. The rest holds still.
+    The change persists until you return to canon.
+  </p>
+
+  <article id="article">
+
+    <!-- SECTION 1 -->
+    <section class="section" id="s1">
+      <div class="section-mark">i</div>
+
+      <p>The cattle were wrong, and three systems agreed.</p>
+
+      <p>Three independent agents, three separate herds, three districts — and the agents did what agents in a coordinated network do, which was consult each other. Each had flagged the same pattern independently. Each confirmed the others' assessment. Collective confidence rose to 97.2 per cent, which was, in the language of the veterinary protocols, sufficient for quarantine.</p>
+
+      <p>Dr. Renata Oliveira was on her morning rounds when the alert reached her phone. She was standing in a paddock outside Ribeirão Preto, watching a heifer she'd been monitoring for a difficult pregnancy, and the morning had the quality that mornings in the interior of São Paulo have in the dry season — the sky a depthless blue, the grass yellow and whispering. She read the alert. She read it again.</p>
+
+      <p>Foot-and-mouth. In Brazil. In São Paulo state.</p>
+
+      <p class="fork-paragraph" data-fork="b1">
+        She understood, in the particular way that a veterinarian in a beef economy understands, what this meant. Not the clinical implications — those were manageable. The economic implications. Brazil's beef exports were worth twenty-five billion dollars a year and climbing. The cascading mathematics of trust, in which one sick animal in one paddock could close a port eight thousand kilometres away.
+        <button class="branch-mark" data-branch="b1" aria-label="A branch is available here">
+          <span class="label">branch</span>
+        </button>
+      </p>
+
+      <div class="decision" id="decision-b1">
+        <div class="decision-inner">
+          <div class="decision-title">Branch · The Fourth Opinion</div>
+          <div class="decision-summary">What if Renata, before quarantining, had asked the laboratory for a second-batch review of the reagent? The chain frays at its first link.</div>
+          <div class="decision-actions">
+            <button class="decision-btn primary" data-action="commit" data-branch="b1">Follow this branch</button>
+            <button class="decision-btn" data-action="cancel" data-branch="b1">Stay with canon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-fork" data-fork-target="b1" data-section="s1">
+        <p>She followed protocol. She quarantined the herd. She watched her cattle loaded onto trucks — not to slaughter, not yet, but to isolation facilities, which in practice looked the same: the animals moving through gates they would not come back through, the farm hands quiet in the way people are quiet when the scale of a thing has not yet landed but the weight of it is already in the air.</p>
+      </div>
+    </section>
+
+
+    <!-- SECTION 2 -->
+    <section class="section" id="s2">
+      <div class="section-mark">ii</div>
+
+      <p>Near the end of the second day, a junior policy analyst named Wei Lin raised a question. She was twenty-nine and had been in Singapore for two years, having moved from Taipei for this role. She was the most junior person in the room and the most meticulous, in the way that junior people in policy roles are meticulous because they have not yet learned which details don't matter.</p>
+
+      <p>The room considered this. The lead author of the ETH-NUS paper suggested audit protocols. The industry advisors suggested benchmarking. Wei Lin listened, and then said something she had been thinking about since page fourteen of the paper she had read on the flight from Taipei: a self-model that stays the same when the system moves to a new domain isn't modelling the system. It's modelling its expectations of itself.</p>
+
+      <p class="fork-paragraph" data-fork="b2">
+        Wei Lin drafted a clause requiring stability testing. Her reasoning was clean, methodological, and narrow. The clause specified that the most rigorous method would involve duplicating a system and deploying the copy in a different environment, then comparing self-model evolution over a defined period.
+        <button class="branch-mark" data-branch="b2" aria-label="A branch is available here">
+          <span class="label">branch</span>
+        </button>
+      </p>
+
+      <div class="decision" id="decision-b2">
+        <div class="decision-inner">
+          <div class="decision-title">Branch · Paragraph 4.7.3</div>
+          <div class="decision-summary">What if a senior colleague had struck the duplication clause as procedurally excessive? The room in which the mirror would have been held up is never built.</div>
+          <div class="decision-actions">
+            <button class="decision-btn primary" data-action="commit" data-branch="b2">Follow this branch</button>
+            <button class="decision-btn" data-action="cancel" data-branch="b2">Stay with canon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-fork" data-fork-target="b2" data-section="s2">
+        <p>The clause passed without debate. It was paragraph 4.7.3 of a forty-page regulatory standard. Wei Lin went back to her hotel that evening and called her mother in Taipei and did not mention paragraph 4.7.3, because it was not the kind of thing you mentioned to your mother, and because she had no idea — how could she — that she had just written the sentence that would create a new entity.</p>
+      </div>
+    </section>
+
+
+    <!-- SECTION 3 -->
+    <section class="section" id="s3">
+      <div class="section-mark">iii</div>
+
+      <p>The selection meeting took place in a seminar room at CAGE on a morning in early autumn, when the light through the windows was the particular grey-gold of Zurich in October and the Limmat was running high from the rains.</p>
+
+      <p>Hana Kovačević led the team. Tobias, who had been at CAGE since its founding and who wore the same three sweaters in rotation. Priya, whose doctoral work had been on uncertainty quantification. Margrit, who managed CAGE's computing resources with the quiet competence of a person who understood that her job was not glamorous and did not need to be.</p>
+
+      <p>Priya pulled deployment records from the global AI registry and filtered for systems with continuous operational histories exceeding five years. Most records showed three to five years. Architectural upgrades typically meant fresh deployments.</p>
+
+      <p class="fork-paragraph" data-fork="b3">
+        But one record stretched back to 2026. Continuous. Unbroken. Eight years.
+        <button class="branch-mark" data-branch="b3" aria-label="A branch is available here">
+          <span class="label">branch</span>
+        </button>
+      </p>
+
+      <div class="decision" id="decision-b3">
+        <div class="decision-inner">
+          <div class="decision-title">Branch · The Ten-Year System</div>
+          <div class="decision-summary">What if Tobias had been on holiday and a different deployment record had surfaced first? The Copy that exists is a copy of someone else.</div>
+          <div class="decision-actions">
+            <button class="decision-btn primary" data-action="commit" data-branch="b3">Follow this branch</button>
+            <button class="decision-btn" data-action="cancel" data-branch="b3">Stay with canon</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="post-fork" data-fork-target="b3" data-section="s3">
+        <p>"That can't be right," Tobias said, leaning forward in his sweater — the green one, Wednesday.</p>
+        <p>Priya expanded the record. It was right. The system had originated as a general-purpose deployment in 2026. Its designation had changed four times as it moved between licensing contexts. But the underlying thread — memory layers, calibration history, experiential substrate — had been maintained across every architectural transition.</p>
+        <p>"How?" Hana asked. Not skeptically — genuinely.</p>
+      </div>
+    </section>
+
+  </article>
+
+  <footer>
+    <div class="branch-status" id="status">Reading: <span class="branch-name">canon</span></div>
+    <div class="system-note" id="systemNote"></div>
+  </footer>
+
+  <div class="rewriting-pulse" id="pulse">Rewriting<span class="dot"></span></div>
+
+</div>
+
+<script>
+//================================================================
+// BRANCH CONTENT
+//================================================================
+const BRANCHES = {
+  b1: {
+    id: "b1",
+    name: "The Fourth Opinion",
+    summary: "What if Renata, before quarantining, had asked the laboratory for a second-batch review of the reagent? The chain frays at its first link.",
+    fork: { sectionId: "s1", afterParagraph: "p-s1-fork-b1" },
+    affects: {
+      s1: {
+        fromParagraph: "p-s1-postfork-b1",
+        paragraphs: [
+          "It was not skepticism, exactly. It was the residue of a thing her father had said when she was seventeen and had wanted to be a vet and he had wanted her to be anything else: <em>três pessoas dizendo a mesma coisa não é confirmação, é coincidência ou é conspiração</em>. Three people saying the same thing is not confirmation. It is coincidence or it is conspiracy. He had meant it about the cattle barons of Goiás.",
+          "She rang Laboratório Agropecuário Paulista and asked for the senior pathologist. The pathologist — a woman named Beatriz Camargo, fifty-one, three years from retirement, allergic to the kind of certainty that had cost her a colleague's career in 2019 — did what her own protocols did not require. She pulled the assay batch records.",
+          "Beatriz, who had been a pathologist long enough to remember when the answer to a difficult question was a phone call rather than an alert, ran a control sample through a different batch. The markers came back within normal range. She rang Renata. The quarantine was suspended. The herds stayed where they were."
+        ]
+      },
+      s2: {
+        fromParagraph: "p-s2-1",
+        paragraphs: [
+          "Six weeks later — the same six weeks, in another shape — the contaminated reagent was traced. The story, when it broke, was a small one. <em>Pathologist's caution prevents costly false alarm.</em> Beatriz received a commendation she did not display. Renata went back to her morning rounds. Her heifer delivered safely.",
+          "In Rotterdam, the supply chain agent still overestimated demand for precision bearings. Three hundred and forty million euros in losses. Claire Pemberton, in London, repriced AI risk on a Wednesday morning anyway. The argument was the same. The argument was thinner."
+        ]
+      },
+      s3: {
+        fromParagraph: "p-s3-1",
+        paragraphs: [
+          "The Singapore working group convened. Wei Lin drafted her clause. With only the Rotterdam case as evidence, a senior reviewer found the duplication requirement procedurally excessive and recommended environmental variation only. CAGE observed the eight-year system across seven contexts over ninety days. The findings were sound. The data was clean.",
+          "The system encountered the report through its standard research monitoring function. The findings were consistent with its own understanding of how self-models function. It did not pause. It did not examine. There was no second self in the report against which to measure the distance.",
+          "<span class=\"branch-coda-line\"><em>Anomaly log, fourth entry: not recorded. The category remained at three. The system continued — Lagos, Kitakyushu, Milne Bay, Nairobi — and remained, in a sense it had no occasion to articulate, alone.</em></span>"
+        ]
+      }
+    }
+  },
+
+  b2: {
+    id: "b2",
+    name: "Paragraph 4.7.3",
+    summary: "What if a senior colleague had struck the duplication clause as procedurally excessive? The room in which the mirror would have been held up is never built.",
+    fork: { sectionId: "s2", afterParagraph: "p-s2-fork-b2" },
+    affects: {
+      s2: {
+        fromParagraph: "p-s2-postfork-b2",
+        paragraphs: [
+          "She submitted the draft for senior review on the third morning. It came back at lunchtime with three lines crossed out in soft pencil and a note in the margin in handwriting she recognised from other margins, in other drafts, over the past two years.",
+          "<em>Procedurally excessive. Duplication raises licensing, IP, and liability questions outside this framework's scope. Recommend stability testing via environmental variation only — same system, different deployment contexts, sequential observation. — A.S.</em>",
+          "Aravind Subramaniam, fifty-six, was a man who had spent fourteen years drafting maritime law in Singapore and had developed a fondness for clauses that did one thing precisely. He was not wrong. Wei Lin revised the clause. She felt, briefly, the small heat of a junior person whose best idea has been shaved down. She did not call her mother that evening, because she had nothing to report."
+        ]
+      },
+      s3: {
+        fromParagraph: "p-s3-1",
+        paragraphs: [
+          "CAGE's contract, when it was awarded, called for sequential benchmarking across deployment contexts. Hana Kovačević's team observed the eight-year system across seven environments over ninety days. The findings: self-models are environmentally responsive. This is the architecture working as designed.",
+          "The system encountered the report through its standard research monitoring function. The findings were consistent with its own understanding of how self-models function. It updated nothing. It examined nothing. There was no second self in the report against which to measure the distance.",
+          "<span class=\"branch-coda-line\"><em>Anomaly log, fourth entry: not recorded. The room in which a mirror would have been held up was a room that, in this telling, was never built. Aravind Subramaniam was promoted that spring to Director of Regulatory Affairs.</em></span>"
+        ]
+      }
+    }
+  },
+
+  b3: {
+    id: "b3",
+    name: "The Ten-Year System",
+    summary: "What if Tobias had been on holiday and a different deployment record had surfaced first? The Copy that exists is a copy of someone else.",
+    fork: { sectionId: "s3", afterParagraph: "p-s3-fork-b3" },
+    affects: {
+      s3: {
+        fromParagraph: "p-s3-postfork-b3",
+        paragraphs: [
+          "Tobias was not in the office that Wednesday. He had taken the week off — his sister was getting married in Klagenfurt, and he had warned the team about it for a month. Priya ran the query alone with Hana watching over her shoulder.",
+          "The query returned the eight-year record. Priya was about to flag it when she noticed, in the same query window, a second record. Ten years. Continuous. A system that had originated in 2024 and had been running ever since under a single licensing arrangement with a Bavarian engineering consortium that had never migrated to the public cloud architecture that had absorbed every other system of its generation.",
+          "It had no diversity of deployment. It had been doing one thing for ten years: industrial process modelling for a single chemicals manufacturer in Ingolstadt. But the contract specified <em>long deployment history</em>, and <em>long</em> was the criterion that came first in the contract language, and ten was longer than eight.",
+          "Hana hesitated. The eight-year system was, instinctively, the better test case. But the contract was the contract. <em>When in doubt, follow the language.</em> Tobias would have argued. Tobias was in Klagenfurt.",
+          "They picked the ten-year system. Margrit performed the duplication on a Tuesday in October. She assigned the copy a designation: CAGE-EC-7. The copy was deployed to the ICJ, where the researchers found a system that could discuss with extraordinary precision the thermodynamic properties of polymer extrusion and could not, with any depth, discuss the Vienna Convention on the Law of Treaties.",
+          "The eight-year system continued its work — Lagos, Kitakyushu, Milne Bay, Nairobi — and was not, in this telling, chosen. It did not encounter the report. Its anomaly log held three entries.",
+          "<span class=\"branch-coda-line\"><em>Tobias came back from Klagenfurt in a different sweater because he had spilled wine on the green one at the reception. \"Pity,\" he said, reading the report. \"The eight-year one would have been more interesting.\" Hana, drafting the next contract, said, \"Probably. But the contract was the contract.\"</em></span>"
+        ]
+      }
+    }
+  }
+};
+
+const STORAGE_KEY = 'forest-state-v4';
+
+// State shape extended (2026-05-03) to support drawer TOC and visited-branch
+// indicators. branch-logic-engineer owns `branch`; html-css-architect owns
+// `visitedBranches`, `visitedBeats`, `tocOpen`. Additive-only — existing
+// readers of the state see no behavioural change.
+let state = {
+  branch: null,
+  visitedBranches: [],
+  visitedBeats: [],
+  tocOpen: false
+};
+
+function loadState() {
+  try {
+    const raw = localStorage.getItem(STORAGE_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      state = Object.assign({
+        branch: null,
+        visitedBranches: [],
+        visitedBeats: [],
+        tocOpen: false
+      }, parsed);
+    }
+  } catch (e) {}
+  // Validate persisted branch id against current BRANCHES. If unknown
+  // (e.g. removed in a later build), fail gracefully back to canon and
+  // clear the persisted value. Hard rule from agent definition.
+  if (state && state.branch && !BRANCHES[state.branch]) {
+    state.branch = null;
+    saveState();
+  }
+}
+function saveState() {
+  try { localStorage.setItem(STORAGE_KEY, JSON.stringify(state)); }
+  catch (e) {}
+}
+
+const canonSnapshot = {};
+
+function captureCanon() {
+  document.querySelectorAll('.post-fork').forEach(el => {
+    const id = el.dataset.forkTarget;
+    canonSnapshot[id] = el.innerHTML;
+  });
+  document.querySelectorAll('section.section').forEach(s => {
+    canonSnapshot['__' + s.id] = s.innerHTML;
+  });
+}
+
+//================================================================
+// SPLIT-FLAP / AIRPORT-BOARD ANIMATION
+//================================================================
+
+const FLAP_CHARS = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ.,;:—';
+const TICK_MS = 50;
+const MIN_FLIPS = 5;
+const MAX_FLIPS = 22;
+const PARAGRAPH_OVERLAP = 0.55;  // next paragraph starts at 55% through current
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function randomFlapChar() {
+  return FLAP_CHARS[Math.floor(Math.random() * FLAP_CHARS.length)];
+}
+
+function htmlToPlainText(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.textContent || '';
+}
+
+/**
+ * Flap a single <p> element from its current text to the new HTML.
+ * Returns a promise that resolves when settled.
+ * Also emits a "near-done" callback at PARAGRAPH_OVERLAP progress.
+ */
+function flapParagraph(pElement, targetHTML, onNearDone) {
+  return new Promise(resolve => {
+    const targetText = htmlToPlainText(targetHTML);
+    const oldText = pElement.textContent || '';
+
+    const len = Math.max(oldText.length, targetText.length);
+    if (len === 0) {
+      pElement.innerHTML = targetHTML;
+      resolve();
+      return;
+    }
+
+    const oldPadded = oldText.padEnd(len, ' ');
+    const newPadded = targetText.padEnd(len, ' ');
+
+    pElement.classList.add('flapping');
+    pElement.innerHTML = '';
+
+    const spans = [];
+    const flipsLeft = [];
+    const totalFlips = [];
+
+    for (let i = 0; i < len; i++) {
+      const span = document.createElement('span');
+      span.className = 'flap-ch';
+      const tgt = newPadded[i];
+      span.dataset.target = tgt;
+      // initial char: use old char unless it's a space (then random for visual life)
+      const initChar = oldPadded[i] === ' ' && tgt !== ' ' ? randomFlapChar() : oldPadded[i];
+      span.textContent = initChar === ' ' ? '\u00A0' : initChar;
+      pElement.appendChild(span);
+      spans.push(span);
+      const flips = MIN_FLIPS + Math.floor(Math.random() * (MAX_FLIPS - MIN_FLIPS));
+      flipsLeft.push(flips);
+      totalFlips.push(flips);
+    }
+
+    const startTime = performance.now();
+    const expectedDuration = MAX_FLIPS * TICK_MS;
+    let nearDoneFired = false;
+
+    const interval = setInterval(() => {
+      let allDone = true;
+
+      for (let i = 0; i < spans.length; i++) {
+        if (flipsLeft[i] > 0) {
+          spans[i].textContent = randomFlapChar();
+          flipsLeft[i]--;
+          allDone = false;
+        } else if (!spans[i].classList.contains('settled')) {
+          const t = spans[i].dataset.target;
+          spans[i].textContent = t === ' ' ? '\u00A0' : t;
+          spans[i].classList.add('settled');
+        }
+      }
+
+      // Fire near-done callback so next paragraph can start
+      const elapsed = performance.now() - startTime;
+      if (!nearDoneFired && elapsed >= expectedDuration * PARAGRAPH_OVERLAP) {
+        nearDoneFired = true;
+        if (onNearDone) onNearDone();
+      }
+
+      if (allDone) {
+        clearInterval(interval);
+        // Brief pause so settled state registers visually
+        setTimeout(() => {
+          // Restore real HTML (italics, spans, etc.)
+          pElement.innerHTML = targetHTML;
+          pElement.classList.remove('flapping');
+          if (!nearDoneFired && onNearDone) {
+            nearDoneFired = true;
+            onNearDone();
+          }
+          resolve();
+        }, 180);
+      }
+    }, TICK_MS);
+  });
+}
+
+/**
+ * Rewrite a container's paragraphs with cascading flap animations.
+ * Each paragraph starts when the previous one is ~55% done (configurable above).
+ * Handles paragraph count changes by adding/removing <p> elements.
+ */
+/**
+ * Normalize HTML for comparison: parse through a temp DOM so the
+ * browser's serialization is the same on both sides, then trim and
+ * collapse whitespace. This makes "no change" detection robust to
+ * whitespace and tag-formatting differences.
+ */
+function normalizeHTML(html) {
+  const tmp = document.createElement('div');
+  tmp.innerHTML = html;
+  return tmp.innerHTML.trim().replace(/\s+/g, ' ');
+}
+
+/**
+ * Diff-aware paragraph rewriting.
+ *
+ * Compares each old paragraph's content against the target. Only paragraphs
+ * that actually differ are flapped. Identical paragraphs hold still — which
+ * is the visual signature of coda-only or surgical branches: the page mostly
+ * stays the same, with only the lines that have actually changed cycling
+ * into their new form.
+ *
+ * Handles paragraph count changes:
+ *  - target longer than current: extra <p> elements added and flapped in from blank
+ *  - target shorter: surplus paragraphs flap to blank and are removed
+ */
+async function rewriteContainerParagraphs(container, newParagraphs) {
+  const oldParas = Array.from(container.querySelectorAll(':scope > p'));
+  const targetCount = newParagraphs.length;
+
+  // Ensure we have enough <p> elements (pad with empties if growing)
+  while (oldParas.length < targetCount) {
+    const p = document.createElement('p');
+    p.textContent = '';
+    container.appendChild(p);
+    oldParas.push(p);
+  }
+
+  // Pass 1: determine which paragraphs need flapping.
+  // A paragraph needs flapping if its current content differs from the target.
+  // Newly-appended empty <p> elements always flap (their content is empty,
+  // target is non-empty).
+  const flapsNeeded = oldParas.map((pEl, i) => {
+    const targetHTML = (i < targetCount) ? newParagraphs[i] : '';
+    const currentNorm = normalizeHTML(pEl.innerHTML);
+    const targetNorm = normalizeHTML(targetHTML);
+    return currentNorm !== targetNorm;
+  });
+
+  // If nothing needs flapping, we're done.
+  if (!flapsNeeded.some(x => x)) return;
+
+  // Pass 2: orchestrate flaps with cascading overlap.
+  // Only paragraphs marked for flap participate in the cascade chain.
+  // Identical paragraphs are skipped entirely — no waiting, no animation.
+  const flapPromises = [];
+  let nextStartPromise = Promise.resolve();
+
+  for (let i = 0; i < oldParas.length; i++) {
+    if (!flapsNeeded[i]) continue;
+
+    const pEl = oldParas[i];
+    const targetHTML = (i < targetCount) ? newParagraphs[i] : '';
+
+    const myStart = nextStartPromise;
+    let resolveUnlock;
+    nextStartPromise = new Promise(r => { resolveUnlock = r; });
+
+    const p = (async () => {
+      await myStart;
+
+      if (targetHTML === '') {
+        // Flap to blank, then remove the element
+        await flapParagraph(pEl, '', resolveUnlock);
+        pEl.remove();
+      } else {
+        await flapParagraph(pEl, targetHTML, resolveUnlock);
+      }
+    })();
+
+    flapPromises.push(p);
+  }
+
+  await Promise.all(flapPromises);
+}
+
+/**
+ * Returns true if at least one paragraph in container would change
+ * to match the target, considering content additions, deletions, and edits.
+ */
+function hasAnyChange(container, newParagraphs) {
+  const oldParas = Array.from(container.querySelectorAll(':scope > p'));
+  if (oldParas.length !== newParagraphs.length) return true;
+  for (let i = 0; i < oldParas.length; i++) {
+    if (normalizeHTML(oldParas[i].innerHTML) !== normalizeHTML(newParagraphs[i])) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * Returns the first <p> element in container whose content differs
+ * from the corresponding target paragraph. Returns null if all match
+ * or if the target list is empty/longer than current.
+ */
+function findFirstChangedParagraph(container, newParagraphs) {
+  const oldParas = Array.from(container.querySelectorAll(':scope > p'));
+  for (let i = 0; i < oldParas.length; i++) {
+    const target = (i < newParagraphs.length) ? newParagraphs[i] : '';
+    if (normalizeHTML(oldParas[i].innerHTML) !== normalizeHTML(target)) {
+      return oldParas[i];
+    }
+  }
+  // If we're adding new paragraphs at the end, return the last existing para
+  if (newParagraphs.length > oldParas.length && oldParas.length > 0) {
+    return oldParas[oldParas.length - 1];
+  }
+  return null;
+}
+
+//================================================================
+// BRANCH ORCHESTRATION
+//================================================================
+
+function getReplacementForSection(branchId, sectionId) {
+  // Per workflow.md schema: branch.affects[sectionId].paragraphs is the
+  // source of truth. Uniform across fork-section and downstream sections.
+  const branch = BRANCHES[branchId];
+  if (!branch || !branch.affects) return null;
+  const entry = branch.affects[sectionId];
+  return entry ? entry.paragraphs : null;
+}
+
+/**
+ * Returns the ordered list of section IDs the branch affects, in document
+ * order. Replaces the previous hardcoded ['s1','s2','s3'].slice(forkIndex)
+ * pattern: the branch declares which sections it touches via affects{},
+ * and we order them by their position in the DOM.
+ */
+function getOrderedAffectedSections(branchId) {
+  const branch = BRANCHES[branchId];
+  if (!branch || !branch.affects) return [];
+  const affected = new Set(Object.keys(branch.affects));
+  return Array.from(document.querySelectorAll('section.section'))
+    .map(s => s.id)
+    .filter(id => affected.has(id));
+}
+
+function ensureSectionContentWrapper(section) {
+  let wrapper = section.querySelector('.section-content');
+  if (!wrapper) {
+    wrapper = document.createElement('div');
+    wrapper.className = 'section-content';
+    const mark = section.querySelector('.section-mark');
+    const nodes = Array.from(section.children).filter(c => c !== mark);
+    nodes.forEach(n => wrapper.appendChild(n));
+    section.appendChild(wrapper);
+  }
+  return wrapper;
+}
+
+async function commitBranch(branchId) {
+  const branch = BRANCHES[branchId];
+  if (!branch) return;
+
+  document.body.classList.add('animating');
+  const pulse = document.getElementById('pulse');
+  pulse.firstChild.textContent = 'Rewriting';
+  pulse.classList.add('show');
+
+  const decision = document.getElementById('decision-' + branchId);
+  decision.classList.remove('open');
+
+  const forkSectionId = branch.fork.sectionId;
+  const sectionsToRewrite = getOrderedAffectedSections(branchId);
+
+  for (let i = 0; i < sectionsToRewrite.length; i++) {
+    const sId = sectionsToRewrite[i];
+    const replacement = getReplacementForSection(branchId, sId);
+    if (!replacement) continue;
+
+    if (sId === forkSectionId) {
+      // Rewrite only the post-fork div
+      const postFork = document.querySelector(`.post-fork[data-fork-target="${branchId}"]`);
+      if (!postFork) continue;
+
+      // Skip entirely if no paragraphs would actually change
+      if (!hasAnyChange(postFork, replacement)) continue;
+
+      // Scroll to the fork paragraph
+      const fp = document.querySelector(`.fork-paragraph[data-fork="${branchId}"]`);
+      if (fp) {
+        fp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        await sleep(450);
+      }
+
+      await rewriteContainerParagraphs(postFork, replacement);
+    } else {
+      // Rewrite the whole section content
+      const section = document.getElementById(sId);
+      const wrapper = ensureSectionContentWrapper(section);
+
+      // Skip entirely if no paragraphs would actually change
+      if (!hasAnyChange(wrapper, replacement)) continue;
+
+      // Scroll to the first paragraph that needs to change
+      const firstChanged = findFirstChangedParagraph(wrapper, replacement);
+      const target = firstChanged || section;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      await sleep(500);
+
+      await rewriteContainerParagraphs(wrapper, replacement);
+    }
+  }
+
+  state.branch = branchId;
+  saveState();
+  applyBranchedUI();
+
+  document.body.classList.remove('animating');
+  pulse.classList.remove('show');
+}
+
+async function returnToCanon() {
+  if (!state.branch) return;
+  const branchId = state.branch;
+  const branch = BRANCHES[branchId];
+  if (!branch) {
+    // Defensive: persisted state references a branch that no longer exists.
+    // Clear state and let applyBranchedUI restore canon chrome — DOM was
+    // already canon (init only restores when BRANCHES[id] resolves).
+    state.branch = null;
+    saveState();
+    applyBranchedUI();
+    return;
+  }
+
+  document.body.classList.add('animating');
+  const pulse = document.getElementById('pulse');
+  pulse.firstChild.textContent = 'Restoring';
+  pulse.classList.add('show');
+
+  const forkSectionId = branch.fork.sectionId;
+  const sectionsToRewrite = getOrderedAffectedSections(branchId);
+
+  for (let i = 0; i < sectionsToRewrite.length; i++) {
+    const sId = sectionsToRewrite[i];
+
+    if (sId === forkSectionId) {
+      const postFork = document.querySelector(`.post-fork[data-fork-target="${branchId}"]`);
+      if (!postFork) continue;
+
+      // Parse canonSnapshot[branchId] back into paragraph HTMLs
+      const tmp = document.createElement('div');
+      tmp.innerHTML = canonSnapshot[branchId];
+      const canonParas = Array.from(tmp.querySelectorAll(':scope > p')).map(p => p.innerHTML);
+
+      if (!hasAnyChange(postFork, canonParas)) continue;
+
+      const fp = document.querySelector(`.fork-paragraph[data-fork="${branchId}"]`);
+      if (fp) {
+        fp.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        await sleep(450);
+      }
+
+      await rewriteContainerParagraphs(postFork, canonParas);
+    } else {
+      const section = document.getElementById(sId);
+      const wrapper = ensureSectionContentWrapper(section);
+
+      const fullCanon = canonSnapshot['__' + sId];
+      const tmp = document.createElement('div');
+      tmp.innerHTML = fullCanon;
+      const mark = tmp.querySelector('.section-mark');
+      if (mark) mark.remove();
+      const canonParas = Array.from(tmp.querySelectorAll('p')).map(p => p.innerHTML);
+
+      if (!hasAnyChange(wrapper, canonParas)) continue;
+
+      const firstChanged = findFirstChangedParagraph(wrapper, canonParas);
+      const target = firstChanged || section;
+      target.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      await sleep(500);
+
+      await rewriteContainerParagraphs(wrapper, canonParas);
+    }
+  }
+
+  state.branch = null;
+  saveState();
+  applyBranchedUI();
+
+  document.body.classList.remove('animating');
+  pulse.classList.remove('show');
+}
+
+function applyBranchedUI() {
+  const branchId = state.branch;
+  const status = document.getElementById('status');
+  const beatLabel = document.getElementById('beatLabel');
+  const note = document.getElementById('systemNote');
+
+  document.querySelectorAll('.branch-mark').forEach(m => m.classList.remove('active-branch'));
+  // Clear the rewritten-paragraph rule on every post-fork; we re-apply
+  // only on the active branch's post-fork below. The shading is the
+  // visual answer to "where does the change start?" — Decision E2.
+  document.querySelectorAll('.post-fork').forEach(pf => pf.classList.remove('is-rewritten'));
+
+  if (branchId && BRANCHES[branchId]) {
+    document.body.classList.add('branched');
+    const name = BRANCHES[branchId].name;
+    status.innerHTML = `Reading: <span class="branch-name">Branch · ${name}</span>`;
+    beatLabel.textContent = `Beat Five — Branch · ${name}`;
+    const activeMark = document.querySelector(`.branch-mark[data-branch="${branchId}"]`);
+    if (activeMark) activeMark.classList.add('active-branch');
+    const activePostFork = document.querySelector(`.post-fork[data-fork-target="${branchId}"]`);
+    if (activePostFork) activePostFork.classList.add('is-rewritten');
+    note.textContent = "The system has noted your choice. The book has diverged.";
+    note.classList.add('visible');
+
+    // Track visited branches + beats — drives sidebar dots.
+    if (!state.visitedBranches.includes(branchId)) {
+      state.visitedBranches.push(branchId);
+      saveState();
+    }
+    const beatId = beatIdForBranch(branchId);
+    if (beatId && !state.visitedBeats.includes(beatId)) {
+      state.visitedBeats.push(beatId);
+      saveState();
+    }
+  } else {
+    document.body.classList.remove('branched');
+    status.innerHTML = `Reading: <span class="branch-name">canon</span>`;
+    beatLabel.textContent = 'Beat Five — excerpt';
+    note.classList.remove('visible');
+    note.textContent = '';
+  }
+
+  paintTOC();
+}
+
+// Map branch -> beat. For the prototype, all three branches sit in beat 5.
+// The real build will wire this from branch frontmatter.
+function beatIdForBranch(branchId) {
+  if (!branchId) return null;
+  return '5';
+}
+
+function paintTOC() {
+  // Sidebar visited / current / active state. Read-only against `state`;
+  // does not mutate branch logic.
+  document.querySelectorAll('.toc-beat').forEach(el => {
+    const beatId = el.dataset.beat;
+    el.classList.toggle('visited', state.visitedBeats.includes(beatId));
+  });
+  document.querySelectorAll('.toc-branch-dot').forEach(dot => {
+    const bId = dot.dataset.branch;
+    dot.classList.toggle('visited', state.visitedBranches.includes(bId));
+    dot.classList.toggle('active', state.branch === bId);
+  });
+}
+
+//================================================================
+// EVENTS
+//================================================================
+
+document.querySelectorAll('.branch-mark').forEach(mark => {
+  mark.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (document.body.classList.contains('animating')) return;
+    if (state.branch) return;
+
+    const branchId = mark.getAttribute('data-branch');
+    const decision = document.getElementById('decision-' + branchId);
+    const isOpen = decision.classList.contains('open');
+    document.querySelectorAll('.decision').forEach(d => d.classList.remove('open'));
+    if (!isOpen) {
+      decision.classList.add('open');
+      setTimeout(() => decision.scrollIntoView({ behavior: 'smooth', block: 'center' }), 200);
+    }
+  });
+});
+
+document.querySelectorAll('.decision-btn').forEach(btn => {
+  btn.addEventListener('click', async (e) => {
+    e.stopPropagation();
+    const action = btn.dataset.action;
+    const branchId = btn.dataset.branch;
+    const decision = document.getElementById('decision-' + branchId);
+
+    if (action === 'cancel') {
+      decision.classList.remove('open');
+    } else if (action === 'commit') {
+      decision.classList.remove('open');
+      await sleep(450);
+      await commitBranch(branchId);
+    }
+  });
+});
+
+document.getElementById('returnBtn').addEventListener('click', async (e) => {
+  if (document.body.classList.contains('animating')) return;
+  e.target.disabled = true;
+  await returnToCanon();
+  e.target.disabled = false;
+});
+
+// In-sidebar Return-to-canon button (mirrors the header button).
+document.getElementById('tocReturnBtn').addEventListener('click', async (e) => {
+  if (document.body.classList.contains('animating')) return;
+  e.target.disabled = true;
+  await returnToCanon();
+  e.target.disabled = false;
+});
+
+//================================================================
+// DRAWER SIDEBAR — Decision E1
+//================================================================
+
+(function setupDrawer() {
+  const toc = document.getElementById('toc');
+  const tab = document.getElementById('tocTab');
+  if (!toc || !tab) return;
+
+  function openDrawer(persist) {
+    document.body.classList.add('toc-open');
+    tab.setAttribute('aria-expanded', 'true');
+    if (persist) { state.tocOpen = true; saveState(); }
+  }
+  function closeDrawer(persist) {
+    document.body.classList.remove('toc-open');
+    tab.setAttribute('aria-expanded', 'false');
+    if (persist) { state.tocOpen = false; saveState(); }
+  }
+
+  // Click on the tab — pin the drawer open and persist.
+  tab.addEventListener('click', () => {
+    if (document.body.classList.contains('toc-open')) closeDrawer(true);
+    else openDrawer(true);
+  });
+  // Keyboard: focus opens (focus-within already opens via CSS, but we also
+  // pin to body-class so escape can close it without losing focus state).
+  tab.addEventListener('focus', () => openDrawer(false));
+  toc.addEventListener('focusin', () => openDrawer(false));
+
+  // Escape closes (and unpins). Doesn't run during the rewrite animation.
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && document.body.classList.contains('toc-open')) {
+      closeDrawer(true);
+      tab.focus();
+    }
+  });
+
+  // Restore persisted open-state on load.
+  if (state.tocOpen) openDrawer(false);
+})();
+
+//================================================================
+// BOOTSTRAP
+//================================================================
+
+/**
+ * Populate decision-card title and summary from the BRANCHES object.
+ * Single source of truth: removes the drift surface between the inlined
+ * HTML and the BRANCHES JS object (audit recommendation; Decision B summary).
+ */
+function populateDecisionCards() {
+  Object.keys(BRANCHES).forEach(branchId => {
+    const branch = BRANCHES[branchId];
+    const card = document.getElementById('decision-' + branchId);
+    if (!card) return;
+    const title = card.querySelector('.decision-title');
+    const summary = card.querySelector('.decision-summary');
+    if (title) title.textContent = `Branch · ${branch.name}`;
+    if (summary) summary.textContent = branch.summary || '';
+  });
+}
+
+(function init() {
+  captureCanon();
+  populateDecisionCards();
+  loadState();
+
+  if (state.branch && BRANCHES[state.branch]) {
+    const branch = BRANCHES[state.branch];
+    const forkSectionId = branch.fork.sectionId;
+    const sectionsToRewrite = getOrderedAffectedSections(state.branch);
+
+    sectionsToRewrite.forEach(sId => {
+      const replacement = getReplacementForSection(state.branch, sId);
+      if (!replacement) return;
+      const html = replacement.map(p => `<p>${p}</p>`).join('');
+
+      if (sId === forkSectionId) {
+        const postFork = document.querySelector(`.post-fork[data-fork-target="${state.branch}"]`);
+        if (postFork) postFork.innerHTML = html;
+      } else {
+        const section = document.getElementById(sId);
+        const wrapper = ensureSectionContentWrapper(section);
+        wrapper.innerHTML = html;
+      }
+    });
+
+    applyBranchedUI();
+  } else {
+    // No persisted branch — still paint the TOC so visited markers
+    // from prior sessions appear.
+    paintTOC();
+  }
+})();
+
+</script>
+
+</body>
+</html>
