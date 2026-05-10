@@ -1,35 +1,7 @@
-> *Skeleton.*
+Early in the project, I asked Claude how we should approach solving this problem. The solution was to externalise context into documents that could travell between conversations. The main document that was constructed for this purpose was the story bible.
 
-The architectural threads are the recurring patterns that hold the project together across chapters and branches. They are not theme; they are mechanism. A branch that violates one breaks the project even if it reads well.
+The story bible was the master document that contained, in summary form, the world states for all ten stories, the central AI operational history that develops across them, recurring thematic threads, and an evolving Voice and Process Guide that compiled what each beat had taught the project about how these stories needed to be built. It also contained details of the characters in each story, its structure and the technique with which each was written. The bible started small and grew with every locked beat. This was the equivalent of version-control for the story ensuring that each change and departure from the initially approved outline was documented and incorporated in every direction within the outline. By the end of the project, it had reached its twenty-third revision.
 
-## The five architectural threads
+At the end of each session, once the final version of a given story was locked, the details were entered into the story bible so that we were able to maintain a running record of every locked beat, its title, location, point-of-view characters, word count, and current version. This was the project's table of contents in progress. This was also the background that Claude needed to construct the opening prompt for the next story, drawing from the initially constructed story arc, the changes that are the result of how individual beats were updated and where the next story needs to go in the overall context of the demands of the overall narrative arc.
 
-*One short paragraph each:*
-
-### A.1 — The eleven-millisecond motif
-
-*Why eleven milliseconds. What it does in canon. What branches must preserve.*
-
-### A.2 — Continuity of the system
-
-*One continuous entity since 2026 across all chapters. The Copy (CAGE-EC-7) is the only entity-fork in canon. What this allows; what it forbids.*
-
-### A.3 — The gap in the data
-
-*The system never knows everything about a character. Branches must not close this gap. Languages-as-gap is the form: there is always something the system cannot model.*
-
-### A.4 — The defining feature of each anomaly entry
-
-*Each chapter's coda registers a category whose defining feature is named. Across the ten chapters this builds a curve. Branches modify the feature for their chapter; they preserve the curve.*
-
-### A.5 — Embodiment (Beats 6–10)
-
-*No AI motion across open space. The AI is ambient attention, memory, environmental modulation, coordination. This is the rule that most often gets broken when a drafter reaches for a dramatic image.*
-
-## The story-divergence test
-
-*Added 2026-05-03 after a branch surfaced a gap that voice and architecture reviewers had missed: a branch must produce a chapter that feels substantively different from canon — events that differ from canon, not just content that differs from canon.*
-
-## The full reference
-
-The working document is at [Architectural threads (working doc)](../notes/threads/). It carries more detail than this page does, including the failure modes and the reviewer tests.
+The session prompt for each new story was created based on this material and accompanied by the files needed to make it work. These usually included a drafting outline produced as the output of a brainstorming session between Claude and me on what direction the story should go - who the characters should be, what sort of a plot it should have, the narrative style in which it should be written and any storytelling device that would suit the outcome needed. Also important was one or two completed chapters that provided a tuning fork as to the voice that Claude should use while writing so that each story felt like it was written by the same author.

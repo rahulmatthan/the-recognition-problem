@@ -1,0 +1,7 @@
+Almost every story in the book has a coda, so it makes sense that this "How this Book Was Written" should as well.
+
+Since it took me a little over a week to write a full-fledged book, I thought I'd see how far I could push it. So I decided to extend the project even further by asking Claude to build a choose-your-own-adventure-style version where readers were offered, at different points in the narrative, the option to take an alternative branch if they so chose. This meant that not only could a reader enjoy the story as originally written, but also see what happens when events change, characters make different choices or the world responds is a different way.
+
+To do this, I shifted the project to Claude Code, spinning up 7 agents that allowed me to write 23 branches virtually simultaneously. The 23 additional branches ran to almost 65,000 words, a little shy of the total word count of the book itself. Since I had a much better hang of what I was doing, and since these were just branches running adjacent to the locked-down plot of each short story in the book, it took a small fraction of the time to complete. The branches were built using the same constraints as the canon—every word was written by AI, in this case, even more so.
+
+I then told Claude Code to build me a website to present the project. I spent some time figuring out how it would look, the animations it would have, and the visual indication readers would get to indicate that they are now on a branch, not the canon. This is what you are reading right now.

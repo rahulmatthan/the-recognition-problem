@@ -265,7 +265,481 @@ footer {
 }
 .footer-nav a:hover { color: var(--branch); background: none; }
 
-/* --- Mobile ------------------------------------------------ */
+/* --- Sidebar (slide-in TOC, hover-triggered) ---------------
+   Design intent: nearly invisible at rest. A 1px ochre tick at
+   the left edge — about the height of an em — is the only hint.
+   On mouseenter near the left edge or focus on a hidden anchor,
+   the sidebar slides in with a fade. No box, no border, no hard
+   edge. Soft shadow on the right when open. Typography does the
+   work: italic serif chapter titles, faint mono numbers.
+   ------------------------------------------------------------ */
+
+.sidebar-trigger {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 14px;
+  height: 100vh;
+  z-index: 59;
+  background: transparent;
+}
+
+/* The only visual clue: a very faint 1em vertical tick,
+   centered vertically. Subtle on hover. */
+.sidebar-trigger::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 1px;
+  height: 1.6em;
+  background: var(--branch-faint);
+  opacity: 0.4;
+  transition: opacity 320ms ease, height 320ms ease;
+  pointer-events: none;
+}
+
+.sidebar-trigger:hover::after {
+  opacity: 0.85;
+  height: 2.6em;
+}
+
+/* Hide the tick when the sidebar is already open. */
+body:has(.sidebar.open) .sidebar-trigger::after {
+  opacity: 0;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 19.5rem;
+  height: 100vh;
+  background: var(--paper);
+  /* No border, no hard edge. A very soft shadow when open. */
+  box-shadow: 0 0 0 rgba(26, 22, 18, 0);
+  transform: translateX(-100%);
+  opacity: 0;
+  transition:
+    transform 420ms cubic-bezier(0.32, 0.72, 0.24, 1),
+    opacity 280ms ease,
+    box-shadow 420ms ease;
+  z-index: 60;
+  overflow-y: auto;
+  padding: 4.5rem 2rem 2rem 2.4rem;
+  pointer-events: none;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+  opacity: 1;
+  box-shadow: 12px 0 32px rgba(26, 22, 18, 0.04);
+  pointer-events: auto;
+}
+
+.sidebar-heading {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+.sidebar-heading a {
+  color: inherit;
+  background: none;
+  padding: 0;
+}
+.sidebar-heading a:hover {
+  color: var(--branch);
+  background: none;
+}
+
+.sidebar-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.sidebar-list li {
+  margin-bottom: 0.65rem;
+}
+
+.sidebar-list a {
+  display: block;
+  background: none;
+  padding: 0.15rem 0;
+  font-size: 1rem;
+  line-height: 1.35;
+  color: var(--ink-soft);
+  transition: color 200ms ease, transform 240ms cubic-bezier(0.32, 0.72, 0.24, 1);
+}
+.sidebar-list a:hover {
+  color: var(--branch);
+  background: none;
+  transform: translateX(2px);
+}
+
+.sidebar-list .n {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  color: var(--ink-faint);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 0.4rem;
+  text-align: left;
+  vertical-align: 0.05em;
+}
+.sidebar-list .t {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.96rem;
+  white-space: nowrap;
+}
+
+.sidebar-list a.current .n,
+.sidebar-list a.current .t {
+  color: var(--branch);
+}
+
+/* Substantial whitespace separates Making from the story chapters —
+   no visible rule. Different typographic treatment too:
+   smaller, mono caps, faint color, multi-line. */
+.sidebar-list .meta-link {
+  margin-top: 5rem;
+}
+
+.sidebar-list .meta-link a {
+  display: block;
+  padding: 0.4rem 0;
+}
+
+.sidebar-list .meta-link .t {
+  font-style: normal;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  white-space: normal;
+  line-height: 1.6;
+  display: block;
+}
+
+.sidebar-list .meta-link a:hover .t,
+.sidebar-list .meta-link a:focus-visible .t {
+  color: var(--branch);
+}
+
+.sidebar-list .meta-link a.current .t {
+  color: var(--branch);
+}
+
+@media (max-width: 720px) {
+  .sidebar, .sidebar-trigger { display: none; }
+}
+
+/* --- Info icon (top-right, fixed) -------------------------- */
+
+.info-icon {
+  position: fixed;
+  top: 1.4rem;
+  right: 1.4rem;
+  width: 1.6rem;
+  height: 1.6rem;
+  border-radius: 50%;
+  border: 1px solid var(--branch-faint);
+  background: transparent;
+  color: var(--branch-faint);
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.85rem;
+  line-height: 1;
+  cursor: pointer;
+  z-index: 65;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: color 200ms ease, border-color 200ms ease, transform 200ms ease;
+  opacity: 0.6;
+}
+.info-icon:hover, .info-icon:focus-visible {
+  color: var(--branch);
+  border-color: var(--branch);
+  opacity: 1;
+  outline: none;
+  transform: scale(1.05);
+}
+
+/* --- Info modal -------------------------------------------- */
+
+.info-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 70;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 280ms ease;
+}
+.info-modal.open {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+.info-modal-backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 22, 18, 0.18);
+  backdrop-filter: blur(2px);
+}
+
+.info-modal-card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) translateY(8px);
+  background: var(--paper);
+  max-width: 32rem;
+  width: calc(100% - 3rem);
+  padding: 2.4rem 2.4rem 2rem;
+  box-shadow: 0 24px 60px rgba(26, 22, 18, 0.14);
+  transition: transform 320ms cubic-bezier(0.32, 0.72, 0.24, 1);
+}
+.info-modal.open .info-modal-card {
+  transform: translate(-50%, -50%) translateY(0);
+}
+
+.info-modal-card p {
+  font-family: var(--serif);
+  font-size: 0.98rem;
+  line-height: 1.7;
+  color: var(--ink);
+  margin-bottom: 1rem;
+  font-style: italic;
+}
+.info-modal-card p:last-child { margin-bottom: 0; }
+
+.info-modal-close {
+  position: absolute;
+  top: 0.6rem;
+  right: 0.8rem;
+  background: transparent;
+  border: none;
+  color: var(--ink-faint);
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0.4rem 0.6rem;
+  transition: color 200ms ease;
+}
+.info-modal-close:hover { color: var(--branch); }
+
+@media (max-width: 720px) {
+  .info-icon { top: 1rem; right: 1rem; width: 1.4rem; height: 1.4rem; font-size: 0.75rem; }
+  .info-modal-card { padding: 1.8rem 1.4rem 1.4rem; }
+}
+
+/* --- Intro / landing slideshow ----------------------------- */
+
+/* Hide the page chrome on the intro */
+body.is-intro {
+  overflow: hidden;  /* no scroll; one viewport per slide */
+}
+body.is-intro .info-icon { display: none; }
+body.is-intro .sidebar,
+body.is-intro .sidebar-trigger { display: none; }
+body.is-intro .container { padding: 0; max-width: none; }
+
+.intro {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 5;
+}
+
+.intro-slide {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: min(34rem, calc(100% - 3rem));
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 700ms cubic-bezier(0.32, 0.72, 0.24, 1);
+}
+
+.intro-slide.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.intro-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.4rem, 6vw, 3.8rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.4rem;
+}
+
+.intro-imprint {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.intro-prose {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.intro-emphasis {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.2rem;
+  line-height: 1.5;
+  color: var(--ink);
+}
+
+.intro-cta {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--branch);
+  border: 1px solid var(--branch);
+  padding: 0.85rem 2rem;
+  background: transparent;
+  background-image: none;
+  background-size: 0;
+  transition: background-color 220ms ease, color 220ms ease, transform 220ms ease;
+}
+.intro-cta:hover, .intro-cta:focus-visible {
+  background: var(--branch);
+  color: var(--paper);
+  background-image: none;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.intro-secondary {
+  margin-top: 1.5rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+.intro-secondary a {
+  color: var(--ink-faint);
+  background: none;
+  padding: 0;
+}
+.intro-secondary a:hover, .intro-secondary a:focus-visible {
+  color: var(--branch);
+  background: none;
+}
+
+/* "tap to continue" hint — fades in after current slide settles */
+.intro-hint {
+  position: fixed;
+  bottom: 2.2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  opacity: 0;
+  transition: opacity 600ms ease 1200ms;
+  pointer-events: none;
+}
+.intro-hint.show { opacity: 0.6; }
+
+@media (prefers-reduced-motion: reduce) {
+  .intro-slide { transition: opacity 0.01ms; }
+}
+
+/* --- Chapter footer nav (prev/next box) -------------------- */
+
+.chapter-nav {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.2rem;
+  max-width: var(--max-text);
+  margin: 5rem auto 0;
+}
+
+.chapter-nav.single-next { grid-template-columns: 1fr; }
+.chapter-nav.single-prev { grid-template-columns: 1fr; }
+.chapter-nav.single-prev .nav-card { justify-self: start; max-width: 22rem; }
+.chapter-nav.single-next .nav-card { justify-self: end; max-width: 22rem; }
+
+.nav-card {
+  display: block;
+  background: var(--paper-deep);
+  padding: 1.1rem 1.3rem;
+  border-left: 2px solid var(--branch);
+  background-image: none;
+  background-size: 0;
+  transition: background-color 200ms ease, transform 200ms ease;
+  color: inherit;
+}
+.nav-card:hover {
+  background: var(--paper);
+  background-image: none;
+  background-size: 0;
+  transform: translateX(2px);
+}
+.nav-card.next {
+  border-left: none;
+  border-right: 2px solid var(--branch);
+  text-align: right;
+}
+.nav-card.next:hover { transform: translateX(-2px); }
+
+.nav-card .label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--branch);
+  margin-bottom: 0.35rem;
+  display: block;
+}
+.nav-card .title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.15rem;
+  color: var(--ink);
+  display: block;
+  line-height: 1.3;
+}
+
+@media (max-width: 720px) {
+  .chapter-nav { grid-template-columns: 1fr; gap: 0.8rem; margin-top: 3.5rem; }
+  .chapter-nav .nav-card.next { text-align: left; border-right: none; border-left: 2px solid var(--branch); }
+  .chapter-nav.single-next .nav-card,
+  .chapter-nav.single-prev .nav-card { max-width: none; }
+}
+
+/* --- Mobile (general) -------------------------------------- */
 
 @media (max-width: 720px) {
   .container { padding: 2rem 1.5rem 5rem; }

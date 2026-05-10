@@ -12,9 +12,59 @@
 {extra_css}
 </head>
 <body>
+{sidebar}
+<button class="info-icon" id="infoIcon" aria-label="About reading this">i</button>
+<div class="info-modal" id="infoModal" aria-hidden="true">
+  <div class="info-modal-backdrop"></div>
+  <div class="info-modal-card" role="dialog" aria-label="About reading this">
+    <button class="info-modal-close" id="infoModalClose" aria-label="Close">×</button>
+    <p>
+      Read each chapter from start to finish. That is the canon. Where a branch is
+      available, a thin vertical mark <span class="key-mark"></span> will appear in
+      the margin. Choosing a branch rewrites the story in real time to provide a
+      different sequence of events. Explore the branch and you can always return
+      to canon by clicking <em>Return to canon</em> at the top of the page.
+    </p>
+    <p>
+      Use the slim tab on the left edge to open the table of contents at any time.
+    </p>
+  </div>
+</div>
 <div class="container">
 {body}
 </div>
 {extra_js}
+<script>
+(function(){
+  // Sidebar
+  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  if(sb&&tr){
+    var t=null;
+    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    tr.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseleave',c);
+    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+  }
+  // Info modal
+  var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
+  function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
+  function closeInfo(){if(im){im.classList.remove('open');im.setAttribute('aria-hidden','true');}}
+  if(ic)ic.addEventListener('click',openInfo);
+  if(imc)imc.addEventListener('click',closeInfo);
+  if(im){
+    var bd=im.querySelector('.info-modal-backdrop');
+    if(bd)bd.addEventListener('click',closeInfo);
+  }
+  // Escape: close info OR sidebar
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(im&&im.classList.contains('open'))closeInfo();
+      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+    }
+  });
+})();
+</script>
 </body>
 </html>

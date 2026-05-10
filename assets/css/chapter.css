@@ -257,27 +257,40 @@ body.branched .post-fork {
   transition: border-color 800ms ease;
 }
 
-/* --- Branch-coda line (the italic anomaly-log entry) ------- */
+/* --- Branch-coda block (the italic anomaly-log entry) ------
+   Renders as a single light-shaded box. Consecutive coda paragraphs
+   share the same background and merge visually; the build marks the
+   first coda with .coda-first (top padding) and the last with
+   .coda-last (bottom padding) to preserve the box look without
+   needing to wrap them in a parent (which would break the split-flap
+   rewrite, which only animates direct <p> children).
+   ----------------------------------------------------------- */
 
 .branch-coda-line {
   font-family: var(--mono);
-  font-size: 0.78rem;
-  color: var(--ink-faint);
-  line-height: 1.65;
+  font-size: 0.86rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
   font-style: normal;
-  display: block;
-  margin-top: 1.6rem;
+  background: var(--paper-deep);
+  padding: 0.4rem 1.6rem;
+  margin: 0;
+  border-left: 2px solid var(--branch-faint);
+}
+
+.branch-coda-line.coda-first {
   padding-top: 1.4rem;
-  border-top: 1px solid var(--rule);
+  margin-top: 2.4rem;
 }
-.branch-coda-line::before {
-  content: "\2192 ";
-  color: var(--branch);
-  margin-right: 0.3em;
+
+.branch-coda-line.coda-last {
+  padding-bottom: 1.4rem;
+  margin-bottom: 1.5rem;
 }
+
 .branch-coda-line em {
   font-style: italic;
-  color: var(--ink-soft);
+  color: var(--ink);
 }
 
 /* --- Return-to-canon button -------------------------------- */

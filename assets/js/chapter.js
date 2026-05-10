@@ -9,6 +9,7 @@
   'use strict';
 
   const STORAGE_KEY = 'forest-state-v1';
+  const BOOKMARK_KEY = 'forest-bookmark';
   const BEAT_ID = (window.__FOREST_BEAT_ID__ || '');           // e.g. "b3"
   const DEEP_LINK_BRANCH = (window.__FOREST_DEEP_LINK__ || ''); // e.g. "b3-noriko" or ""
   const REDUCED_MOTION = window.matchMedia &&
@@ -431,6 +432,81 @@
   }
 
   // ----------------------------------------------------------
+  // Bookmark — track last-visible paragraph, persist to localStorage
+  // ----------------------------------------------------------
+
+  let bookmarkTimer = null;
+  let bookmarkPending = null;
+
+  function saveBookmark(paragraphId) {
+    try {
+      const beatTitleEl = document.querySelector('.masthead h1');
+      const beatN = parseInt((BEAT_ID || '').replace('b', ''), 10) || 0;
+      const data = {
+        beatId: BEAT_ID,
+        beatN: beatN,
+        beatTitle: beatTitleEl ? beatTitleEl.textContent.trim() : ('Beat ' + beatN),
+        branch: getActiveBranch(),
+        paragraphId: paragraphId,
+        url: window.location.pathname,
+        at: Date.now(),
+      };
+      localStorage.setItem(BOOKMARK_KEY, JSON.stringify(data));
+    } catch (e) {}
+  }
+
+  function schedulePersist(paragraphId) {
+    bookmarkPending = paragraphId;
+    if (bookmarkTimer) return;
+    bookmarkTimer = setTimeout(() => {
+      if (bookmarkPending) saveBookmark(bookmarkPending);
+      bookmarkTimer = null;
+      bookmarkPending = null;
+    }, 800);
+  }
+
+  function setupBookmarkTracker() {
+    if (!('IntersectionObserver' in window)) return;
+    const observer = new IntersectionObserver((entries) => {
+      // Find the topmost paragraph currently in the viewport.
+      let topmost = null;
+      for (const e of entries) {
+        if (!e.isIntersecting) continue;
+        const top = e.boundingClientRect.top;
+        if (topmost === null || top < topmost.boundingClientRect.top) {
+          topmost = e;
+        }
+      }
+      if (topmost && topmost.target.id) {
+        schedulePersist(topmost.target.id);
+      }
+    }, {
+      // Track when a paragraph crosses the upper third of the viewport.
+      rootMargin: '-20% 0px -65% 0px',
+      threshold: 0,
+    });
+
+    document.querySelectorAll(`p[id^="${BEAT_ID}-s"]`).forEach(p => observer.observe(p));
+  }
+
+  function restoreFromHash() {
+    const hash = window.location.hash;
+    if (!hash) return;
+    const id = hash.slice(1);
+    if (!/^[a-zA-Z0-9-]+$/.test(id)) return;
+    // Defer so branch-activation and stagger-reveal complete first.
+    setTimeout(() => {
+      const el = document.getElementById(id);
+      if (el) {
+        el.scrollIntoView({
+          behavior: REDUCED_MOTION ? 'auto' : 'smooth',
+          block: 'start',
+        });
+      }
+    }, REDUCED_MOTION ? 0 : 350);
+  }
+
+  // ----------------------------------------------------------
   // Bootstrap
   // ----------------------------------------------------------
 
@@ -469,6 +545,9 @@
     // Reveal article (was hidden during initial setup to avoid flicker).
     const article = document.getElementById('article');
     if (article) article.classList.add('stagger-reveal');
+
+    setupBookmarkTracker();
+    restoreFromHash();
   }
 
   if (document.readyState === 'loading') {

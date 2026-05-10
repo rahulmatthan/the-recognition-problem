@@ -1,31 +1,21 @@
 <header class="masthead">
-  <div class="imprint"><a href="{root}">The Recognition Problem · Forest Edition</a></div>
+  <div class="imprint"><a href="{root}">The Recognition Problem</a></div>
   <h1>{beat_title}</h1>
   <div class="beat-number">{beat_catalog_title}</div>
   <button class="return-to-canon" id="returnBtn">↺ Return to canon</button>
 </header>
 
-<p class="reading-note">
-  Read this chapter from start to finish. That is the canon. If you would like, there
-  contained within this page are alternate branches where the story diverges. If you
-  would like to explore a branch, look for a thin vertical mark <span class="key-mark"></span>
-  that will appear in the margin from time to time. Choosing a branch rewrites the story
-  in real time to provide a different sequence of events. Explore the branch and you can
-  always return to canon by clicking on that option at the top of the page.
-</p>
-
 <article id="article">
   {beats_block}
 </article>
+
+{chapter_nav}
 
 <footer>
   <div class="branch-status" id="status">Reading: <span class="branch-name">canon</span></div>
   <div class="system-note" id="systemNote"></div>
   <div class="footer-nav">
-    {prev_link}
-    <a href="{root}">Contents</a>
-    {next_link}
-    <a href="{root}making/">Making</a>
+    <a href="{root}making/">The Making of The Recognition Problem</a>
   </div>
 </footer>
 

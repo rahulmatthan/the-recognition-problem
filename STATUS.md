@@ -4,7 +4,9 @@
 
 ## Phase
 
-**Phase 2 — Parallel execution.** Phase 1 approved 2026-05-03. **Phase 2.1 + 2.2 + 2.3 + 2.4 complete (2026-05-08)** — all 23 narrative branches locked. Next: v0.5 multi-section runtime fix + browser verification pass.
+**Phase 2 — Parallel execution.** Phase 1 approved 2026-05-03. **Phase 2.1 + 2.2 + 2.3 + 2.4 complete (2026-05-08)** — all 23 narrative branches locked.
+
+**Website rebuild (2026-05-09 — 2026-05-10).** Per `process/architecture-v2.md`. Single-file HTML harness rewritten as a multi-page static site at `dist/`: 10 canon chapter pages + 23 branch deep-links + intro slideshow + 6 Making essays. Self-hosted Newsreader / IBM Plex Sans / IBM Plex Mono. Persistent slide-in sidebar TOC. Bookmark-on-scroll persisted to localStorage. Multi-section runtime issue resolved by per-beat page architecture. Pending: GitHub Pages deploy with custom domain.
 
 ## Phase 1 progress
 

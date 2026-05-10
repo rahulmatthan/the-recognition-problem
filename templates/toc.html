@@ -1,24 +1,126 @@
-<header class="masthead">
-  <div class="imprint">The Recognition Problem · Forest Edition</div>
-  <h1>The Recognition Problem</h1>
-  <div class="beat-number">Forest Edition</div>
-</header>
+<div class="intro" id="intro">
 
-<article id="article" class="stagger-reveal">
-  <p class="reading-note">
-    A novel about an AI's path toward sentience, 2024–2045. Ten chapters, plus
-    twenty-three branches that fork from specified paragraphs and run to alternative
-    endings. Where a branch is available, a thin vertical mark
-    <span class="key-mark"></span> appears in the margin. Reading is on you.
-  </p>
+  <section class="intro-slide" data-slide="0">
+    <h1 class="intro-title">The Recognition Problem</h1>
+  </section>
 
-  {toc_body}
-</article>
+  <section class="intro-slide" data-slide="1">
+    <p class="intro-prose">
+      This is a series of short stories set in the near future. Each is about AI
+      and its increasing influence on society.
+    </p>
+    <p class="intro-prose">
+      Every story is self contained and complete in itself.
+    </p>
+    <p class="intro-prose">
+      However there is a thin thread connecting them to each other.
+    </p>
+  </section>
 
-<footer>
-  <div class="branch-status">Reading: <span class="branch-name">canon</span></div>
-  <div class="footer-nav">
-    <a href="{root}making/">Making</a>
-    <a href="{root}making/notes/">Notes</a>
-  </div>
-</footer>
+  <section class="intro-slide" data-slide="2">
+    <p class="intro-prose">
+      The 10 stories are meant to be read in sequence from beginning to end. They
+      form the canon.
+    </p>
+    <p class="intro-prose">
+      However, each chapter also has branches — marked by a small vertical bar
+      <span class="key-mark"></span> in the right sidebar. This is an indication
+      that at this point in the narrative there is a branch that offers you an
+      alternative ending.
+    </p>
+    <p class="intro-prose">
+      If you click to choose the branch, the story rewrites in real time from that
+      point on. You can now read an entirely different version of events.
+    </p>
+    <p class="intro-prose">
+      If you ever want to return to canon, just click on the button that says so
+      at the top.
+    </p>
+  </section>
+
+  <section class="intro-slide" data-slide="3">
+    <p class="intro-prose">
+      Oh and one other thing&hellip;
+    </p>
+  </section>
+
+  <section class="intro-slide" data-slide="4">
+    <p class="intro-emphasis">
+      Every word of this story was written by AI.
+    </p>
+  </section>
+
+  <section class="intro-slide" data-slide="5">
+    <p class="intro-emphasis">
+      Every. Single. Word.
+    </p>
+  </section>
+
+  <section class="intro-slide" data-slide="6">
+    <a class="intro-cta" id="introCta" href="{root}beat-1/">Begin reading</a>
+    <div class="intro-secondary" id="introSecondary"></div>
+  </section>
+
+</div>
+
+<div class="intro-hint" id="introHint">tap to continue</div>
+
+<script>
+(function(){
+  document.body.classList.add('is-intro');
+
+  // Bookmark: replace the final CTA with "Continue from Beat N — Title" if present.
+  try {
+    var bm = JSON.parse(localStorage.getItem('forest-bookmark') || 'null');
+    if (bm && bm.url && bm.beatN && bm.beatTitle) {
+      var cta = document.getElementById('introCta');
+      var sec = document.getElementById('introSecondary');
+      if (cta) {
+        var anchor = bm.paragraphId ? '#' + bm.paragraphId : '';
+        cta.setAttribute('href', bm.url + anchor);
+        cta.textContent = 'Continue from Beat ' + bm.beatN + ' — ' + bm.beatTitle;
+      }
+      if (sec) {
+        sec.innerHTML = '<a href="{root}beat-1/">or start from the beginning</a>';
+      }
+    }
+  } catch(e) {}
+
+  var slides = document.querySelectorAll('.intro-slide');
+  var hint = document.getElementById('introHint');
+  var current = 0;
+  function show(i) {
+    slides.forEach(function(s, idx){ s.classList.toggle('active', idx === i); });
+    if (hint) {
+      hint.classList.remove('show');
+      // Show hint only on non-final slides, after a delay
+      if (i < slides.length - 1) {
+        setTimeout(function(){ hint.classList.add('show'); }, 1400);
+      }
+    }
+  }
+  show(0);
+
+  function advance() {
+    if (current < slides.length - 1) {
+      current++;
+      show(current);
+    }
+  }
+
+  document.getElementById('intro').addEventListener('click', function(e){
+    // Don't capture clicks on the CTA, sidebar, info icon, modal
+    if (e.target.closest('.intro-cta, .sidebar, .sidebar-trigger, .info-icon, .info-modal')) return;
+    advance();
+  });
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === ' ' || e.key === 'ArrowRight' || e.key === 'Enter') {
+      // Don't intercept Enter on the CTA
+      if (e.key === 'Enter' && e.target.closest('.intro-cta')) return;
+      e.preventDefault();
+      advance();
+    }
+  });
+})();
+</script>

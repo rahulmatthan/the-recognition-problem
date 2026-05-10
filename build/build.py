@@ -590,8 +590,13 @@ def render_branches_object(branches_for_beat: list, beats_by_n: dict) -> str:
         fork_section_html = []
         for (h, _) in main_paras:
             fork_section_html.append(f"<p>{h}</p>")
-        for (h, _) in coda_paras:
-            fork_section_html.append(f'<p class="branch-coda-line">{h}</p>')
+        for i, (h, _) in enumerate(coda_paras):
+            classes = ["branch-coda-line"]
+            if i == 0:
+                classes.append("coda-first")
+            if i == len(coda_paras) - 1:
+                classes.append("coda-last")
+            fork_section_html.append(f'<p class="{" ".join(classes)}">{h}</p>')
 
         if fork_para_idx + 1 < len(fork_section.paragraphs):
             from_para = fork_section.paragraphs[fork_para_idx + 1].id
@@ -638,9 +643,102 @@ def _substitute(template: str, mapping: dict) -> str:
     return out
 
 
+def render_sidebar(beats: list, current_beat_n: int = 0, on_making: bool = False) -> str:
+    """Slide-in sidebar TOC. Uses {root} placeholder for relative URLs."""
+    items = []
+    for beat in beats:
+        cls = ' class="current"' if beat.n == current_beat_n else ""
+        title = html_lib.escape(beat.title) if beat.title else f"Beat {beat.n}"
+        items.append(
+            f'<li><a href="{{root}}beat-{beat.n}/"{cls}>'
+            f'<span class="n">{beat.n}</span>'
+            f'<span class="t">{title}</span></a></li>'
+        )
+    making_cls = ' class="current"' if on_making else ""
+    items.append(
+        f'<li class="meta-link"><a href="{{root}}making/"{making_cls}>'
+        f'<span class="t">The Making of<br>The Recognition Problem</span></a></li>'
+    )
+    return (
+        '<div class="sidebar-trigger" aria-hidden="true"></div>'
+        '<aside class="sidebar" aria-label="Table of contents">'
+        '<div class="sidebar-heading">'
+        '<a href="{root}">The Recognition Problem</a></div>'
+        '<ol class="sidebar-list">' + "\n".join(items) + '</ol>'
+        '</aside>'
+    )
+
+
+def render_making_nav(essays: list, current_slug: str) -> str:
+    """Prev/next cards for the bottom of a making essay page."""
+    idx = next((i for i, e in enumerate(essays) if e.get("slug", "") == current_slug), None)
+    if idx is None:
+        return ""
+
+    prev_e = essays[idx - 1] if idx > 0 else None
+    next_e = essays[idx + 1] if idx < len(essays) - 1 else None
+
+    def card(e, kind):
+        title = html_lib.escape(e["page_title"])
+        label = "Previous" if kind == "prev" else "Next"
+        cls = "nav-card prev" if kind == "prev" else "nav-card next"
+        slug = e.get("slug", "")
+        href = f'{{root}}making/{slug}/' if slug else '{root}making/'
+        return (
+            f'<a class="{cls}" href="{href}">'
+            f'<span class="label">{label}</span>'
+            f'<span class="title">{title}</span></a>'
+        )
+
+    if prev_e and next_e:
+        wrapper_cls = "chapter-nav"
+        body = card(prev_e, "prev") + card(next_e, "next")
+    elif next_e:
+        wrapper_cls = "chapter-nav single-next"
+        body = card(next_e, "next")
+    elif prev_e:
+        wrapper_cls = "chapter-nav single-prev"
+        body = card(prev_e, "prev")
+    else:
+        return ""
+
+    return f'<nav class="{wrapper_cls}" aria-label="Making navigation">{body}</nav>'
+
+
+def render_chapter_nav(beats: list, current_beat_n: int) -> str:
+    """Prev/next chapter cards rendered at the bottom of a chapter page."""
+    prev_b = next((b for b in beats if b.n == current_beat_n - 1), None)
+    next_b = next((b for b in beats if b.n == current_beat_n + 1), None)
+
+    def card(b, kind):
+        title = html_lib.escape(b.title) if b.title else f"Beat {b.n}"
+        label = "Previous chapter" if kind == "prev" else "Next chapter"
+        cls = "nav-card prev" if kind == "prev" else "nav-card next"
+        return (
+            f'<a class="{cls}" href="{{root}}beat-{b.n}/">'
+            f'<span class="label">{label}</span>'
+            f'<span class="title">{title}</span></a>'
+        )
+
+    if prev_b and next_b:
+        wrapper_cls = "chapter-nav"
+        body = card(prev_b, "prev") + card(next_b, "next")
+    elif next_b:
+        wrapper_cls = "chapter-nav single-next"
+        body = card(next_b, "next")
+    elif prev_b:
+        wrapper_cls = "chapter-nav single-prev"
+        body = card(prev_b, "prev")
+    else:
+        return ""
+
+    return f'<nav class="{wrapper_cls}" aria-label="Chapter navigation">{body}</nav>'
+
+
 def render_page(template_name: str, body_mapping: dict, page_title: str, description: str,
                 root_path: str, extra_css: list = (), extra_js: list = (),
-                deep_link_branch: str = "", beat_id: str = "") -> str:
+                deep_link_branch: str = "", beat_id: str = "",
+                sidebar_html: str = "") -> str:
     """Render a full HTML page using base.html as the outer shell."""
     base = _read_template("base.html")
     body_template = _read_template(template_name)
@@ -660,6 +758,9 @@ def render_page(template_name: str, body_mapping: dict, page_title: str, descrip
         extra_js_parts.append(f'<script src="{root_path}assets/js/{js}"></script>')
     extra_js_html = "\n".join(extra_js_parts)
 
+    # Sidebar HTML uses {root} placeholder; substitute in this page's root.
+    sidebar = sidebar_html.replace("{root}", root_path) if sidebar_html else ""
+
     return _substitute(base, {
         "title": html_lib.escape(page_title),
         "description": html_lib.escape(description),
@@ -667,6 +768,7 @@ def render_page(template_name: str, body_mapping: dict, page_title: str, descrip
         "body": body,
         "extra_css": extra_css_html,
         "extra_js": extra_js_html,
+        "sidebar": sidebar,
     })
 
 
@@ -675,14 +777,15 @@ def render_page(template_name: str, body_mapping: dict, page_title: str, descrip
 # -----------------------------------------------------------------------------
 
 def emit_chapter_page(beat: Beat, branches_for_beat: list, beats: list,
-                      out_dir: Path, deep_link_branch: str = "") -> None:
+                      out_dir: Path, deep_link_branch: str = "",
+                      sidebar_template: str = "") -> None:
     """Emit dist/beat-N/index.html or dist/beat-N/<slug>/index.html."""
     branches_obj = render_branches_object(branches_for_beat, {b.n: b for b in beats})
     branches_inline = f'<script>{branches_obj}</script>'
 
     beats_block = render_beat_html(beat, branches_for_beat)
 
-    # Prev / next links
+    # Footer-nav text links (small, in the footer block)
     prev_n = beat.n - 1
     next_n = beat.n + 1
     root_path = "../../" if deep_link_branch else "../"
@@ -692,6 +795,12 @@ def emit_chapter_page(beat: Beat, branches_for_beat: list, beats: list,
     next_link = (
         f'<a href="{root_path}beat-{next_n}/">Beat {next_n}</a>' if next_n <= len(beats) else ""
     )
+
+    # Big prev/next box above the footer
+    chapter_nav = render_chapter_nav(beats, beat.n).replace("{root}", root_path)
+
+    # Sidebar with the current beat highlighted
+    sidebar_html = render_sidebar(beats, current_beat_n=beat.n) if sidebar_template == "" else sidebar_template
 
     # Extract the catalog title — strip "Beat N — " prefix from the subtitle.
     # Canon convention: every H3 is "Beat N — <Catalog Title>".
@@ -707,6 +816,7 @@ def emit_chapter_page(beat: Beat, branches_for_beat: list, beats: list,
         "beats_block": beats_block,
         "prev_link": prev_link,
         "next_link": next_link,
+        "chapter_nav": chapter_nav,
     }
 
     page_title = (
@@ -730,6 +840,7 @@ def emit_chapter_page(beat: Beat, branches_for_beat: list, beats: list,
         extra_js=["chapter.js"],
         deep_link_branch=deep_link_branch,
         beat_id=f"b{beat.n}",
+        sidebar_html=sidebar_html,
     )
 
     # Inject the BRANCHES object inline before the chapter.js script.
@@ -743,121 +854,99 @@ def emit_chapter_page(beat: Beat, branches_for_beat: list, beats: list,
 
 
 def emit_toc_page(beats: list, branches: list) -> None:
-    branches_by_beat = {}
-    for b in branches:
-        branches_by_beat.setdefault(b.beat, []).append(b)
-
-    rows = []
-    for beat in beats:
-        title = html_lib.escape(beat.title) if beat.title else f"Beat {beat.n}"
-        date = html_lib.escape(beat.dateline) if beat.dateline else ""
-        date_block = f'<span class="toc-date">{date}</span>' if date else ""
-
-        rows.append(
-            f'<li class="toc-row">'
-            f'<a class="toc-main" href="beat-{beat.n}/">'
-            f'<span class="toc-n">Beat {beat.n}</span>'
-            f'<span class="toc-title">{title}</span>'
-            f'{date_block}'
-            f'</a>'
-            f'</li>'
-        )
-
-    toc_body = (
-        '<style>'
-        '.toc { list-style: none; margin: 2rem auto; padding: 0; max-width: 38rem; }'
-        '.toc-row { padding: 1.4rem 0; border-bottom: 1px solid var(--rule); }'
-        '.toc-row:last-child { border-bottom: none; }'
-        '.toc-main { display: block; background: none; padding: 0; }'
-        '.toc-n { font-family: var(--mono); font-size: 0.7rem; letter-spacing: 0.18em;'
-        '  text-transform: uppercase; color: var(--ink-faint); margin-right: 0.8rem; }'
-        '.toc-title { font-family: var(--serif); font-style: italic; font-size: 1.3rem; color: var(--ink); }'
-        '.toc-main:hover .toc-title { color: var(--branch); }'
-        '.toc-date { font-family: var(--mono); font-size: 0.65rem; letter-spacing: 0.16em;'
-        '  color: var(--ink-faint); margin-left: 0.8rem; }'
-        '</style>'
-        '<ul class="toc">' + "\n".join(rows) + '</ul>'
-    )
-
-    body_map = {"toc_body": toc_body}
+    """Emit the landing page — a minimalist multi-message intro.
+    Chapter navigation lives in the persistent sidebar.
+    """
     html = render_page(
-        "toc.html", body_map,
-        page_title="The Recognition Problem · Forest Edition",
-        description="A literary fiction sequence about an AI's path toward sentience, 2024–2045. Ten chapters and twenty-three branches.",
+        "toc.html", {},
+        page_title="The Recognition Problem",
+        description="A novel about an AI's path toward sentience, told across two decades and ten countries.",
         root_path="",
         extra_css=["animations.css"],
         extra_js=[],
+        sidebar_html=render_sidebar(beats, current_beat_n=0),
     )
     (DIST / "index.html").write_text(html, encoding="utf-8")
 
 
-def emit_making_pages(manifest: dict) -> None:
+def emit_making_pages(manifest: dict, beats: list) -> None:
     """Emit /making/ pages from the manifest."""
     making_dir = DIST / "making"
     making_dir.mkdir(parents=True, exist_ok=True)
 
+    essays = manifest.get("essays", [])
+
     # Essays
-    for entry in manifest.get("essays", []):
+    for entry in essays:
         slug = entry.get("slug", "")
         out_dir = making_dir / slug if slug else making_dir
+        root_path = "../../" if slug else "../"
+        making_nav = render_making_nav(essays, slug).replace("{root}", root_path)
         _emit_one_making_page(
             entry,
             out_dir=out_dir,
             slug=slug,
             kind="essay",
-            root_path=("../../" if slug else "../"),
+            root_path=root_path,
+            beats=beats,
+            making_nav=making_nav,
         )
 
-    # Notes index page
-    notes = manifest.get("notes", [])
-    notes_dir = making_dir / "notes"
-    notes_dir.mkdir(parents=True, exist_ok=True)
-    notes_body_lines = ['<ul class="notes-index">']
-    for n in notes:
-        notes_body_lines.append(
-            f'<li><a href="{n["slug"]}/">'
-            f'<span class="title">{html_lib.escape(n["page_title"])}</span>'
-            f'<span class="desc">{html_lib.escape(n["description"])}</span>'
-            f'</a></li>'
+    # Notes section (only emitted if manifest has any)
+    notes = manifest.get("notes") or []
+    if notes:
+        notes_dir = making_dir / "notes"
+        notes_dir.mkdir(parents=True, exist_ok=True)
+        notes_body_lines = ['<ul class="notes-index">']
+        for n in notes:
+            notes_body_lines.append(
+                f'<li><a href="{n["slug"]}/">'
+                f'<span class="title">{html_lib.escape(n["page_title"])}</span>'
+                f'<span class="desc">{html_lib.escape(n["description"])}</span>'
+                f'</a></li>'
+            )
+        notes_body_lines.append('</ul>')
+        notes_index_md = (
+            "These are the working documents from the project — the bible, the ledger, "
+            "the voice profile, the architectural threads, the workflow. They are not "
+            "essays. They are the artefacts that drafting and reviewing actually used.\n\n"
+            + "\n".join(notes_body_lines)
         )
-    notes_body_lines.append('</ul>')
-    notes_index_md = (
-        "These are the working documents from the project — the bible, the ledger, "
-        "the voice profile, the architectural threads, the workflow. They are not "
-        "essays. They are the artefacts that drafting and reviewing actually used.\n\n"
-        + "\n".join(notes_body_lines)
-    )
-    notes_index_html = _md(notes_index_md)
-    body_map = {
-        "page_title": "Notes",
-        "breadcrumb": '<span class="sep">·</span> <span class="here">Notes</span>',
-        "source_note": "",
-        "body": notes_index_html,
-    }
-    html = render_page(
-        "making.html", body_map,
-        page_title="Notes · Making · The Recognition Problem",
-        description="Working documents from The Recognition Problem.",
-        root_path="../../",
-        extra_css=["making.css", "animations.css"],
-        extra_js=[],
-    )
-    (notes_dir / "index.html").write_text(html, encoding="utf-8")
-
-    # Note pages
-    for n in notes:
-        slug = n["slug"]
-        out_dir = notes_dir / slug
-        _emit_one_making_page(
-            n,
-            out_dir=out_dir,
-            slug=slug,
-            kind="note",
-            root_path="../../../",
+        notes_index_html = _md(notes_index_md)
+        body_map = {
+            "page_title": "Notes",
+            "breadcrumb": '<span class="sep">·</span> <span class="here">Notes</span>',
+            "source_note": "",
+            "body": notes_index_html,
+            "making_nav": "",
+        }
+        html = render_page(
+            "making.html", body_map,
+            page_title="Notes · Making · The Recognition Problem",
+            description="Working documents from The Recognition Problem.",
+            root_path="../../",
+            extra_css=["making.css", "animations.css"],
+            extra_js=[],
+            sidebar_html=render_sidebar(beats, on_making=True),
         )
+        (notes_dir / "index.html").write_text(html, encoding="utf-8")
+
+        # Note pages
+        for n in notes:
+            slug = n["slug"]
+            out_dir = notes_dir / slug
+            _emit_one_making_page(
+                n,
+                out_dir=out_dir,
+                slug=slug,
+                kind="note",
+                root_path="../../../",
+                beats=beats,
+            )
 
 
-def _emit_one_making_page(entry: dict, out_dir: Path, slug: str, kind: str, root_path: str) -> None:
+def _emit_one_making_page(entry: dict, out_dir: Path, slug: str, kind: str, root_path: str,
+                          beats: list = None, making_nav: str = "") -> None:
     source = ROOT / entry["source"]
     if not source.exists():
         print(f"  WARN: making source missing: {source}", file=sys.stderr)
@@ -896,9 +985,11 @@ def _emit_one_making_page(entry: dict, out_dir: Path, slug: str, kind: str, root
         "breadcrumb": breadcrumb,
         "source_note": source_note_html,
         "body": body_html,
+        "making_nav": making_nav,
     }
 
     out_dir.mkdir(parents=True, exist_ok=True)
+    sidebar_html = render_sidebar(beats or [], on_making=True) if beats else ""
     html = render_page(
         "making.html", body_map,
         page_title=entry.get("title", entry["page_title"]),
@@ -906,6 +997,7 @@ def _emit_one_making_page(entry: dict, out_dir: Path, slug: str, kind: str, root
         root_path=root_path,
         extra_css=["making.css", "animations.css"],
         extra_js=[],
+        sidebar_html=sidebar_html,
     )
     (out_dir / "index.html").write_text(html, encoding="utf-8")
 
@@ -916,9 +1008,10 @@ def emit_404_page() -> None:
         "breadcrumb": "",
         "source_note": "",
         "body": (
-            "<p>This path does not exist on the Forest Edition.</p>"
+            "<p>This path does not exist.</p>"
             '<p><a href="/">Return to the table of contents.</a></p>'
         ),
+        "making_nav": "",
     }
     html = render_page(
         "making.html", body_map,
@@ -1028,7 +1121,7 @@ def main():
     # Emit Making pages
     if MAKING_MANIFEST.exists():
         manifest = yaml.safe_load(MAKING_MANIFEST.read_text(encoding="utf-8"))
-        emit_making_pages(manifest)
+        emit_making_pages(manifest, beats)
         n_essays = len(manifest.get("essays", []))
         n_notes = len(manifest.get("notes", []))
         print(f"  emitted making/  ({n_essays} essays + {n_notes} notes)")
