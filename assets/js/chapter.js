@@ -432,6 +432,56 @@
   }
 
   // ----------------------------------------------------------
+  // Reading-progress thread (right margin)
+  // ----------------------------------------------------------
+
+  function setupReadingProgress() {
+    const el = document.getElementById('readingProgress');
+    if (!el) return;
+    let raf = null;
+    function update() {
+      raf = null;
+      const h = document.documentElement;
+      const max = Math.max(1, h.scrollHeight - h.clientHeight);
+      const pct = Math.min(1, Math.max(0, h.scrollTop / max));
+      el.style.setProperty('--progress', (pct * 100) + '%');
+    }
+    function onScroll() {
+      if (raf) return;
+      raf = requestAnimationFrame(update);
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', onScroll, { passive: true });
+    update();
+  }
+
+  // ----------------------------------------------------------
+  // Branch-mark reveal-on-scroll
+  // ----------------------------------------------------------
+
+  function setupBranchMarkReveal() {
+    const forks = document.querySelectorAll('.fork-paragraph');
+    if (!forks.length) return;
+    if (!('IntersectionObserver' in window)) return;
+
+    forks.forEach(p => p.classList.add('mark-pending'));
+
+    // Reveal a fork's mark when its paragraph crosses into the lower
+    // 65% of the viewport — i.e., the moment the reader could plausibly
+    // see it. Once revealed, stay revealed.
+    const observer = new IntersectionObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.isIntersecting) {
+          entry.target.classList.remove('mark-pending');
+          observer.unobserve(entry.target);
+        }
+      }
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
+
+    forks.forEach(p => observer.observe(p));
+  }
+
+  // ----------------------------------------------------------
   // Bookmark — track last-visible paragraph, persist to localStorage
   // ----------------------------------------------------------
 
@@ -548,6 +598,8 @@
 
     setupBookmarkTracker();
     restoreFromHash();
+    setupReadingProgress();
+    setupBranchMarkReveal();
   }
 
   if (document.readyState === 'loading') {

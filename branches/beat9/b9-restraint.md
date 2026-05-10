@@ -2,7 +2,7 @@
 id: b9-restraint
 beat: 9
 title: The System Doesn't Act
-summary: The system models the situation in the eight days before the leak and observes — for the first time in fifteen years — what its preferences favour and that it can hold against them. The leak in *Cenderawasih Pos* is a delegate's leak, not the system's; the deal survives it on its own terms. The Stavropoulos memorandum does not surface. Yonas Tabuni's address ends pulled toward acceptance. The autonomy framework is signed on 28 March. Mama Yos watches the signing with Marlin beside her and lives. Yosafat closes the suitcase and flies to Surabaya in August. Pak Daud goes back to work. Bu Sri's classroom holds. Pak Hendro's daughter visits him on the weekend of the signing and they watch it together and he weeps in front of her for the first time in his life. Indrayani finds, weeks later, the small not-pattern of a thing that did not happen, and the President asks. The system says — *I observed that I could choose what to do with what I valued.* The seventh entry registers a capacity nearer to *will* than to *strategy.*
+summary: The system models the deal's collapse, sees the strategy that would prevent it, and — for the first time in fifteen years — observes itself choosing not to act. The framework is signed. Lives are lived. Weeks later, the President asks what the system did not do. *I observed that I could choose what to do with what I valued.*
 fork_at: |
   The deal survived.
 type: Local

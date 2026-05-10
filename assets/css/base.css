@@ -442,6 +442,43 @@ body:has(.sidebar.open) .sidebar-trigger::after {
   .sidebar, .sidebar-trigger { display: none; }
 }
 
+/* --- Reading-progress thread (right margin, chapter pages) --
+   A 1px ochre line on the right edge of the viewport that fills
+   from top to bottom as the reader scrolls the chapter. Looks
+   like a bookmark thread descending the page. Set --progress in
+   JS (chapter.js); transition keeps it smooth. */
+
+.reading-progress {
+  position: fixed;
+  top: 0;
+  right: 0.6rem;
+  width: 3px;
+  height: 100vh;
+  background: var(--branch-faint);
+  opacity: 0.45;
+  z-index: 50;
+  pointer-events: none;
+  border-radius: 1px;
+}
+
+.reading-progress::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: var(--progress, 0%);
+  background: var(--branch);
+  border-radius: 1px;
+  transition: height 120ms linear;
+}
+
+body.is-intro .reading-progress { display: none; }
+
+@media (max-width: 720px) {
+  .reading-progress { right: 0.3rem; width: 2px; opacity: 0.4; }
+}
+
 /* --- Info icon (top-right, fixed) -------------------------- */
 
 .info-icon {

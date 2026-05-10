@@ -208,9 +208,15 @@ def parse_canon_file(path: Path) -> Beat:
                 section_idx = 1
                 current_section = Section(id=f"b{beat_n}-s{section_idx}")
                 paragraph_idx = 0
-            paragraph_idx += 1
             inner = content
-            text = _html_to_plain(inner)
+            text = _html_to_plain(inner).strip()
+            # Skip redundant Roman-numeral section markers (e.g.
+            # "**I.**", "**II.**" in Beats 9 and 10). The section is
+            # already labelled by the .section-mark div; emitting these
+            # would double-label every section visually.
+            if _ROMAN_MARKER_RE.match(text):
+                continue
+            paragraph_idx += 1
             # Canon italic prose is just italic prose — do not classify it as
             # branch-coda. The arrow + rule treatment is reserved for branch
             # codas, which are injected at runtime with their own class.
@@ -235,6 +241,8 @@ _BLOCK_RE = re.compile(
     r"|<hr\s*/?>",
     re.DOTALL,
 )
+
+_ROMAN_MARKER_RE = re.compile(r"^[IVX]+\.$")
 
 
 def _split_top_level_blocks(rendered: str):
@@ -545,7 +553,74 @@ def render_beat_html(beat: Beat, branches_for_beat: list) -> str:
         out.append(render_section_html(section, branches_in_section, beat.n, idx))
 
     out.append('</div>')
-    return "\n".join(out)
+    rendered = "\n".join(out)
+
+    # Wrap the first letter of the first paragraph of the first section
+    # in a <span class="drop-cap"> so we can animate it reliably across
+    # browsers (::first-letter has spotty animation support).
+    rendered = _inject_drop_cap(rendered)
+    return rendered
+
+
+_FIRST_SECTION_RE = re.compile(
+    r'(<section class="section" id="b\d+-s1">\s*<div class="section-mark">[^<]+</div>\s*)(.*?)(</section>)',
+    re.DOTALL,
+)
+_PARAGRAPH_RE = re.compile(r'<p\b[^>]*>(.*?)</p>', re.DOTALL)
+_TAGS_RE = re.compile(r'<[^>]+>')
+
+
+def _inject_drop_cap(html: str) -> str:
+    """Wrap the first character of the chapter's opening prose paragraph in
+    <span class="drop-cap">. Skips short headers (roman numerals like "I.",
+    italic datelines like "March 2035"). The drop-cap span is inserted
+    inside any wrapping <em>/<strong> so the italic chapter openers
+    (Beat 6) still get a drop cap.
+    """
+    m = _FIRST_SECTION_RE.search(html)
+    if not m:
+        return html
+    section_open, section_inner, section_close = m.group(1), m.group(2), m.group(3)
+
+    # Walk paragraphs; pick the first whose plain text is > 25 chars
+    # (filters out roman numerals, dates, single-line headers).
+    new_inner = section_inner
+    for pm in _PARAGRAPH_RE.finditer(section_inner):
+        inner_html = pm.group(1)
+        plain = _TAGS_RE.sub('', inner_html).strip()
+        if len(plain) < 25:
+            continue
+        # Find the first letter in the paragraph (ignore tags + whitespace).
+        # We insert the span at the position of the first ASCII letter.
+        letter_pos = None
+        i = 0
+        while i < len(inner_html):
+            ch = inner_html[i]
+            if ch == '<':
+                close = inner_html.find('>', i)
+                if close == -1:
+                    break
+                i = close + 1
+                continue
+            if ch.isalpha():
+                letter_pos = i
+                break
+            i += 1
+        if letter_pos is None:
+            continue
+        letter = inner_html[letter_pos]
+        new_para_inner = (
+            inner_html[:letter_pos]
+            + f'<span class="drop-cap">{letter}</span>'
+            + inner_html[letter_pos + 1:]
+        )
+        # Replace the paragraph in the section
+        old_p = pm.group(0)
+        new_p = old_p.replace(inner_html, new_para_inner, 1)
+        new_inner = new_inner.replace(old_p, new_p, 1)
+        break
+
+    return html[:m.start()] + section_open + new_inner + section_close + html[m.end():]
 
 
 # -----------------------------------------------------------------------------
