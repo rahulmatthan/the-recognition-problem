@@ -403,7 +403,24 @@ body.branched .return-to-canon { display: inline-block; }
 
 @media (max-width: 720px) {
   .section { margin-bottom: 3.5rem; }
-  .branch-mark { right: auto; left: -1.6rem; width: 1.4rem; }
-  .branch-mark .label { left: -2rem; top: 3.2em; }
-  body.branched .post-fork { margin-left: -1rem; padding-left: 0.8rem; }
+  /* On portrait phones the article fills the viewport minus the
+     container's 1.5rem left padding. The mark sits inside that
+     padding (between the viewport edge and the paragraph's first
+     character) — left: -1rem of paragraph means it appears at
+     0.5rem from the viewport edge, comfortably visible. */
+  .branch-mark {
+    right: auto;
+    left: -1.1rem;
+    width: 1rem;
+  }
+  .branch-mark .label {
+    left: 1.4rem;     /* inside the paragraph if it appears */
+    top: 0.4em;
+  }
+  body.branched .post-fork { margin-left: -0.8rem; padding-left: 0.6rem; }
+}
+
+/* Very narrow phones — give the mark a touch more room. */
+@media (max-width: 380px) {
+  .branch-mark { left: -0.9rem; width: 0.9rem; }
 }
