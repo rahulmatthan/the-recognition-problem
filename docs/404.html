@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not found · The Recognition Problem</title>
+<meta name="description" content="404">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='2' height='12' x='7' y='2' fill='%238b3a2e'/></svg>">
+<link rel="preload" href="/assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="/assets/fonts/newsreader-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="/assets/css/base.css">
+<link rel="stylesheet" href="/assets/css/making.css">
+</head>
+<body>
+
+<button class="info-icon" id="infoIcon" aria-label="About reading this">i</button>
+<div class="info-modal" id="infoModal" aria-hidden="true">
+  <div class="info-modal-backdrop"></div>
+  <div class="info-modal-card" role="dialog" aria-label="About reading this">
+    <button class="info-modal-close" id="infoModalClose" aria-label="Close">×</button>
+    <p>
+      Read each chapter from start to finish. That is the canon. Where a branch is
+      available, a thin vertical mark <span class="key-mark"></span> will appear in
+      the margin. Choosing a branch rewrites the story in real time to provide a
+      different sequence of events. Explore the branch and you can always return
+      to canon by clicking <em>Return to canon</em> at the top of the page.
+    </p>
+    <p>
+      Use the slim tab on the left edge to open the table of contents at any time.
+    </p>
+  </div>
+</div>
+<div class="container">
+<header class="masthead">
+  <div class="imprint"><a href="/">The Recognition Problem</a></div>
+  <h1>Not found</h1>
+</header>
+
+<div class="making-band">
+  <a href="/making/">Making</a>
+  
+</div>
+
+
+
+<article class="making">
+<p>This path does not exist.</p><p><a href="/">Return to the table of contents.</a></p>
+</article>
+
+
+
+<footer>
+  <div class="footer-nav">
+    <a href="/">Contents</a>
+    <a href="/making/">Making</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // Sidebar
+  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  if(sb&&tr){
+    var t=null;
+    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    tr.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseleave',c);
+    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+  }
+  // Info modal
+  var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
+  function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
+  function closeInfo(){if(im){im.classList.remove('open');im.setAttribute('aria-hidden','true');}}
+  if(ic)ic.addEventListener('click',openInfo);
+  if(imc)imc.addEventListener('click',closeInfo);
+  if(im){
+    var bd=im.querySelector('.info-modal-backdrop');
+    if(bd)bd.addEventListener('click',closeInfo);
+  }
+  // Escape: close info OR sidebar
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(im&&im.classList.contains('open'))closeInfo();
+      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+    }
+  });
+})();
+</script>
+</body>
+</html>

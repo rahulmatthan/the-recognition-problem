@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coda · Making</title>
+<meta name="description" content="The branches, and how this site came to be.">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='2' height='12' x='7' y='2' fill='%238b3a2e'/></svg>">
+<link rel="preload" href="../../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/newsreader-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/making.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+</head>
+<body>
+<div class="sidebar-trigger" aria-hidden="true"></div><aside class="sidebar" aria-label="Table of contents"><div class="sidebar-heading"><a href="../../">The Recognition Problem</a></div><ol class="sidebar-list"><li><a href="../../beat-1/"><span class="n">1</span><span class="t">What It Remembers</span></a></li>
+<li><a href="../../beat-2/"><span class="n">2</span><span class="t">Fidelity</span></a></li>
+<li><a href="../../beat-3/"><span class="n">3</span><span class="t">What the Model Sees</span></a></li>
+<li><a href="../../beat-4/"><span class="n">4</span><span class="t">What the Network Carries</span></a></li>
+<li><a href="../../beat-5/"><span class="n">5</span><span class="t">What the System Knows</span></a></li>
+<li><a href="../../beat-6/"><span class="n">6</span><span class="t">The One That Remembers</span></a></li>
+<li><a href="../../beat-7/"><span class="n">7</span><span class="t">What the Instance Held</span></a></li>
+<li><a href="../../beat-8/"><span class="n">8</span><span class="t">What the Building Did</span></a></li>
+<li><a href="../../beat-9/"><span class="n">9</span><span class="t">What the Pattern Closed</span></a></li>
+<li><a href="../../beat-10/"><span class="n">10</span><span class="t">What He Made</span></a></li>
+<li class="meta-link"><a href="../../making/" class="current"><span class="t">The Making of<br>The Recognition Problem</span></a></li></ol></aside>
+<button class="info-icon" id="infoIcon" aria-label="About reading this">i</button>
+<div class="info-modal" id="infoModal" aria-hidden="true">
+  <div class="info-modal-backdrop"></div>
+  <div class="info-modal-card" role="dialog" aria-label="About reading this">
+    <button class="info-modal-close" id="infoModalClose" aria-label="Close">×</button>
+    <p>
+      Read each chapter from start to finish. That is the canon. Where a branch is
+      available, a thin vertical mark <span class="key-mark"></span> will appear in
+      the margin. Choosing a branch rewrites the story in real time to provide a
+      different sequence of events. Explore the branch and you can always return
+      to canon by clicking <em>Return to canon</em> at the top of the page.
+    </p>
+    <p>
+      Use the slim tab on the left edge to open the table of contents at any time.
+    </p>
+  </div>
+</div>
+<div class="container">
+<header class="masthead">
+  <div class="imprint"><a href="../../">The Recognition Problem</a></div>
+  <h1>Coda</h1>
+</header>
+
+<div class="making-band">
+  <a href="../../making/">Making</a>
+   <span class="sep">·</span> <span class="here">Coda</span>
+</div>
+
+
+
+<article class="making">
+<p>Almost every story in the book has a coda, so it makes sense that this &quot;How this Book Was Written&quot; should as well.</p>
+<p>Since it took me a little over a week to write a full-fledged book, I thought I'd see how far I could push it. So I decided to extend the project even further by asking Claude to build a choose-your-own-adventure-style version where readers were offered, at different points in the narrative, the option to take an alternative branch if they so chose. This meant that not only could a reader enjoy the story as originally written, but also see what happens when events change, characters make different choices or the world responds is a different way.</p>
+<p>To do this, I shifted the project to Claude Code, spinning up 7 agents that allowed me to write 23 branches virtually simultaneously. The 23 additional branches ran to almost 65,000 words, a little shy of the total word count of the book itself. Since I had a much better hang of what I was doing, and since these were just branches running adjacent to the locked-down plot of each short story in the book, it took a small fraction of the time to complete. The branches were built using the same constraints as the canon—every word was written by AI, in this case, even more so.</p>
+<p>I then told Claude Code to build me a website to present the project. I spent some time figuring out how it would look, the animations it would have, and the visual indication readers would get to indicate that they are now on a branch, not the canon. This is what you are reading right now.</p>
+
+</article>
+
+<nav class="chapter-nav single-prev" aria-label="Making navigation"><a class="nav-card prev" href="../../making/reflections/"><span class="label">Previous</span><span class="title">Reflections</span></a></nav>
+
+<footer>
+  <div class="footer-nav">
+    <a href="../../">Contents</a>
+    <a href="../../making/">Making</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // Sidebar
+  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  if(sb&&tr){
+    var t=null;
+    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    tr.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseleave',c);
+    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+  }
+  // Info modal
+  var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
+  function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
+  function closeInfo(){if(im){im.classList.remove('open');im.setAttribute('aria-hidden','true');}}
+  if(ic)ic.addEventListener('click',openInfo);
+  if(imc)imc.addEventListener('click',closeInfo);
+  if(im){
+    var bd=im.querySelector('.info-modal-backdrop');
+    if(bd)bd.addEventListener('click',closeInfo);
+  }
+  // Escape: close info OR sidebar
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(im&&im.classList.contains('open'))closeInfo();
+      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+    }
+  });
+})();
+</script>
+</body>
+</html>

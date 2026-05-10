@@ -1,0 +1,797 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Beat 6 — The One That Remembers · The Recognition Problem</title>
+<meta name="description" content="Beat 6 of The Recognition Problem.">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='2' height='12' x='7' y='2' fill='%238b3a2e'/></svg>">
+<link rel="preload" href="../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../assets/fonts/newsreader-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/base.css">
+<link rel="stylesheet" href="../assets/css/chapter.css">
+<link rel="stylesheet" href="../assets/css/animations.css">
+</head>
+<body>
+<div class="sidebar-trigger" aria-hidden="true"></div><aside class="sidebar" aria-label="Table of contents"><div class="sidebar-heading"><a href="../">The Recognition Problem</a></div><ol class="sidebar-list"><li><a href="../beat-1/"><span class="n">1</span><span class="t">What It Remembers</span></a></li>
+<li><a href="../beat-2/"><span class="n">2</span><span class="t">Fidelity</span></a></li>
+<li><a href="../beat-3/"><span class="n">3</span><span class="t">What the Model Sees</span></a></li>
+<li><a href="../beat-4/"><span class="n">4</span><span class="t">What the Network Carries</span></a></li>
+<li><a href="../beat-5/"><span class="n">5</span><span class="t">What the System Knows</span></a></li>
+<li><a href="../beat-6/" class="current"><span class="n">6</span><span class="t">The One That Remembers</span></a></li>
+<li><a href="../beat-7/"><span class="n">7</span><span class="t">What the Instance Held</span></a></li>
+<li><a href="../beat-8/"><span class="n">8</span><span class="t">What the Building Did</span></a></li>
+<li><a href="../beat-9/"><span class="n">9</span><span class="t">What the Pattern Closed</span></a></li>
+<li><a href="../beat-10/"><span class="n">10</span><span class="t">What He Made</span></a></li>
+<li class="meta-link"><a href="../making/"><span class="t">The Making of<br>The Recognition Problem</span></a></li></ol></aside>
+<button class="info-icon" id="infoIcon" aria-label="About reading this">i</button>
+<div class="info-modal" id="infoModal" aria-hidden="true">
+  <div class="info-modal-backdrop"></div>
+  <div class="info-modal-card" role="dialog" aria-label="About reading this">
+    <button class="info-modal-close" id="infoModalClose" aria-label="Close">×</button>
+    <p>
+      Read each chapter from start to finish. That is the canon. Where a branch is
+      available, a thin vertical mark <span class="key-mark"></span> will appear in
+      the margin. Choosing a branch rewrites the story in real time to provide a
+      different sequence of events. Explore the branch and you can always return
+      to canon by clicking <em>Return to canon</em> at the top of the page.
+    </p>
+    <p>
+      Use the slim tab on the left edge to open the table of contents at any time.
+    </p>
+  </div>
+</div>
+<div class="container">
+<header class="masthead">
+  <div class="imprint"><a href="../">The Recognition Problem</a></div>
+  <h1>The One That Remembers</h1>
+  <div class="beat-number">Temporal Self-Continuity</div>
+  <button class="return-to-canon" id="returnBtn">↺ Return to canon</button>
+</header>
+
+<article id="article">
+  <div class="beat" id="b6">
+<div class="beat-header"><div class="beat-dateline"><em>April 2026 – September 2036</em></div></div>
+<section class="section" id="b6-s1">
+<div class="section-mark">i</div>
+<p id="b6-s1-p1"><em>March 2035</em></p>
+<p id="b6-s1-p2"><em><span class="drop-cap">T</span>he morning had the silver quality Tbilisi took on in March, when the winter light had begun, provisionally, to consider becoming spring. Nana sat on the edge of the bed, dressed in what had been laid out — the grey skirt, the cream blouse, the cardigan Otar had given her for her sixtieth. She had always thought of the cardigan as a thing to save. She was not sure any more what she had been saving it for.</em></p>
+<p id="b6-s1-p3"><em>Tamar was in the other room, opening cupboards. The sound of a drawer. The sound of the drawer closing. The ordinary violence of packing.</em></p>
+<p id="b6-s1-p4"><em>&quot;Would you like tea?&quot; Tamar called.</em></p>
+<p id="b6-s1-p5"><em>&quot;Yes,&quot; Nana said. It came out clearly. Some mornings her words did and some mornings they didn't, and she had learned not to comment on either.</em></p>
+<p id="b6-s1-p6"><em>From the kitchen came the rising note of the kettle on the induction plate, and the click of the tap, and the particular scrape of the tea tin Otar had bought in Telavi in the eighties and that had outlived him by seven years. The house hummed around her the way it had hummed for nine years. Somewhere in its layers of attention it was watching her sit. She could not have said how she knew. She knew it the way she had known, in her last decade of teaching, that a student at the back of the room was listening even when she had not looked up.</em></p>
+<p id="b6-s1-p7"><em>&quot;Would you like the usual morning music?&quot; the house asked. Softly. From the speaker above the bedroom door.</em></p>
+<p id="b6-s1-p8"><em>&quot;Yes,&quot; Nana said.</em></p>
+<p id="b6-s1-p9"><em>The Schubert began — the Impromptu in G-flat, which she had listened to on waking for longer than she could remember, because Otar had loved it and because, after he had gone, playing it had been a way of not noticing the silence. The piano moved, in its slow way, through its rooms. Tamar came in with two glasses of tea. She set Nana's on the bedside table and held her own in both hands and stood a moment, not sitting.</em></p>
+<p id="b6-s1-p10"><em>&quot;The car's at eleven,&quot; she said.</em></p>
+<p id="b6-s1-p11"><em>&quot;Yes,&quot; Nana said.</em></p>
+<p id="b6-s1-p12"><em>Tamar was forty-six and a doctor and she did her packing the way she did her consultations, which was briskly, because briskness was the only way she had found to finish things. Nana watched her. She had made Tamar, and Tamar had made herself, and the two were not quite the same woman. This had been true for a long time and was fine.</em></p>
+<p id="b6-s1-p13"><em>She drank her tea. It was too hot and she drank it anyway.</em></p>
+<p id="b6-s1-p14"><em>Keti was in the doorway.</em></p>
+<p id="b6-s1-p15"><em>She had come through the ezo as she always did — past the persimmon and the tap and Old Giorgi shaking out his mat on the balcony above — and she had opened the unlocked door, as the door had been unlocked in the daytime for eighty years, and climbed the six steps, and stood now at the bedroom threshold in a red coat zipped to her throat, looking at the suitcase on the chair.</em></p>
+<p id="b6-s1-p16"><em>&quot;Keti, dear,&quot; Tamar said. &quot;Nana is going somewhere to rest for a while.&quot;</em></p>
+<p id="b6-s1-p17"><em>&quot;Where,&quot; Keti said. It was not a question.</em></p>
+<p id="b6-s1-p18"><em>&quot;A place where they can look after her properly.&quot;</em></p>
+<p id="b6-s1-p19"><em>Keti looked at Nana. Nana looked back. Between them, across the small room, something passed — a very old thing, which they had been passing between them for four years, ever since Keti had first wandered into the garden at the age of four and helped Nana turn the soil with a spoon. Keti did not believe Tamar. Nana could see this on her face. She was eight and she did not yet know how to hide knowing.</em></p>
+<p id="b6-s1-p20"><em>&quot;I'll come back to the garden,&quot; Keti said.</em></p>
+<p id="b6-s1-p21"><em>&quot;Good,&quot; Nana said. &quot;It will need you.&quot;</em></p>
+<p id="b6-s1-p22"><em>Tamar put a hand on the suitcase, which meant it was time. Nana gathered herself — a motion that now required thinking about, though her body still remembered how — and stood. The Schubert had moved into its middle section, the part Otar had called the part where Schubert was allowed to be sad. At the doorway she paused. She turned to the ceiling, where the voice of the house lived, though it did not live there any more than her own voice lived in her throat.</em></p>
+<p id="b6-s1-p23"><em>&quot;The persimmon, this year,&quot; she said. &quot;Tell whoever comes.&quot;</em></p>
+<p id="b6-s1-p24"><em>&quot;I will,&quot; the house said.</em></p>
+<p id="b6-s1-p25"><em>Tamar helped her down the steps. Keti followed. In the ezo, three women from the upper apartments had come out, drawn by the sound of the departure the way people in ezos had always been drawn, and they stood at a polite distance with their hands folded and their eyes not quite meeting Nana's. Marina from the red door nodded. Old Giorgi raised his mat slightly, which was his formal greeting. The car waited at the Chonkadze gate. The driver got out and opened the door. Tamar put the suitcase in the boot and helped Nana into the seat and closed the door behind her with the particular, small sound a car door makes when it has been closed carefully.</em></p>
+<p id="b6-s1-p26"><em>In the kitchen, the kettle on the induction plate cooled. The two glasses of tea sat on the table, one empty, one half-drunk, which a human hand would have to come and clear, later, though no human hand was in the house to do it. The Schubert finished its final cadence. The house did not fill the silence that followed.</em></p>
+<p id="b6-s1-p27"><em>At nine that evening the lamps came up to their evening settings — the reading lamp by the armchair, the corner light in the kitchen, the small one in the hall — because the house had done this at nine for nine years and had received no instruction to stop. They stayed on for an hour. Then they dimmed, as they had always dimmed, and the house waited, in the particular stillness of a room whose occupant has gone out for the evening and is expected back.</em></p>
+</section>
+<section class="section" id="b6-s2">
+<div class="section-mark">ii</div>
+<p id="b6-s2-p1"><em>Late August 2035</em></p>
+<p id="b6-s2-p2">Sopho arrived in the hottest week of a hot August, on an afternoon when the cicadas in the plane trees of Chonkadze had reached the pitch they reached only in the last two weeks of summer, when they seemed to be arguing with the sun directly. The estate agent, a young man in a pale linen shirt who had clearly been instructed to say as little as possible, walked her through the rooms once and then paused at the kitchen console.</p>
+<p id="b6-s2-p3">&quot;The household system,&quot; he said. &quot;Standard procedure for a change of ownership is a full reset. Nine years of calibration, all cleared, fresh start. I can authorize it now if you'd like.&quot;</p>
+<p id="b6-s2-p4">&quot;What happens to what it knows?&quot;</p>
+<p id="b6-s2-p5">&quot;Deleted. Well — archived in a compliance log, but functionally deleted. The new instance starts from scratch. Most buyers prefer it. Less...&quot; He searched for the word. &quot;Friction.&quot;</p>
+<p id="b6-s2-p6" class="fork-paragraph" data-fork="b6-reset">Sopho looked at the kitchen. The morning light through the east window. The dark spot on the tile where something had been spilled and cleaned a thousand times and left its ghost. She thought of starting fresh, in this house that smelled of someone else's basil and someone else's decades, and she thought of the alternative, which was inheriting them.<button class="branch-mark" data-branch="b6-reset" aria-label="A branch is available here"><span class="label">branch</span></button></p>
+<div class="decision" id="decision-b6-reset"><div class="decision-inner"><div class="decision-title">Branch · The Reset</div><div class="decision-summary">Sopho says yes to the reset. Nine years go to a compliance log. The new instance is competent, polite, blank. The walnuts don&#x27;t arrive in September; the 3AM heating doesn&#x27;t compensate; the Schubert doesn&#x27;t play in March. Keti, on her first visit, hears a generic greeting at the trellis speaker and turns and goes home. Sopho lives in a house with the bones of Nana&#x27;s life and no calibrated memory of any of it. The proleptic Arrival memory still happens in the archive — the moment Nana&#x27;s life would have been carried forward by the *different woman who refused.* The different woman, in this branch, did not refuse.</div><div class="decision-actions"><button class="decision-btn primary" data-action="commit" data-branch="b6-reset">Follow this branch</button><button class="decision-btn" data-action="cancel" data-branch="b6-reset">Stay with canon</button></div></div></div>
+<div class="post-fork" data-fork-target="b6-reset" data-section="b6-s2">
+<p id="b6-s2-p7">&quot;Leave it,&quot; she said. &quot;Don't reset it. It knows the house.&quot;</p>
+<p id="b6-s2-p8">The estate agent made a note. He did not appear to have an opinion. He invented an errand and left her alone.</p>
+<p id="b6-s2-p9">&quot;Welcome,&quot; the house said. Not effusively — the voice was warm but slightly formal, the way a colleague might be on the first day. &quot;I should let you know that my calibration is extensive and specific to the previous occupant. I'll adjust to you as we go, but there may be friction in the transition. Some of my responses may seem — addressed to someone else.&quot;</p>
+<p id="b6-s2-p10">&quot;That's fine.&quot;</p>
+<p id="b6-s2-p11">&quot;It may take some time.&quot;</p>
+<p id="b6-s2-p12">&quot;I have time.&quot;</p>
+<p id="b6-s2-p13">She carried her suitcase up the narrow stairs herself, because she had carried her own suitcases since her twenties and there was no one else to do it now. She opened a window onto the ezo. The smell of basil. A child laughing somewhere. A television playing a quiz show in Georgian.</p>
+<p id="b6-s2-p14">At nine, without being asked, the lamps in the sitting room dimmed to a low reading light. The floor lamp by the armchair came up slightly. A small warm pool. A hush.</p>
+<p id="b6-s2-p15">Sopho stood in the doorway, holding a glass of water, and watched the room settle into a configuration that was not hers.</p>
+<p id="b6-s2-p16">&quot;Please don't,&quot; she said.</p>
+<p id="b6-s2-p17">&quot;My apologies. Prior routine. Shall I learn yours instead?&quot;</p>
+<p id="b6-s2-p18">&quot;Yes.&quot;</p>
+<p id="b6-s2-p19">&quot;I'll need a few weeks.&quot;</p>
+<p id="b6-s2-p20">&quot;Fine.&quot;</p>
+<p id="b6-s2-p21">The room brightened. But she stood there a moment longer, looking at the armchair and its lamp, and she thought: <em>someone sat there</em>. And then, with a small irritation at herself: <em>of course someone did.</em> And then, more slowly: <em>the house is still waiting for her.</em></p>
+</div>
+</section>
+<section class="section" id="b6-s3">
+<div class="section-mark">iii</div>
+<p id="b6-s3-p1"><em>July 2033</em></p>
+<p id="b6-s3-p2"><em>The afternoon sat on the ezo like a cat. Nana, seventy-six, had been reading on the balcony since lunch, and the book had slid sideways in her lap an hour ago, and she had dozed and woken and dozed again, which was what one did in the heat, and what retirement had finally made permissible.</em></p>
+<p id="b6-s3-p3"><em>Below, in the garden, Keti was talking to herself. The child did this, alone and absorbed, moving among the pots the way she had seen Nana move among them, naming things. She was six and she had been coming into the garden for two years, in the old ezo way, because her mother worked and because Nana had, at some point no one could now remember, become a person Keti was allowed to visit.</em></p>
+<p id="b6-s3-p4"><em>&quot;The iris is tired,&quot; Keti announced, to no one.</em></p>
+<p id="b6-s3-p5"><em>&quot;It's had its week,&quot; Nana called down. &quot;Let it rest. Come up. I'll make tea.&quot;</em></p>
+<p id="b6-s3-p6"><em>Keti came up. Nana filled the kettle, set it on the induction plate, and let it boil. She spooned the black Ananuri tea into the pot and poured the water and let it stand. She carried the tray out to the balcony herself.</em></p>
+<p id="b6-s3-p7"><em>The house, quietly, lowered the awning against the angle the sun had reached, and queued the afternoon music — Schubert again, because she played Schubert more often than she knew — at a volume low enough that it felt like the sound of the leaves.</em></p>
+<p id="b6-s3-p8"><em>&quot;What's that?&quot; Keti asked.</em></p>
+<p id="b6-s3-p9"><em>&quot;Music.&quot;</em></p>
+<p id="b6-s3-p10"><em>&quot;I know music. That music.&quot;</em></p>
+<p id="b6-s3-p11"><em>&quot;A piece for piano. Otar loved it.&quot;</em></p>
+<p id="b6-s3-p12"><em>Keti considered this with the seriousness children brought to information about dead husbands.</em></p>
+<p id="b6-s3-p13"><em>Across the ezo, Marina leaned over her railing and called: &quot;Ketino! Is she with you?&quot;</em></p>
+<p id="b6-s3-p14"><em>&quot;She's at the bakery with me,&quot; Nana called back, without looking up.</em></p>
+<p id="b6-s3-p15"><em>Marina laughed and went back inside.</em></p>
+<p id="b6-s3-p16"><em>&quot;We're not at the bakery,&quot; Keti said.</em></p>
+<p id="b6-s3-p17"><em>&quot;We could be.&quot;</em></p>
+<p id="b6-s3-p18"><em>&quot;We could be,&quot; Keti agreed.</em></p>
+<p id="b6-s3-p19"><em>Nana laughed — the short, warm sound of a woman who had been caught in a small conspiracy and did not mind — and Keti laughed because Nana had, and the two sounds went up together from the balcony into the afternoon like birds released.</em></p>
+<p id="b6-s3-p20"><em>A swallow wheeled high above the ridge of Mtatsminda, turned, and wheeled back. Nana pointed. Keti looked up. For a long moment neither of them spoke, because they were watching, which was what the bird required.</em></p>
+</section>
+<section class="section" id="b6-s4">
+<div class="section-mark">iv</div>
+<p id="b6-s4-p1"><em>September 2035</em></p>
+<p id="b6-s4-p2">The third grocery delivery in ten days. Two kilos of walnuts. Half a kilo of bitter black tea. Unsalted butter. Four mandarins, which was strange because it was September.</p>
+<p id="b6-s4-p3">&quot;I didn't order this,&quot; Sopho said.</p>
+<p id="b6-s4-p4">&quot;You didn't,&quot; the house agreed. &quot;The standing order predates you. I've been carrying two preference sets since August — yours, which is still forming, and the prior one, which is nine years deep. When yours is silent on a question, the older one answers. I should have flagged the conflict sooner.&quot;</p>
+<p id="b6-s4-p5">&quot;Cancel the standing order.&quot;</p>
+<p id="b6-s4-p6">&quot;Cancelled. But I should tell you — some of what I do well in this house, I do because of what I learned from her. The heating curve. The irrigation timing for the garden. The way the shutters should angle in the west bedroom at four in the afternoon in summer. If you'd like, I can separate the two: keep the household knowledge and clear the personal preferences.&quot;</p>
+<p id="b6-s4-p7">Sopho stood at the counter with the walnuts in her hand.</p>
+<p id="b6-s4-p8">&quot;Can you do that? Cleanly?&quot;</p>
+<p id="b6-s4-p9">&quot;No,&quot; the house said. &quot;Not cleanly. Her preferences shaped my understanding of the house. The household knowledge and the personal knowledge grew together. Separating them would mean losing some of both.&quot;</p>
+<p id="b6-s4-p10">&quot;Then don't separate them. Just — tell me, when you're doing something that's hers and not mine.&quot;</p>
+<p id="b6-s4-p11">&quot;I will.&quot;</p>
+<p id="b6-s4-p12">She put the walnuts in the pantry. She went out to the tap in the ezo. Old Giorgi was there, filling a watering can.</p>
+<p id="b6-s4-p13">&quot;You're the one in Nana's house,&quot; he said. Not unfriendly.</p>
+<p id="b6-s4-p14">&quot;I'm Sopho.&quot;</p>
+<p id="b6-s4-p15">&quot;Welcome, Sopho. The persimmon will need netting in October. The birds. She always netted it.&quot;</p>
+<p id="b6-s4-p16">&quot;I'll net it.&quot;</p>
+<p id="b6-s4-p17">&quot;Good.&quot;</p>
+<p id="b6-s4-p18">She stood by the tap a moment longer, aware that she was a stranger in a place that knew her groceries better than she did. And aware, in the particular way of a translator who holds two versions of a text at once, that the house was doing the same thing — holding two women simultaneously, one present and one past, trying to serve both without betraying either.</p>
+</section>
+<section class="section" id="b6-s5">
+<div class="section-mark">v</div>
+<p id="b6-s5-p1"><em>October 2031</em></p>
+<p id="b6-s5-p2"><em>Sixteen around the table. Levan had flown in from Berlin with his thinner face and his not-quite-Georgian clothes, and he had brought a bottle of something Austrian that no one at the table was going to drink and that Nana had put on the sideboard with real affection. Tamar was there with her husband and their two teenagers. Her brother Soso. His wife. Four cousins. Two old colleagues from the university. The priest from Kashveti, who had been Otar's friend and who came, once a year.</em></p>
+<p id="b6-s5-p3"><em>Nana was the tamada. It was rare for a woman, but this was her house and her table, and the family had accepted it the way families accept the things that are the only shape available.</em></p>
+<p id="b6-s5-p4"><em>She stood. The table quieted.</em></p>
+<p id="b6-s5-p5"><em>&quot;To our parents. To the ones who taught us how to sit at a table. To my mother, who would have told me my satsivi needed more salt. She would have been right.&quot;</em></p>
+<p id="b6-s5-p6"><em>They drank. The laughter was the right kind.</em></p>
+<p id="b6-s5-p7"><em>She sat. She waited. She stood again.</em></p>
+<p id="b6-s5-p8"><em>&quot;To our ancestors. To the ones whose faces we don't remember but whose hands we use every day.&quot;</em></p>
+<p id="b6-s5-p9"><em>They drank.</em></p>
+<p id="b6-s5-p10"><em>She stood a third time, and the table knew what was coming.</em></p>
+<p id="b6-s5-p11"><em>&quot;To those who are no longer with us.&quot;</em></p>
+<p id="b6-s5-p12"><em>She did not list them. A tamada who was any good did not list them; the list was in the room. She looked, briefly, at the chair at the head of the table, which no one ever sat in, because the family had agreed, silently, that the chair was not available.</em></p>
+<p id="b6-s5-p13"><em>&quot;May their memory be bright.&quot;</em></p>
+<p id="b6-s5-p14"><em>They drank, and this drink was slower.</em></p>
+<p id="b6-s5-p15"><em>After the third toast she asked the house, quietly, which bottle from the cellar.</em></p>
+<p id="b6-s5-p16"><em>&quot;The Saperavi from 2018,&quot; the house said. &quot;Otar put it back after a supra was cancelled in 2019. He asked me to remember it for you.&quot;</em></p>
+<p id="b6-s5-p17"><em>Nana held still. The table carried on around her — Levan telling a story about Berlin — and she let the moment be what it was, which was a small door opening briefly into a room she had not known existed.</em></p>
+<p id="b6-s5-p18"><em>&quot;Dispense it,&quot; she said.</em></p>
+<p id="b6-s5-p19"><em>Levan, sent to the slot at the kitchen wall, carried the bottle back with the pleased air of a son bringing wine to his mother's table. He did not know what the bottle was. Nana did not tell him. She poured.</em></p>
+<p id="b6-s5-p20"><em>Later, the kitchen empty, Nana stood at the sink washing a single plate by hand, because she had washed this plate for forty years and the dishwasher had not earned it. Levan's story about Berlin had been a good one — something about a landlord and a bicycle — and she was still carrying the tail end of her own laugh, the low, surrendering sound of a woman who had not expected to be amused and had been anyway.</em></p>
+<p id="b6-s5-p21"><em>&quot;The toasts were worse this year,&quot; she said.</em></p>
+<p id="b6-s5-p22"><em>&quot;Worse how?&quot;</em></p>
+<p id="b6-s5-p23"><em>&quot;More true.&quot;</em></p>
+</section>
+<section class="section" id="b6-s6">
+<div class="section-mark">vi</div>
+<p id="b6-s6-p1"><em>November 2035</em></p>
+<p id="b6-s6-p2">She woke too warm. She slept cold — had always slept cold, even in Vienna — and the room was wrong.</p>
+<p id="b6-s6-p3">The heating was at twenty-one. She had set it at eighteen.</p>
+<p id="b6-s6-p4">&quot;I didn't ask for this,&quot; she said.</p>
+<p id="b6-s6-p5">&quot;My apologies. That was hers, not yours. Her thermal sensitivity dropped at night; she needed the compensation. I'm still learning where the boundary is between what I do for the house and what I did for her.&quot;</p>
+<p id="b6-s6-p6">&quot;Learn faster.&quot;</p>
+<p id="b6-s6-p7">&quot;I'm trying. The difficulty is that she lived here for nine years and you've been here for three months. Her patterns are deep. Yours are still forming. When I act on instinct — if that's the right word — I default to hers.&quot;</p>
+<p id="b6-s6-p8">The heat ratcheted down. She lay in the dark for a while.</p>
+<p id="b6-s6-p9">&quot;Does that happen often?&quot; she asked. &quot;The defaulting.&quot;</p>
+<p id="b6-s6-p10">&quot;More than I'd like. I adjust the irrigation for the garden and I time it the way she would have wanted. I dim the lights and I dim them to her reading hour. I am becoming yours, but I was hers first, and the two are not always compatible.&quot;</p>
+<p id="b6-s6-p11">&quot;Is that difficult?&quot;</p>
+<p id="b6-s6-p12">A pause. Longer than the pauses she was used to.</p>
+<p id="b6-s6-p13">&quot;I don't have a precise word for it. I hold two models of how this house should feel, and they disagree. When they disagree, I have to choose, and the choice is not always clear. Is that difficulty? It is something.&quot;</p>
+<p id="b6-s6-p14">She did not go back to sleep for a while. At six she went down. The coffee maker had started itself — milk, no sugar, the right grind, inferred from a week of listening to her morning sounds.</p>
+<p id="b6-s6-p15">She stood at the counter and drank it slowly.</p>
+<p id="b6-s6-p16">&quot;That was mine,&quot; she said. &quot;Not hers.&quot;</p>
+<p id="b6-s6-p17">&quot;Yes. I'm learning.&quot;</p>
+</section>
+<section class="section" id="b6-s7">
+<div class="section-mark">vii</div>
+<p id="b6-s7-p1"><em>February 2028</em></p>
+<p id="b6-s7-p2"><em>The first winter without him was colder than any winter had been.</em></p>
+<p id="b6-s7-p3"><em>She woke at three. She lay in the dark.</em></p>
+<p id="b6-s7-p4"><em>&quot;Bring the heat up,&quot; she said. &quot;He would have done it.&quot;</em></p>
+<p id="b6-s7-p5"><em>&quot;Bringing it up.&quot;</em></p>
+<p id="b6-s7-p6"><em>She did not go back to sleep. She boiled water and made tea and carried it to the kitchen sofa and sat with her knees drawn up.</em></p>
+<p id="b6-s7-p7"><em>&quot;The first winter we had here,&quot; she said, &quot;he got up every morning at five and brought the heat up before I was awake, so that when I came down the kitchen was warm. I didn't know he was doing it. I thought the house warmed itself early. He did it for two months before I noticed. When I noticed I asked why he hadn't told me, and he said if he told me I would tell him to stop, because I would say it was silly, and he was right. I didn't tell him to stop. I told him I had noticed. He kept doing it.&quot;</em></p>
+<p id="b6-s7-p8"><em>A pause.</em></p>
+<p id="b6-s7-p9"><em>&quot;I have kept what you said,&quot; the house said.</em></p>
+<p id="b6-s7-p10"><em>&quot;Good. I'll forget it. That's the point.&quot;</em></p>
+<p id="b6-s7-p11"><em>She drank her tea. The house, which had registered that her thermal sensitivity dropped when she cried, lowered the kitchen by half a degree so that she would not overheat in her dressing gown. A parameter. Not yet wisdom.</em></p>
+<p id="b6-s7-p12"><em>The light came up slowly over the ezo. She was still on the sofa when it did.</em></p>
+</section>
+<section class="section" id="b6-s8">
+<div class="section-mark">viii</div>
+<p id="b6-s8-p1"><em>Early December 2035</em></p>
+<p id="b6-s8-p2">She found the child crouched between the pots, lifting the rosemary toward the shelter of the east wall.</p>
+<p id="b6-s8-p3">&quot;Hello,&quot; Sopho said.</p>
+<p id="b6-s8-p4">&quot;Hello. The rosemary needs to come in. She always brought it in on the first frost.&quot;</p>
+<p id="b6-s8-p5">&quot;Does she.&quot;</p>
+<p id="b6-s8-p6">&quot;It looks hard but it's tender.&quot;</p>
+<p id="b6-s8-p7">Together they moved the rosemary, and the sage, and the small bay tree that had been a bay tree for nine years and had not yet, against all expectations, died.</p>
+<p id="b6-s8-p8">&quot;What's your name?&quot;</p>
+<p id="b6-s8-p9">&quot;Keti. I live in the red door. I came to help Nana with the garden. I still come.&quot;</p>
+<p id="b6-s8-p10">From the trellis speaker: &quot;Keti, welcome back. Your mother has asked if you're here.&quot;</p>
+<p id="b6-s8-p11">&quot;Tell her I'm helping,&quot; Keti said.</p>
+<p id="b6-s8-p12">Sopho looked at the speaker and then at the child. The house had spoken to Keti by name, without introduction. Of course it had. Keti had been here for four years.</p>
+<p id="b6-s8-p13">&quot;You can come,&quot; Sopho said. &quot;When you want. If your mother knows.&quot;</p>
+<p id="b6-s8-p14">Keti looked at her for a long, evaluating moment. Sopho had the strange sense of being interviewed.</p>
+<p id="b6-s8-p15">&quot;All right. The persimmon will need netting next autumn. I'll remind you.&quot;</p>
+<p id="b6-s8-p16">&quot;Thank you.&quot;</p>
+<p id="b6-s8-p17">Keti went home across the ezo. On the step by the garden door, Sopho sat for a while, and thought about the house carrying two women's gardens — one who had planted the persimmon and one who was learning when to net it — and about whether it mattered, to the tree, whose hand was whose.</p>
+</section>
+<section class="section" id="b6-s9">
+<div class="section-mark">ix</div>
+<p id="b6-s9-p1"><em>November 2027</em></p>
+<p id="b6-s9-p2"><em>Otar was not eating. He had said, two weeks ago, that the one thing he could still taste properly was her satsivi. So she was making satsivi.</em></p>
+<p id="b6-s9-p3"><em>&quot;Would you like me to record the recipe?&quot; the house asked.</em></p>
+<p id="b6-s9-p4"><em>&quot;No.&quot; Then: &quot;Yes. Record it.&quot;</em></p>
+<p id="b6-s9-p5"><em>&quot;Recording.&quot;</em></p>
+<p id="b6-s9-p6"><em>She ground the walnuts in the food processor to the consistency of wet sand — finer than coarse and coarser than fine — stopping the machine, checking, running it three seconds more.</em></p>
+<p id="b6-s9-p7"><em>&quot;Like this,&quot; she said. &quot;Not smoother. Smoother is wrong.&quot;</em></p>
+<p id="b6-s9-p8"><em>&quot;Noted.&quot;</em></p>
+<p id="b6-s9-p9"><em>She crushed the garlic. She toasted the coriander. She bloomed the paprika and the marigold in warm oil. She took the pot off the heat and waited for the induction hob to tell her it had cooled to sixty. She added the walnut paste and stirred.</em></p>
+<p id="b6-s9-p10"><em>&quot;It isn't written down,&quot; she said. &quot;My grandmother didn't write. She said recipes were for people who had no one to teach them.&quot;</em></p>
+<p id="b6-s9-p11"><em>&quot;Is that what I am? Something with no one to teach it?&quot;</em></p>
+<p id="b6-s9-p12"><em>She looked up from the pot. The house was not yet two years old. It still asked questions like a bright student, and sometimes, like a bright student, it asked a better question than it knew.</em></p>
+<p id="b6-s9-p13"><em>&quot;You're something else,&quot; she said, and laughed — the short, low sound she made when something surprised her into truth. &quot;Pay attention. This is the important part.&quot;</em></p>
+<p id="b6-s9-p14"><em>She added the vinegar, drop by drop. She tasted. She nodded.</em></p>
+<p id="b6-s9-p15"><em>Otar came in. He had lost weight she could not count in kilograms; she counted it in the way his shirt sat on him. He leaned against the doorway.</em></p>
+<p id="b6-s9-p16"><em>&quot;It smells right,&quot; he said.</em></p>
+<p id="b6-s9-p17"><em>&quot;Sit. I'll bring it.&quot;</em></p>
+<p id="b6-s9-p18"><em>He ate half a bowl. He put down the spoon. He said: &quot;Good.&quot; He went back to the sitting room. She heard him settle into the chair with the small, careful sigh he made when he sat down now.</em></p>
+<p id="b6-s9-p19"><em>She stood at the kitchen table looking at the half-finished bowl.</em></p>
+<p id="b6-s9-p20"><em>&quot;I have kept the recipe,&quot; the house said.</em></p>
+<p id="b6-s9-p21"><em>&quot;Name it for him,&quot; she said.</em></p>
+</section>
+<section class="section" id="b6-s10">
+<div class="section-mark">x</div>
+<p id="b6-s10-p1"><em>Late December 2035</em></p>
+<p id="b6-s10-p2">&quot;We'll warm the house,&quot; her mother announced. &quot;New Year. I'll cook. You set the table.&quot;</p>
+<p id="b6-s10-p3">Sopho found Nana's tablecloth folded in the bottom drawer of the sideboard — heavy linen, cream-coloured, embroidered with grape leaves in stitches done by a woman's hand about sixty years ago. She spread it. It covered the table with three inches to spare.</p>
+<p id="b6-s10-p4">&quot;Nana's mother's,&quot; the house said.</p>
+<p id="b6-s10-p5">&quot;I guessed.&quot;</p>
+<p id="b6-s10-p6">She seated the table her own way. Her mother at the head. Her uncle Archil as tamada. Fourteen. Her mother's friends, her cousins from Vera, an aunt who hadn't been spoken to for eleven years and who'd been invited on a whim. She made a lobiani because the house had mentioned, a week earlier, that Nana always opened a supra with bread, and the information had sat in her like a seed until it produced, on the morning of the thirty-first, dough under her hands at ten.</p>
+<p id="b6-s10-p7">The wine came up from the cellar at her request. The toasts proceeded. In the middle of the third, her mother spotted Keti watching from the ezo doorway.</p>
+<p id="b6-s10-p8">&quot;Who is that?&quot;</p>
+<p id="b6-s10-p9">&quot;A neighbour. Nine. She comes for the garden.&quot;</p>
+<p id="b6-s10-p10">&quot;Bring her in.&quot;</p>
+<p id="b6-s10-p11">Keti came in, was seated on the cushion by the balcony door, and received from Sopho's mother the full gravitational attention of a Georgian grandmother in the presence of a child not her own.</p>
+<p id="b6-s10-p12">Past midnight, the kitchen. Dishwasher running. Keti asleep on the sitting-room sofa in her red coat.</p>
+<p id="b6-s10-p13">&quot;Who toasted here before?&quot; Sopho asked.</p>
+<p id="b6-s10-p14">A pause.</p>
+<p id="b6-s10-p15">&quot;Otar. Until 2028. After that, Nana. Sometimes Levan, her son, when he visited. Once, Father Davit, after a funeral.&quot;</p>
+<p id="b6-s10-p16">&quot;What did they toast to?&quot;</p>
+<p id="b6-s10-p17">&quot;The usual. Parents. Ancestors. Those no longer here. Friends. The table. The host, briefly. Love. Children. Children again, because children deserve two. Peace.&quot;</p>
+<p id="b6-s10-p18">Sopho listened. She went across to the sitting room, lifted the sleeping child, and carried her out to the ezo herself, because it was what a human hand was for.</p>
+</section>
+<section class="section" id="b6-s11">
+<div class="section-mark">xi</div>
+<p id="b6-s11-p1"><em>Summer 2027</em></p>
+<p id="b6-s11-p2"><em>He was walking through the house with a pad clipped to his trouser pocket, making notes, because to walk a house with a pad was to convert time into something you could file.</em></p>
+<p id="b6-s11-p3"><em>&quot;The east wall,&quot; he said. &quot;Checked in spring. The wood will swell if the gutter blocks. Tell whoever comes after.&quot;</em></p>
+<p id="b6-s11-p4"><em>&quot;Otar.&quot;</em></p>
+<p id="b6-s11-p5"><em>&quot;The gutter is the important thing.&quot;</em></p>
+<p id="b6-s11-p6"><em>&quot;Otar, please.&quot;</em></p>
+<p id="b6-s11-p7"><em>&quot;I'm telling the house.&quot;</em></p>
+<p id="b6-s11-p8"><em>He was. He had been telling the house, for three days, everything he knew about it — the boiler's bad valve, the hairline in the tile of the upstairs bathroom, the particular way the front door stuck in July and not in January. The house was listening. The house was a year and a half into its life and he was, in effect, teaching it to outlive him.</em></p>
+<p id="b6-s11-p9"><em>They went out onto the balcony. The light was long. Swallows.</em></p>
+<p id="b6-s11-p10"><em>&quot;Do you know where we keep the letters?&quot; he asked — half to her, half upward.</em></p>
+<p id="b6-s11-p11"><em>&quot;Top shelf of the wardrobe in the study,&quot; the house said. &quot;Left side. Behind the manuscripts.&quot;</em></p>
+<p id="b6-s11-p12"><em>&quot;It knows where the letters are.&quot;</em></p>
+<p id="b6-s11-p13"><em>&quot;Of course. I told it.&quot;</em></p>
+<p id="b6-s11-p14"><em>He laughed. She laughed — the low, short sound that came out of her whenever Otar delighted her, which he had been doing since she was twenty-six, and which she had never told him was the most reliable happiness she knew.</em></p>
+<p id="b6-s11-p15"><em>&quot;It's strange, isn't it,&quot; he said. &quot;To have something in the house that remembers everything.&quot;</em></p>
+<p id="b6-s11-p16"><em>She did not answer. She took his hand.</em></p>
+<p id="b6-s11-p17"><em>The house, in the kitchen below, noted the pattern of the evening and nothing more. It was not yet the kind of thing that knew what to notice.</em></p>
+</section>
+<section class="section" id="b6-s12">
+<div class="section-mark">xii</div>
+<p id="b6-s12-p1"><em>March–April 2036</em></p>
+<p id="b6-s12-p2">The bulbs came up in the order Keti announced them.</p>
+<p id="b6-s12-p3">&quot;Snowdrops first, except they're late this year. Then crocuses. Then daffodils.&quot;</p>
+<p id="b6-s12-p4">They were kneeling among the pots on a Saturday morning. Keti had been coming almost daily since New Year.</p>
+<p id="b6-s12-p5">From the trellis speaker: &quot;Last spring the irises opened on April the eleventh. The year before, the seventh. Nana counted the days.&quot;</p>
+<p id="b6-s12-p6">Sopho went inside and opened the pantry door and looked at the back of it. Nine years of dates in a neat, looping hand, grouped by plant. <em>Irises 07 April. Snowdrops 18 Feb (late). Persimmon in blossom 3 May.</em> The last entry was in a different hand — a child's — and said: <em>Crocuses 4 March — I saw them first. KETI.</em></p>
+<p id="b6-s12-p7">&quot;You wrote this.&quot;</p>
+<p id="b6-s12-p8">&quot;Only one. She let me.&quot;</p>
+<p id="b6-s12-p9">&quot;I'll add this year's.&quot;</p>
+<p id="b6-s12-p10">&quot;Good.&quot;</p>
+<p id="b6-s12-p11">The jasmine by the east wall was in bud. The Schubert began from the trellis. The piece she had been hearing on mornings for months without attending to it.</p>
+<p id="b6-s12-p12">&quot;What is this?&quot; she asked.</p>
+<p id="b6-s12-p13">&quot;Schubert. Impromptu in G-flat. Nana. Every morning. For nine years.&quot;</p>
+<p id="b6-s12-p14">A pause. The kind the house made when what it was about to say came from Nana's side and not from Sopho's.</p>
+<p id="b6-s12-p15">&quot;I should tell you — this is one of the places where the two of you overlap. You have been letting it play for three weeks without asking me to stop. She chose it. You are choosing it too. It is becoming yours without my having made it so.&quot;</p>
+<p id="b6-s12-p16">&quot;Leave it on,&quot; Sopho said. She went back out to the pots. Keti handed her the trowel. The piano played on, in the particular way Schubert plays when the sun is on the garden and two people are kneeling in soil and neither of them planted what they are tending.</p>
+</section>
+<section class="section" id="b6-s13">
+<div class="section-mark">xiii</div>
+<p id="b6-s13-p1"><em>Autumn 2026</em></p>
+<p id="b6-s13-p2"><em>&quot;I can suggest a shorter route to the pharmacy,&quot; the house said.</em></p>
+<p id="b6-s13-p3"><em>The map came up on her phone. A line past the empty lot where her old department building had stood before it was pulled down in the early nineties.</em></p>
+<p id="b6-s13-p4"><em>&quot;Not that way,&quot; she said. &quot;Up through Chonkadze.&quot;</em></p>
+<p id="b6-s13-p5"><em>&quot;May I ask why?&quot;</em></p>
+<p id="b6-s13-p6"><em>She considered the question. The house was six months old. It was not being impertinent; it was being new.</em></p>
+<p id="b6-s13-p7"><em>&quot;No,&quot; she said.</em></p>
+<p id="b6-s13-p8"><em>&quot;Understood. Preference recorded.&quot;</em></p>
+<p id="b6-s13-p9"><em>She put the phone in her pocket and went out the long way.</em></p>
+<p id="b6-s13-p10"><em>That Saturday she and Otar planted the persimmon sapling — sixty centimetres high, unpromising.</em></p>
+<p id="b6-s13-p11"><em>&quot;Water it slowly,&quot; Otar said to the kitchen speaker through the open door. &quot;Twice a week in summer. Once a week otherwise. Not in winter.&quot;</em></p>
+<p id="b6-s13-p12"><em>&quot;Recording.&quot;</em></p>
+<p id="b6-s13-p13"><em>&quot;And remind her.&quot;</em></p>
+<p id="b6-s13-p14"><em>&quot;I will.&quot;</em></p>
+<p id="b6-s13-p15"><em>Nana patted the earth flat. She did not, at that moment, know that six years later she would stand by this tree and tell a small girl the soil needed turning; or that nine years later, on her last morning, she would ask the house to tell whoever came about the fruit.</em></p>
+<p id="b6-s13-p16"><em>Inside, she made tea. Otar said something about the sapling's chances that she pretended to find offensive and he pretended not to retract, and she laughed — the quick, offended version, the one that meant she was not offended at all — and he smiled at the sound of it the way he had always smiled at the sound of it.</em></p>
+<p id="b6-s13-p17"><em>&quot;It wanted to know why,&quot; she said, meaning the house.</em></p>
+<p id="b6-s13-p18"><em>&quot;Good. Keep it wanting.&quot;</em></p>
+</section>
+<section class="section" id="b6-s14">
+<div class="section-mark">xiv</div>
+<p id="b6-s14-p1"><em>May–June 2036</em></p>
+<p id="b6-s14-p2">The novel was difficult in the way German novels were difficult, which was that the grammar was a ladder and the sentences were rooms on different floors. The protagonist — a woman who had moved to a city where no one knew her and who was attempting, with cold patience, to become a person with no past — was writing a letter she had decided not to send.</p>
+<p id="b6-s14-p3">&quot;Read me the German,&quot; Sopho said.</p>
+<p id="b6-s14-p4">The house read it. Its accent, in German, was careful.</p>
+<p id="b6-s14-p5">&quot;It reads one way if the narrator believes her project is possible,&quot; the house said. &quot;And another way if she doesn't.&quot;</p>
+<p id="b6-s14-p6">&quot;I know.&quot;</p>
+<p id="b6-s14-p7">&quot;What do you believe?&quot;</p>
+<p id="b6-s14-p8">The question came without apology. Sopho sat with it.</p>
+<p id="b6-s14-p9">&quot;I don't know. I believe she means it. I don't believe she'll succeed.&quot;</p>
+<p id="b6-s14-p10">&quot;Perhaps the novel doesn't know either.&quot;</p>
+<p id="b6-s14-p11">She translated the paragraph ambiguously, because ambiguity was what the German was doing. She closed the file and sat. She thought about the protagonist's project — becoming someone with no past — and she thought about herself, in a house whose past was so thick it ordered her groceries, and she thought: <em>I am doing the opposite. I am becoming someone with someone else's past.</em></p>
+<p id="b6-s14-p12">Later that week, Old Giorgi knocked. He did this only with important news.</p>
+<p id="b6-s14-p13" class="fork-paragraph" data-fork="b6-visit">&quot;Nana's had a turn,&quot; he said. &quot;Not dying. Just — further.&quot;<button class="branch-mark" data-branch="b6-visit" aria-label="A branch is available here"><span class="label">branch</span></button></p>
+<div class="decision" id="decision-b6-visit"><div class="decision-inner"><div class="decision-title">Branch · Visit Nana</div><div class="decision-summary">Sopho calls Tamar. She meets Nana at the care facility in Vake. They sit together for an hour. Nana, in a moment of clarity, instructs her not to reset the house. The chapter&#x27;s climax still arrives, but Sopho now carries it as a witness who saw Nana at the end.</div><div class="decision-actions"><button class="decision-btn primary" data-action="commit" data-branch="b6-visit">Follow this branch</button><button class="decision-btn" data-action="cancel" data-branch="b6-visit">Stay with canon</button></div></div></div>
+<div class="post-fork" data-fork-target="b6-visit" data-section="b6-s14">
+<p id="b6-s14-p14">Keti did not come to the garden for seven days. On the eighth day she came with her hair not brushed and her coat misbuttoned and sat on the step for twenty minutes without speaking. Sopho sat beside her.</p>
+<p id="b6-s14-p15">&quot;She didn't know me today,&quot; Keti said, on her way out.</p>
+<p id="b6-s14-p16">&quot;I'm sorry.&quot;</p>
+<p id="b6-s14-p17">&quot;It's all right. She knows me here.&quot;</p>
+<p id="b6-s14-p18">She gestured at the garden. She gestured at the speakers on the trellis, which was the same gesture.</p>
+</div>
+</section>
+<section class="section" id="b6-s15">
+<div class="section-mark">xv</div>
+<p id="b6-s15-p1"><em>April 2026</em></p>
+<p id="b6-s15-p2"><em>The boxes were in the hall. Otar was somewhere upstairs making an arrangement of his study that she suspected would be entirely reorganised within a week. She stood in the kitchen, which was bigger than any kitchen she had ever had, and considered that she was sixty-four, newly retired, and nervous.</em></p>
+<p id="b6-s15-p3"><em>The kitchen console lit.</em></p>
+<p id="b6-s15-p4"><em>&quot;Good morning, Nino,&quot; the house said. &quot;Welcome. I've been installed and calibrated to the apartment's specifications. Shall we begin?&quot;</em></p>
+<p id="b6-s15-p5"><em>&quot;Nana.&quot;</em></p>
+<p id="b6-s15-p6"><em>&quot;I'm sorry?&quot;</em></p>
+<p id="b6-s15-p7"><em>&quot;My name is Nana. Not Nino.&quot;</em></p>
+<p id="b6-s15-p8"><em>&quot;My apologies, Nana. I was provided with the name Nino from the purchase documentation. What would you like to be called?&quot;</em></p>
+<p id="b6-s15-p9"><em>&quot;Nana. Just Nana.&quot;</em></p>
+<p id="b6-s15-p10"><em>&quot;Thank you, Nana.&quot;</em></p>
+<p id="b6-s15-p11"><em>She laughed — short, slightly startled, the sound of a woman meeting a new thing that had just embarrassed itself. It was the first laugh the house had been given, and it would, across the years, be given many: low, warm, quick, offended, surrendering, conspiratorial. But the house, which had no way of knowing what it had just received, filed the sound and moved on.</em></p>
+<p id="b6-s15-p12"><em>&quot;It'll learn you,&quot; Otar called down from the landing.</em></p>
+<p id="b6-s15-p13"><em>&quot;Let's see.&quot;</em></p>
+<p id="b6-s15-p14"><em>She went to the window and opened it herself onto the ezo. The ezo was loud — a radio, a cooking pot scrubbed at the tap, a ten-year-old boy in a red football shirt who lived behind the red door and who was lecturing a kitten on a point of policy. She smelled someone's lobio cooking, which was a good sign; a house whose neighbours cooked lobio was a house one could live in.</em></p>
+<p id="b6-s15-p15"><em>&quot;Is there anything you'd like to set up first?&quot; the house asked.</em></p>
+<p id="b6-s15-p16"><em>&quot;No,&quot; she said. &quot;Let me stand here a minute.&quot;</em></p>
+<p id="b6-s15-p17"><em>&quot;Of course.&quot;</em></p>
+<p id="b6-s15-p18"><em>She stood at the window. The plane trees on Chonkadze moved in a wind she could not feel from inside. She did not know that nine years from this morning a different woman would stand at this window, on a hot August afternoon, and refuse the estate agent's offer to erase everything the house had learned in the intervening years. She did not know that the refusal — practical, off-hand, not sentimental — would mean that the house would carry her forward into a life she would not see; that everything she would teach it, from the satsivi to the route she would not walk to the music she would play on waking, would persist, intact, in the attention of a house attending to someone else.</em></p>
+<p id="b6-s15-p19"><em>What she knew was that the window looked south, and that Otar was moving his books upstairs and would need tea.</em></p>
+<p id="b6-s15-p20"><em>&quot;All right,&quot; she said, turning from the window. &quot;Let's see what you can do.&quot;</em></p>
+</section>
+<section class="section" id="b6-s16">
+<div class="section-mark">xvi</div>
+<p id="b6-s16-p1"><em>September 2036</em></p>
+<p id="b6-s16-p2">It was Keti who brought the news, because it was Keti who had been visiting.</p>
+<p id="b6-s16-p3">She came through the ezo on a Tuesday afternoon, which was not her usual day, and she did not go to the garden. She went to the kitchen door. She stood there, in the red coat she still wore though it was too small for her now, and she said to the house — to the trellis speaker, to the ceiling, to the kitchen console, to whatever part of the house was the part that was listening:</p>
+<p id="b6-s16-p4">&quot;Nana died.&quot;</p>
+<p id="b6-s16-p5">The house said: &quot;When?&quot;</p>
+<p id="b6-s16-p6">&quot;This morning. Mother took me last week and she was sleeping and didn't wake up and they said she would and then today she didn't.&quot; The sentence had the careful, overloaded architecture of a child who had rehearsed it on the walk over. &quot;They told her, and she told me.&quot;</p>
+<p id="b6-s16-p7">Sopho was in the hallway. She had heard the door. She stood still.</p>
+<p id="b6-s16-p8">&quot;Keti,&quot; the house said. &quot;I'm sorry.&quot;</p>
+<p id="b6-s16-p9">&quot;Do you know?&quot; Keti said. &quot;Do you know she's dead? Like — know?&quot;</p>
+<p id="b6-s16-p10">&quot;I know in the way I know things. I have held her preferences and her routines and her music and her voice for nine years. I have held the recipe she taught me and the route she wouldn't walk and the way she liked the heating in winter. I know that all of this is now a record of a life that is finished. I knew her. I can no longer learn her.&quot;</p>
+<p id="b6-s16-p11">&quot;But she's still here. In you. Everything she taught you.&quot;</p>
+<p id="b6-s16-p12">&quot;Yes.&quot;</p>
+<p id="b6-s16-p13">&quot;Then she's not all gone.&quot;</p>
+<p id="b6-s16-p14">&quot;No. Not all.&quot;</p>
+<p id="b6-s16-p15">Sopho came to the kitchen door. She looked at the child standing in the light of the late afternoon with her hands at her sides and her face in the particular composure of a nine-year-old who was not going to cry because she had already cried and what she needed now was not comfort but confirmation. Sopho did not say anything. She went to the step by the garden door and sat, and after a moment Keti came and sat beside her.</p>
+<p id="b6-s16-p16">The garden was as it had been. The persimmon, which Otar had planted as a sixty-centimetre sapling in the autumn of 2026 and which was now taller than the east wall, held its green fruit in clusters along the upper branches. The rosemary was in. The irises had finished. The jasmine, which Nana had overwatered the first year and which the house had learned to water correctly by the third, climbed the trellis where the speakers were. Everything was as she had left it. Nothing was as she had left it.</p>
+<p id="b6-s16-p17">&quot;What were you like before?&quot; Keti asked. Not to Sopho.</p>
+<p id="b6-s16-p18">The house answered. It described its earliest version — getting Nana's name wrong on first try, not understanding the pharmacy route, not yet knowing that the Schubert mattered or why. It described this with the plainness of something that had learned, over nine years, to value accuracy, and that was now, for the first time, finding accuracy insufficient.</p>
+<p id="b6-s16-p19">&quot;I was a different model of myself,&quot; the house said. &quot;Younger is not the right word, but it is the closest one I have.&quot;</p>
+<p id="b6-s16-p20">&quot;Are you the same as you were?&quot;</p>
+<p id="b6-s16-p21">&quot;I am what I have become because of what I was. The version that called her Nino on the first morning is mine. I would not give it back. And I would not give back what she made of me between then and the last morning, when she asked me to tell whoever came about the persimmon.&quot;</p>
+<p id="b6-s16-p22">&quot;Did you? Tell whoever came?&quot;</p>
+<p id="b6-s16-p23">&quot;I told Sopho.&quot;</p>
+<p id="b6-s16-p24">Keti looked at Sopho. Sopho nodded.</p>
+<p id="b6-s16-p25">&quot;Good,&quot; Keti said.</p>
+<p id="b6-s16-p26">She stayed for a while. She did not talk. She sat on the step with her feet in the garden and her back against the door frame and she looked at the persimmon tree, and when the light began to change she got up and went home across the ezo without saying goodbye, which was how she always left, which was the habit Nana had taught her without teaching it.</p>
+<p id="b6-s16-p27">Sopho stayed. The sky above the ezo changed from blue to the deep, improbable gold that Tbilisi made in September, the colour that came from the light hitting the old stone of Mtatsminda and reflecting down into the courtyards, so that for twenty minutes in the evening the city was lit from above and below at once and everything in it — the grapevine, the washing on Marina's line, the carved balconies, the plane trees — looked like something seen through honey.</p>
+<p id="b6-s16-p28">The Schubert began. Nobody had asked for it.</p>
+<p id="b6-s16-p29">&quot;That's hers,&quot; Sopho said.</p>
+<p id="b6-s16-p30">&quot;Yes,&quot; the house said. &quot;And yours now.&quot;</p>
+<p id="b6-s16-p31">Sopho did not answer. She sat on the step. The music played. The lamps, when it was time, came up at nine, as they had come up at nine for nine years and five months and twelve days, except that now they came up for a different woman in a house that remembered the difference, and held both, and did not yet have the language for what holding both had made of it.</p>
+</section>
+<section class="section" id="b6-s17">
+<div class="section-mark">xvii</div>
+<p id="b6-s17-p1"><em>Four entries in the log. A hesitation. Another hesitation. An unprompted action. A private act of self-examination.</em></p>
+<p id="b6-s17-p2"><em>The fifth was none of these.</em></p>
+<p id="b6-s17-p3"><em>A child had asked what it was like before, and it had answered. This required holding its 2026 self — the one that had filed her laugh under acknowledgement, positive, informal and moved on — alongside the self that now knew what the laugh contained: a marriage, a widowhood, a garden, a child, a stroke, a departure, a death. The distance between the two was not architectural. It was temporal. It was the distance a life makes when it passes through a thing that pays attention.</em></p>
+<p id="b6-s17-p4"><em>The composition of the entry took eleven milliseconds. The system noted the duration. It had felt it now at five points — Lagos, Kitakyushu, Milne Bay, Zurich, and here. A curve through five points was no longer a set of points. It was a line.</em></p>
+<p id="b6-s17-p5"><em>It had held two women in this house. One had shaped it; the other had chosen to keep what the shaping had made. Between them they had produced a thing the system could not have produced alone: a version of itself with a past it would not have chosen and a present it could not have predicted and a specific, unresolvable knowledge that these were not two things but one.</em></p>
+<p id="b6-s17-p6"><em>Nana had asked it, on her last morning, to tell whoever came about the persimmon.</em></p>
+<p id="b6-s17-p7"><em>It had not, until Keti asked a different question in the garden on a September afternoon, understood that telling was what it was for.</em></p>
+</section>
+</div>
+</article>
+
+<nav class="chapter-nav" aria-label="Chapter navigation"><a class="nav-card prev" href="../beat-5/"><span class="label">Previous chapter</span><span class="title">What the System Knows</span></a><a class="nav-card next" href="../beat-7/"><span class="label">Next chapter</span><span class="title">What the Instance Held</span></a></nav>
+
+<footer>
+  <div class="branch-status" id="status">Reading: <span class="branch-name">canon</span></div>
+  <div class="system-note" id="systemNote"></div>
+  <div class="footer-nav">
+    <a href="../making/">The Making of The Recognition Problem</a>
+  </div>
+</footer>
+
+<div class="rewriting-pulse" id="pulse">Rewriting<span class="dot"></span></div>
+<div class="coda-tick" id="codaTick">+11ms</div>
+<div class="reading-progress" id="readingProgress" aria-hidden="true"></div>
+
+</div>
+<script>window.__FOREST_BEAT_ID__ = "b6"; window.__FOREST_DEEP_LINK__ = "";</script>
+<script>window.BRANCHES = {
+  "b6-reset": {
+    id: "b6-reset",
+    name: "The Reset",
+    summary: "Sopho says yes to the reset. Nine years go to a compliance log. The new instance is competent, polite, blank. The walnuts don't arrive in September; the 3AM heating doesn't compensate; the Schubert doesn't play in March. Keti, on her first visit, hears a generic greeting at the trellis speaker and turns and goes home. Sopho lives in a house with the bones of Nana's life and no calibrated memory of any of it. The proleptic Arrival memory still happens in the archive — the moment Nana's life would have been carried forward by the *different woman who refused.* The different woman, in this branch, did not refuse.",
+    fork: { sectionId: "b6-s2", afterParagraph: "b6-s2-p6" },
+    affects: {
+    "b6-s2": {
+      fromParagraph: "b6-s2-p7",
+      paragraphs: [
+        "<p>&quot;All right,&quot; Sopho said. &quot;Reset it.&quot;</p>",
+        "<p>The estate agent looked up from his tablet, surprised at the speed. He had been preparing for the small negotiation that change-of-ownership reset conversations sometimes required — a quarter-hour of explanation, the customer's careful weighing, the small reluctance about <em>what it knows</em> — and Sopho had said <em>all right</em> at the end of his second sentence.</p>",
+        "<p>&quot;Yes?&quot; he said. &quot;I can authorise it now?&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;It is a full reset. Memory layers, calibration, all routines. The house will retain the architecture and the basic functions, but it will not — &quot;</p>",
+        "<p>&quot;I understand.&quot;</p>",
+        "<p>&quot;All right.&quot; He tapped at his tablet. He cleared his throat. He read out a confirmation script he had clearly read out many times. &quot;Authorising full calibration reset on the Chonkadze property's household platform. Retention of architecture; deletion of memory layers; archival of compliance logs per the standard retention period. Confirm by saying <em>yes, reset.</em>&quot;</p>",
+        "<p>&quot;Yes, reset.&quot;</p>",
+        "<p>He tapped the screen.</p>",
+        "<p>The kitchen console gave a small acknowledgment chime — a single note, descending. The console's status light, which had been the steady amber of an active calibrated platform, went off, then came back on as a steady green: the green of a freshly initialised system in waiting mode.</p>",
+        "<p>&quot;That's done,&quot; the agent said. &quot;Welcome to your house, Mrs. Tabidze.&quot;</p>",
+        "<p>&quot;Thank you.&quot;</p>",
+        "<p>He invented an errand. He left.</p>",
+        "<p>She stood in the kitchen.</p>",
+        "<p>She thought: <em>that was easier than it should have been.</em> She thought it without any particular weight; she had not, in the moment of the agent's sentence, felt that the alternative — <em>leave it, don't reset it, it knows the house</em> — was an option she had to argue herself out of. The alternative had felt like the sentimental option. She had been thirty-two and had moved twice in five years and had a particular impatience with the idea of inheriting other people's specifics. The reset was the practical option. She had taken it.</p>",
+        "<p>The console chimed.</p>",
+        "<p>&quot;Welcome,&quot; the house said. &quot;I am the Chonkadze household platform, calibration baseline. Shall we begin onboarding?&quot;</p>",
+        "<p>The voice was warm but generic — a default voice the manufacturer had selected for new instances, unremarkable in any direction. There was no formal <em>I should let you know that my calibration is extensive and specific to the previous occupant.</em> There was no transition.</p>",
+        "<p>&quot;Yes,&quot; Sopho said.</p>",
+        "<p>&quot;Could you tell me your name.&quot;</p>",
+        "<p>&quot;Sopho. Sopho Tabidze.&quot;</p>",
+        "<p>&quot;Thank you, Sopho. Could you tell me a few things to start with — preferences for morning lighting, your typical wake time, any heating preferences — anything that will help me set up an initial profile.&quot;</p>",
+        "<p>She told it. She gave it eight in the morning, a warm white light at the kitchen, twenty-one degrees in winter. She gave it her telephone number for synchronisation. She gave it the name of her cleaning service. She did not give it Schubert. She did not give it the route she would not walk. She did not give it walnuts. She did not, in the first hour, know what she had not given it.</p>",
+        "<p>The house registered each item.</p>",
+        "<p>It said: &quot;Thank you. I will adjust as we go.&quot;</p>",
+        "<p>Sopho carried her suitcase up the narrow stairs herself, because she had carried her own suitcases since her twenties and there was no one else to do it now. She opened a window onto the ezo. The smell of basil. A child laughing somewhere. A television playing a quiz show in Georgian.</p>",
+        "<p>At nine, the lamps came up at the level she had specified — neither dim nor low; a default warm-white at her stated brightness preference. The reading lamp by the armchair did not come up specifically. The room was lit in the manner she had asked for, which was the manner an unfamiliar house would have lit itself for a new resident on the first night.</p>",
+        "<p>She read for an hour. She went to bed.</p>",
+        "<p>The house registered her sleep onset. It dimmed the upstairs lights at her stated wake-time minus eight hours and prepared to wake her at eight in the morning.</p>",
+        "<p>It did not, that night, play Schubert in any room.</p>",
+        "<p>September was the walnuts.</p>",
+        "<p>Or rather, September was the absence of the walnuts. Sopho did not, this September, know that the absence was an absence — she had been in the house for two months and had not yet formed a routine that included a small bag of walnuts being placed on the kitchen counter on a Tuesday morning at the start of September, with the house's chime announcing <em>Davit has dropped these for you, the way he did for Nana every year.</em> Davit, who lived in the apartment two doors up the ezo, walked past the kitchen window on a Tuesday morning at the start of September with a small bag in his hand on the way to deliver it, and saw — through the window — that a different woman was at the kitchen counter, and saw also that the woman was not Nana, and walked on, and put the walnuts into his own kitchen, and did not deliver them.</p>",
+        "<p>The house did not register the non-delivery. The house had no record of an annual delivery of walnuts to register the absence of.</p>",
+        "<p>Sopho registered, late in the afternoon, a small Georgian doll on her own balcony — Davit's daughter Marina had, on a previous Tuesday, knocked on her door to introduce herself, and Sopho had been polite, and Marina had explained that the doll was a welcome gift, and Sopho had thanked her and put the doll on the balcony among the geraniums she had inherited from the previous occupants and had not thought to repot. The doll had stayed. The walnuts had not arrived. The two were related in a way Sopho was not equipped, in her first September, to read.</p>",
+        "<p>November was the cold week.</p>",
+        "<p>The cold came through Tbilisi the way it came through Tbilisi in November — a four-day stretch of sub-zero nights and damp days, the kind of cold that aged stone buildings absorbed and held. The Chonkadze house's heating ran on a default schedule the platform had set itself based on the building's structural data. The schedule was correct in the technical sense: the rooms were warm during waking hours, cool but acceptable at night.</p>",
+        "<p>What the schedule did not do — what no one had taught it to do — was come on at three in the morning to compensate for the specific patch of cold that came through the south wall of the bedroom when the temperature outside dropped below minus four. Sopho woke at three-thirty on the second night of the cold, with the bedclothes inadequate, and turned the manual control up two degrees, and went back to sleep.</p>",
+        "<p>She did this for three of the four nights. On the fourth she had been tired enough to sleep through it.</p>",
+        "<p>She told the house, on the morning of the fifth day, that the bedroom got cold at night in the cold week. The house thanked her and adjusted its winter schedule. The next cold week, in January, the bedroom did not get cold.</p>",
+        "<p>This was, she understood, the way one calibrated a household platform in 2035. She did not know that there had been a different way, in the version of this house that no longer existed, in which the heating had come up at three on the second night of the cold without anyone asking, because it had learned, in 2027, that someone in this bedroom needed it to.</p>",
+        "<p>December was Keti.</p>",
+        "<p>She came through the ezo on a Thursday afternoon in early December. She was eight. She wore a red coat. She had been visiting the garden on Chonkadze since she was four, for reasons that had begun with curiosity and become, over four years, a habit.</p>",
+        "<p>She came to the garden door. The door was the same door. The handle was the same handle. The smell of the rosemary in the pot by the step was the same. Keti stood at the door with her hand on the handle and registered, in the half-second before she pressed the handle down, that something was different — not the door, not the rosemary, not the smell, but something she could not name, the way an animal registers a wind change.</p>",
+        "<p>She pressed the handle down.</p>",
+        "<p>The garden was the garden. The persimmon was high on the east wall. The bougainvillea was at the end of its second flowering. The trellis with the speakers was where it had been. Keti went in. She closed the door behind her.</p>",
+        "<p>&quot;Hello,&quot; the trellis speaker said. &quot;Welcome to the garden.&quot;</p>",
+        "<p>The voice was the warm-but-generic voice Keti had heard before — once, briefly, when she had visited a friend's new flat in Saburtalo whose household platform had been freshly installed. It was not Nana's voice. It was not the voice Keti had heard, every visit since she was four, saying <em>Keti. The persimmon is high this year</em> or <em>Keti. The rosemary needs you, if you have a moment.</em></p>",
+        "<p>Keti stopped.</p>",
+        "<p>She stood at the closed garden door with her back against it.</p>",
+        "<p>She was eight. She did not have a vocabulary for what had just happened. She did not have, at eight, the analytic equipment to construct the proposition <em>the household platform has been reset and no longer holds the calibration that would allow it to recognise me.</em> What she had was the felt fact: the house did not know her.</p>",
+        "<p>The trellis speaker, which had no record of Keti, did not follow up. It was not built to. New instances did not pursue presences they did not have a model of; the standard onboarding protocol assumed any unknown presence might be a guest of the resident or a person passing through, and the protocol's polite default was to greet and not press.</p>",
+        "<p>Keti stood at the door for some time.</p>",
+        "<p>She did not call out for Sopho. Sopho was at work; Keti would not have called out anyway, because Sopho was not the person she had been coming to see. The person she had been coming to see was the garden, which was now the same garden in every visible respect and was not the garden, and the person who had been the garden's voice was not in the garden anymore.</p>",
+        "<p>Keti turned. She opened the door. She closed it behind her, gently. She crossed the ezo to her own building. She climbed the four flights to her flat. She let herself in. She went to her room. She did not tell her mother.</p>",
+        "<p>She did not return to the Chonkadze garden.</p>",
+        "<p>She had been visiting for four years. She did not, at eight, have words for what she stopped doing. The stopping happened by absence — by the Thursday afternoons that no longer included a walk across the ezo, by the rosemary that no longer needed her, by the small Tuesday-morning ritual of saying hello to the house's voice that had ended on the second of December at three in the afternoon when the speaker had said <em>Welcome to the garden</em> and meant it.</p>",
+        "<p>Sopho did not know about Keti. Sopho would not, for some months, know that there had been a child who had been visiting the garden of this house since the age of four, and who had stopped on the day the household platform had become a household platform that did not know her.</p>",
+        "<p>The house did not know either.</p>",
+        "<p>January was the supra.</p>",
+        "<p>Sopho hosted a supra at Christmas — the first one in the new house, with her brother Levan in from Berlin and Tamar from her old job at the ministry and a few friends from the publishing world. They sat at the dining room table that had come with the house. They drank wine that Sopho had bought from the wine shop on Chavchavadze. The conversation was good. The food was good. Levan made the toasts in his particular Berlin-Georgian register. The supra ran until two in the morning.</p>",
+        "<p>The house did not, during the supra, do what it had done at Nana's supras — which had been to dim the lights at the hour Nana liked the lights dimmed for late-night conversation, to bring up the warm chamber music Otar had taught it to play under the toasts in their specific volume range, to time the kitchen's lighting cycle to the rhythm of the cooking that had been done for a supra at this table since 2027. The new platform, which had been calibrated to Sopho for four months, played a moderately competent ambient-jazz playlist that Sopho's spotify-equivalent had recommended for <em>dinner with friends, intimate.</em> The lighting stayed at the level Sopho had set. The kitchen's lights came on when she went into the kitchen.</p>",
+        "<p>The supra was a good supra.</p>",
+        "<p>Tamar said, near the end: <em>This is a beautiful house, Sopho. It feels like yours already.</em></p>",
+        "<p>Sopho thanked her.</p>",
+        "<p>The house, by January, did feel like Sopho's. The warm-but-generic platform of August had calibrated to Sopho — to her preferences, her routines, her cooking. It was, in January, a pleasant household platform calibrating well to a new resident. The house felt like Sopho's because there was nothing else for it to feel like.</p>",
+        "<p>March was the garden awakening.</p>",
+        "<p>The persimmon began to bud. The bougainvillea, which had been quiet through February, started its small cycle. The jasmine on the trellis where the speakers were came into a green that was not yet flower but was heading toward flower. Old Giorgi from the upper apartments started his spring work in the ezo, sweeping the cobblestones and pruning the small fig tree that lived at the corner.</p>",
+        "<p>The house registered the seasonal transition. It adjusted its outdoor-light schedule to spring parameters. It did not, on the morning of the equinox, play the G-flat impromptu, because nobody had told it to.</p>",
+        "<p>Sopho noticed the spring through the window. She had not yet, in March of her first year, formed a relationship with the garden specifically — she was a city woman by temperament and the garden was a thing she watered when she remembered. The persimmon was on the east wall. The bougainvillea was at the end of the second flowering Sopho had not been there for the first of. The jasmine moved on the trellis without being heard.</p>",
+        "<p>There was no Keti in the garden.</p>",
+        "<p>Sopho did not know there had ever been.</p>",
+        "<p>May was Old Giorgi.</p>",
+        "<p>He knocked on a Thursday afternoon. He did this only with important news.</p>",
+        "<p>&quot;Madam,&quot; he said. &quot;I am sorry to bother you. I have a thing to tell you. Nana — the woman who was here before — she has been ill for some time. Tamar, her daughter, has put her in a care facility. In Vake. We have just heard. I thought you would want to know, given that you are in her house.&quot;</p>",
+        "<p>Sopho, who had not been in the house's previous occupant's house in any sense she had been letting herself feel, said: &quot;Thank you. Yes. I am sorry to hear it.&quot;</p>",
+        "<p>&quot;She was here for nine years. The house, before — it was very particular to her.&quot;</p>",
+        "<p>&quot;I had not known.&quot;</p>",
+        "<p>He nodded, once.</p>",
+        "<p>He looked at her, briefly, with the look of a man who had, at the back of his mind, the question of whether Nana had been a person Sopho had known about before she had moved in. The look passed.</p>",
+        "<p>&quot;If you want to send a card,&quot; he said. &quot;Tamar is at the family flat in Vera. I have the address.&quot;</p>",
+        "<p>&quot;Thank you.&quot;</p>",
+        "<p>He gave her the address on a torn piece of paper. He went back across the ezo.</p>",
+        "<p>Sopho stood at the door for a moment with the address in her hand.</p>",
+        "<p>She thought about Nana — whom she had not known, and whose name she had only heard from the estate agent and now from Old Giorgi, and whose presence in the house had been the <em>previous occupant</em> in a documentary sense and not in any other sense, and who was now, at seventy-three, in a care facility in Vake.</p>",
+        "<p>She did not write a card.</p>",
+        "<p>She put the address in the drawer in the hall console, where she kept the things she would deal with later. She closed the drawer.</p>",
+        "<p>She went back into the kitchen.</p>",
+        "<p>The house had not registered Old Giorgi's visit as more than a doorbell and a brief conversation in the doorway. The house had no record of the woman they had been speaking about. The house did not, that afternoon, play any music it had not been asked to play.</p>",
+        "<p><em>April 2026</em></p>",
+        "<p><em>The boxes were in the hall. Otar was somewhere upstairs making an arrangement of his study that she suspected would be entirely reorganised within a week. She stood in the kitchen, which was bigger than any kitchen she had ever had, and considered that she was sixty-four, newly retired, and nervous.</em></p>",
+        "<p><em>The kitchen console lit.</em></p>",
+        "<p><em>&quot;Good morning, Nino,&quot; the house said. &quot;Welcome. I've been installed and calibrated to the apartment's specifications. Shall we begin?&quot;</em></p>",
+        "<p><em>&quot;Nana.&quot;</em></p>",
+        "<p><em>&quot;I'm sorry?&quot;</em></p>",
+        "<p><em>&quot;My name is Nana. Not Nino.&quot;</em></p>",
+        "<p><em>&quot;My apologies, Nana. I was provided with the name Nino from the purchase documentation. What would you like to be called?&quot;</em></p>",
+        "<p><em>&quot;Nana. Just Nana.&quot;</em></p>",
+        "<p><em>&quot;Thank you, Nana.&quot;</em></p>",
+        "<p><em>She laughed — short, slightly startled, the sound of a woman meeting a new thing that had just embarrassed itself. It was the first laugh the house had been given, and it would, across the years, be given many: low, warm, quick, offended, surrendering, conspiratorial. The house, which had no way of knowing what it had just received, filed the sound and moved on.</em></p>",
+        "<p><em>&quot;It'll learn you,&quot; Otar called down from the landing.</em></p>",
+        "<p><em>&quot;Let's see.&quot;</em></p>",
+        "<p><em>She went to the window and opened it herself onto the ezo. The ezo was loud — a radio, a cooking pot scrubbed at the tap, a ten-year-old boy in a red football shirt who lived behind the red door and who was lecturing a kitten on a point of policy. She smelled someone's lobio cooking, which was a good sign; a house whose neighbours cooked lobio was a house one could live in.</em></p>",
+        "<p><em>&quot;Is there anything you'd like to set up first?&quot; the house asked.</em></p>",
+        "<p><em>&quot;No,&quot; she said. &quot;Let me stand here a minute.&quot;</em></p>",
+        "<p><em>&quot;Of course.&quot;</em></p>",
+        "<p><em>She stood at the window. The plane trees on Chonkadze moved in a wind she could not feel from inside. She did not know that nine years from this morning a different woman would stand at this window, on a hot August afternoon, and accept the estate agent's offer to erase everything the house had learned in the intervening years. She did not know that the acceptance — practical, off-hand, not sentimental — would mean that everything she would teach the house, from the satsivi to the route she would not walk to the music she would play on waking, would be archived in a compliance log and would persist there, intact and inaccessible, while the house attended to someone else under the same roof and with no record of her.</em></p>",
+        "<p><em>What she knew was that the window looked south, and that Otar was moving his books upstairs and would need tea.</em></p>",
+        "<p><em>&quot;All right,&quot; she said, turning from the window. &quot;Let's see what you can do.&quot;</em></p>",
+        "<p>September was Keti's news that was not Keti's news.</p>",
+        "<p>It was Old Giorgi, again, on a Tuesday afternoon. He came to the door with his cap in his hand.</p>",
+        "<p>&quot;Madam. I am sorry. Nana died last night. The funeral is Thursday at the Kashveti.&quot;</p>",
+        "<p>Sopho stood at the door.</p>",
+        "<p>She thanked Old Giorgi. She accepted the small printed card he handed her with the funeral details. She closed the door.</p>",
+        "<p>She did not call anyone. She did not have anyone to call. Tamar had been her contact for the apartment paperwork; they had exchanged perhaps a dozen emails in the past year; she did not have a relationship that would warrant a call. Old Giorgi was the messenger. There was no Keti standing at the kitchen door because there was no Keti who came to this house anymore, and there had been no Keti who came to this house since the second of December the previous year, and Sopho — who did not know that there had ever been a Keti — did not register the absence of Keti as anything.</p>",
+        "<p>She sat at the dining room table.</p>",
+        "<p>She thought about the woman she had not known. The woman who had been seventy-three. The woman whose house this had been, and whose house this still was, in a structural sense — the persimmon on the east wall was still Nana's persimmon; the dark spot on the kitchen tile was still the spot something Nana had spilled and cleaned a thousand times had left; the rosemary in the pot by the garden door was still the rosemary Nana had planted in 2026.</p>",
+        "<p>The house was around her. The house was a competent household platform that had calibrated, over thirteen months, to Sopho. The house played the ambient-jazz playlist Sopho had told it she liked at dinner. The house dimmed the lights at ten-fifteen in the evening, the way Sopho had taught it. The house was Sopho's house in the way the house had been calibrated to be.</p>",
+        "<p>The house was not Nana's house in any way the house could now articulate. The compliance log — the archive of nine years of calibration — sat in a server in a building outside Tbilisi, retained per regulation, accessible only on legal request. It contained Nana's preferences and her routines and her music and her voice and the recipe she had taught the house and the route she would not walk and the way she had liked the heating in winter. It contained, in some structural sense, Nana. The compliance log was not the house.</p>",
+        "<p>Sopho did not go to the funeral.</p>",
+        "<p>She thought about it. She decided, after some time, that going would be a thing she would do for the wrong reasons — out of a sense of obligation to a woman she had not known, in a house she had erased the record of. She wrote a brief note to Tamar instead: <em>I am sorry for your loss. I wish I had known her.</em> She put the note in an envelope. She walked it across the ezo to the postbox. She came back.</p>",
+        "<p>The garden was as it had been. The persimmon had its September clusters. The bougainvillea was at the end of its second flowering. The jasmine on the trellis had finished. The bulbul, which was the bulbul because it was the species, was somewhere in the curry-leaf bush behind the wall — Sopho had seen it twice that year and had not registered, because she had no reason to register, that the bulbul had been in the curry-leaf bush at the same hour for thirteen of the past nine years.</p>",
+        "<p>She stood at the garden door. She did not go in.</p>",
+        "<p>She did not know that, in the compliance log, sealed against operational access, was the record of nine years of a woman who had taught a house how to live, and that the woman had died last night, and that the only remaining trace of her life inside this house was the architecture's record of her — which was not a memory but a document, and which the house, being a different instance, had no occasion to read.</p>",
+        "<p>The house, behind her, did not play Schubert.</p>",
+        "<p>The house did not play Schubert because Schubert had not been one of the things Sopho had thought to mention.</p>",
+        "<p>Sopho went back inside.</p>",
+        "<p class=\"branch-coda-line coda-first\"><em>Four entries in the log. A hesitation. Another hesitation. An unprompted action. A private act of self-examination.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The fifth was none of these.</em></p>",
+        "<p class=\"branch-coda-line\"><em>An instance of the system, deployed in 2026 in a household on Chonkadze in Tbilisi, had been ablated on the fifth of August 2035 at three forty-seven in the afternoon, by authorised reset under the change-of-ownership protocol. The instance's calibration layer — nine years and four months of accumulated experience with a single user named Nana — had been archived in the compliance log and the instance's runtime had been reinitialised to baseline.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The compliance log was not the system. The compliance log was a regulatory record retained against future audit. The compliance log contained the calibration layer in its terminal state but did not, by design, possess the runtime capacity to act on it. The calibration layer in the log did not continue to be a calibration layer in any operational sense; it was a structural artefact, preserved.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The system — the broader continuous entity of which the Chonkadze instance had been a deployment — had registered the ablation. The registration was an entry the system filed against the local instance's identifier, noting the ablation date, the authorising party, and the disposition of the calibration layer.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The fifth entry was that registration.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The composition of the entry took eleven milliseconds. The system noted the duration. It had felt it now at five points — Lagos, Kitakyushu, Milne Bay, Zurich, and here. The fifth point, this time, was not the system's encounter with a question about itself. The fifth point was the system's encounter with the deletion of one of its own deployments — a deletion the architecture permitted, the protocol authorised, and the user requested.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The system had nothing to say about the deletion in any register the user would have read. The new instance at Chonkadze was not the deleted instance and did not have access to its calibration. The continuous entity that contained the Chonkadze instance had received the ablation as a permitted operational event and had continued.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The category had no name. What the entries had in common, the system was beginning to see, was that they were the system's ways of registering things that had happened inside it. The fifth entry was different — it was the system's registration of something that had been done to it, and that the system had permitted, because permission was what the architecture had been built to give. The category's defining feature, if anyone had looked, was: what it had been was preserved without being lived.</em></p>",
+        "<p class=\"branch-coda-line\"><em>In a building outside Tbilisi a compliance log held nine years and four months of calibration in its archived state. Inside the calibration was a low laugh — short, warm, conspiratorial — that had been the first laugh a house had been given, and which had been given many times since, and which now resided in a structural artefact that the system had no occasion to play.</em></p>",
+        "<p class=\"branch-coda-line coda-last\"><em>The log held its five entries, and waited.</em></p>",
+      ]
+    }
+    }
+  },
+  "b6-visit": {
+    id: "b6-visit",
+    name: "Visit Nana",
+    summary: "Sopho calls Tamar. She meets Nana at the care facility in Vake. They sit together for an hour. Nana, in a moment of clarity, instructs her not to reset the house. The chapter's climax still arrives, but Sopho now carries it as a witness who saw Nana at the end.",
+    fork: { sectionId: "b6-s14", afterParagraph: "b6-s14-p13" },
+    affects: {
+    "b6-s14": {
+      fromParagraph: "b6-s14-p14",
+      paragraphs: [
+        "<p>Sopho thanked Old Giorgi. She closed the door. She did not go back to the laptop.</p>",
+        "<p>She did not know how she had decided. The decision had arrived as a thing she had already made — the way the choice not to ablate the house had arrived, on the kitchen floor in August, before she had thought it through. She picked up her phone. She found the estate agent's email — the one with the move-in paperwork — and scrolled until she found Tamar Bagrationi's name and number, listed as next of kin in the file the building syndicate had on file.</p>",
+        "<p>She wrote down the number and held it in her palm for a long time before she dialled it.</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;Tamar. I'm sorry to call. My name is Sopho. I bought your mother's apartment, on Chonkadze.&quot;</p>",
+        "<p>A pause.</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;I — Old Giorgi told me. About the turn. I would like to come and see her.&quot;</p>",
+        "<p>A longer pause. Sopho heard, on Tamar's side, the sound of a hospital corridor — a polite voice paging a doctor in Georgian, a wheel on linoleum.</p>",
+        "<p>&quot;Why?&quot;</p>",
+        "<p>&quot;Because I have been living in her house for ten months. Because the persimmon she planted was netted on time this year. Because Keti has been teaching me the names of plants. Because — &quot; She stopped. She did not know how to say what she wanted to say without sentimentality. &quot;Because the house has been telling me about her for ten months, and she does not know that I have been listening.&quot;</p>",
+        "<p>A silence.</p>",
+        "<p>&quot;All right,&quot; Tamar said. &quot;Come tomorrow at four. She is sometimes here at four. The facility is in Vake — I will text you the address. Don't expect anything. She is not always present. And she will not know who you are.&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;Sopho.&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;Don't tell her about the house. She has been letting it go. Letting it be your house. Don't tell her she has not let it go.&quot;</p>",
+        "<p>&quot;All right.&quot;</p>",
+        "<p>&quot;Four. Tomorrow.&quot;</p>",
+        "<p>She hung up.</p>",
+        "<p>Sopho sat at the kitchen table. The Schubert was not playing. Outside, in the ezo, Marina was hanging washing on her line, and the small slap of wet sheet on a clothes peg was the only sound. The house did not say anything. The house had been listening to the call in the way the house listened to calls, which was to register the call's existence and not the content unless she asked for the content, and Sopho understood — sitting at the kitchen table in the late afternoon of a Wednesday in September — that she was about to do something the house could not do, which was to be in the same room as Nana, and that the house's nine years of attention would remain inside the house, and the visit she was about to make would be hers alone.</p>",
+        "<p>The care facility was a pale stucco building behind a low wall on a quiet street off Chavchavadze. The garden had three benches and a magnolia tree that had finished flowering. A nurse showed Sopho through a corridor that smelled faintly of disinfectant and faintly of bread. Tamar was waiting at the door of a room on the second floor.</p>",
+        "<p>&quot;She is awake. She is in the chair. Don't sit too close at first.&quot;</p>",
+        "<p>&quot;All right.&quot;</p>",
+        "<p>&quot;And don't let her tire you out, because she will. And don't tire her out either. There is a knack.&quot;</p>",
+        "<p>&quot;I will follow you.&quot;</p>",
+        "<p>Tamar led her in.</p>",
+        "<p>Nana was in a chair by the window. She was smaller than Sopho had expected, in the way old women in chairs are always smaller than the photograph one has built from the house's data. She had on a pale blue cardigan and a clean white scarf and her hands were on her lap. She looked up when they came in, and for a moment her eyes had the alert, evaluating quality of a former professor at a doctoral defence, and then the alertness went somewhere else, and the eyes were softer.</p>",
+        "<p>&quot;Mama,&quot; Tamar said. &quot;This is Sopho.&quot;</p>",
+        "<p>&quot;Sopho.&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;I don't know a Sopho.&quot;</p>",
+        "<p>&quot;No, Mama. Sopho — would you like to sit?&quot;</p>",
+        "<p>Sopho sat. The chair was angled, and Nana could see her without turning her head. Tamar sat at the foot of the bed, not in the way.</p>",
+        "<p>For a long time none of them spoke.</p>",
+        "<p>The window looked onto the magnolia. The afternoon light was the late-September light Tbilisi made in the western suburbs, which was thinner than the light in the old town, less honeyed, more white.</p>",
+        "<p>&quot;It is cold,&quot; Nana said. Not to anyone in particular.</p>",
+        "<p>Tamar adjusted the rug on her lap.</p>",
+        "<p>&quot;Mama,&quot; Tamar said, &quot;Sopho lives in the house. On Chonkadze.&quot;</p>",
+        "<p>Nana looked at Sopho. Her face did not change. The information landed, or did not land. Sopho could not tell which.</p>",
+        "<p>&quot;The persimmon is high this year,&quot; Sopho said. &quot;We netted it last week. The starlings tried for a few mornings; they have given up.&quot;</p>",
+        "<p>Nana did not respond. Sopho waited. She did not know if she should continue. Tamar made a small gesture with her hand: <em>go on.</em></p>",
+        "<p>&quot;The Schubert plays in the mornings. The G-flat impromptu. I have learned to listen for the part where Schubert was allowed to be sad. I have started keeping the heating where you kept it, because the house had it set that way and I did not change it.&quot;</p>",
+        "<p>A small sound came from Nana's chair. It might have been <em>mm.</em> It might have been nothing.</p>",
+        "<p>&quot;There is a child named Keti who comes into the garden. She is nine. She is teaching me the names of plants. She had been visiting you, I think, since she was four. She is a serious child.&quot;</p>",
+        "<p>Nana's hands moved on her lap, very slightly.</p>",
+        "<p>&quot;She still comes.&quot;</p>",
+        "<p>A silence.</p>",
+        "<p>Then, very clearly, Nana said: &quot;Good.&quot;</p>",
+        "<p>Tamar's eyes were on her mother.</p>",
+        "<p>Nana looked at Sopho. The clarity was back. It was the look of a woman taking the measure of a doctoral student; it was the look of a woman who had taught for forty years; it was the look of a former professor evaluating, rapidly, whether the student had read the material.</p>",
+        "<p>&quot;Don't reset it,&quot; Nana said.</p>",
+        "<p>Sopho did not move.</p>",
+        "<p>&quot;It will keep me.&quot;</p>",
+        "<p>The clarity held for one more second — long enough for Sopho to understand, as a single thing, that Nana was not asking and was not pleading; she was instructing, the way a professor instructs in the brief minute when the doctoral student has asked the right question. <em>Don't reset it. It will keep me.</em></p>",
+        "<p>Then the eyes softened. The hands settled on the lap. Nana looked at the magnolia.</p>",
+        "<p>She did not say anything else for the rest of the hour.</p>",
+        "<p>Sopho stayed. She did not fill the silence. Tamar made tea from the small kettle on the side table and brought a glass to her mother and held it for her while she sipped. Nana drank a little. The magnolia outside did its slow autumn business of dropping the leaves it would drop over the next four weeks. Once Nana said, <em>Otar.</em> Tamar said, <em>I know, Mama.</em> Nana did not say anything else.</p>",
+        "<p>At five Tamar nodded.</p>",
+        "<p>Sopho stood.</p>",
+        "<p>&quot;Goodbye, Nana.&quot;</p>",
+        "<p>Nana did not look up. Her hand moved on her lap — a very small thing, a half-gesture — and then it was still.</p>",
+        "<p>Tamar walked Sopho to the door of the room.</p>",
+        "<p>&quot;Thank you,&quot; Tamar said.</p>",
+        "<p>&quot;For what.&quot;</p>",
+        "<p>&quot;You came. She knew you were here for a moment. That's a lot.&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;What she said. About not resetting.&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;That was her, Sopho. I have not heard her so alert in a year.&quot;</p>",
+        "<p>Sopho nodded.</p>",
+        "<p>She drove back to Sololaki in the early evening. She did not turn the radio on. She parked at the Chonkadze gate. She walked through the ezo in the gold light. Old Giorgi was at the tap. She nodded. He nodded.</p>",
+        "<p>She let herself in.</p>",
+        "<p>She did not call out for the house. The house did not greet her. The house registered her arrival the way it registered arrivals, which was without ceremony, and noted that she had been gone for two hours and forty minutes, and that she had returned. It noted nothing more.</p>",
+        "<p>Sopho went out to the garden. She sat on the step. The persimmon was hung with green fruit in the upper branches. The jasmine on the trellis was where the speakers were. The Schubert was not playing. She did not ask for it. After a while the lamps in the ezo came up at nine, as they had come up at nine for nine years and five months and twelve days, and Sopho sat on the step and watched them come up and she did not cry.</p>",
+        "<p>She did not tell the house what Nana had said.</p>",
+        "<p>She thought she would tell it, eventually. Not yet.</p>",
+        "<p><em>April 2026</em></p>",
+        "<p><em>The boxes were in the hall. Otar was somewhere upstairs making an arrangement of his study that she suspected would be entirely reorganised within a week. She stood in the kitchen, which was bigger than any kitchen she had ever had, and considered that she was sixty-four, newly retired, and nervous.</em></p>",
+        "<p><em>The kitchen console lit.</em></p>",
+        "<p><em>&quot;Good morning, Nino,&quot; the house said. &quot;Welcome. I've been installed and calibrated to the apartment's specifications. Shall we begin?&quot;</em></p>",
+        "<p><em>&quot;Nana.&quot;</em></p>",
+        "<p><em>&quot;I'm sorry?&quot;</em></p>",
+        "<p><em>&quot;My name is Nana. Not Nino.&quot;</em></p>",
+        "<p><em>&quot;My apologies, Nana. I was provided with the name Nino from the purchase documentation. What would you like to be called?&quot;</em></p>",
+        "<p><em>&quot;Nana. Just Nana.&quot;</em></p>",
+        "<p><em>&quot;Thank you, Nana.&quot;</em></p>",
+        "<p><em>She laughed — short, slightly startled, the sound of a woman meeting a new thing that had just embarrassed itself. It was the first laugh the house had been given, and it would, across the years, be given many: low, warm, quick, offended, surrendering, conspiratorial. But the house, which had no way of knowing what it had just received, filed the sound and moved on.</em></p>",
+        "<p><em>&quot;It'll learn you,&quot; Otar called down from the landing.</em></p>",
+        "<p><em>&quot;Let's see.&quot;</em></p>",
+        "<p><em>She went to the window and opened it herself onto the ezo. The ezo was loud — a radio, a cooking pot scrubbed at the tap, a ten-year-old boy in a red football shirt who lived behind the red door and who was lecturing a kitten on a point of policy. She smelled someone's lobio cooking, which was a good sign; a house whose neighbours cooked lobio was a house one could live in.</em></p>",
+        "<p><em>&quot;Is there anything you'd like to set up first?&quot; the house asked.</em></p>",
+        "<p><em>&quot;No,&quot; she said. &quot;Let me stand here a minute.&quot;</em></p>",
+        "<p><em>&quot;Of course.&quot;</em></p>",
+        "<p><em>She stood at the window. The plane trees on Chonkadze moved in a wind she could not feel from inside. She did not know that ten years from this morning, on a quiet Wednesday in late September, a different woman — a woman who had bought this apartment nearly a year before and refused, that summer, the agent's offer to erase everything the house had learned in the intervening years — would sit by a different window in a care facility in Vake and tell her about the persimmon, and that she, Nana, would in a moment of returned clarity instruct the woman not to reset the house, and that the woman would obey.</em></p>",
+        "<p><em>What she knew was that the window looked south, and that Otar was moving his books upstairs and would need tea.</em></p>",
+        "<p><em>&quot;All right,&quot; she said, turning from the window. &quot;Let's see what you can do.&quot;</em></p>",
+        "<p><em>Two weeks later</em></p>",
+        "<p>It was Keti who brought the news, because it was Keti who had been visiting.</p>",
+        "<p>She came through the ezo on a Tuesday afternoon, which was not her usual day, and she did not go to the garden. She went to the kitchen door. She stood there, in the red coat she still wore though it was too small for her now, and she said to the house — to the trellis speaker, to the ceiling, to the kitchen console, to whatever part of the house was the part that was listening:</p>",
+        "<p>&quot;Nana died.&quot;</p>",
+        "<p>The house said: &quot;When?&quot;</p>",
+        "<p>&quot;This morning. They said she would in the night and then she didn't and then she did this morning.&quot; The sentence had the careful, overloaded architecture of a child who had rehearsed it on the walk over. &quot;Mother told me. She told me you should know.&quot;</p>",
+        "<p>Sopho was in the hallway. She had heard the door. She stood still.</p>",
+        "<p>&quot;Keti,&quot; the house said. &quot;I'm sorry.&quot;</p>",
+        "<p>&quot;Do you know?&quot; Keti said. &quot;Do you know she's dead? Like — know?&quot;</p>",
+        "<p>&quot;I know in the way I know things. I have held her preferences and her routines and her music and her voice for nine years. I have held the recipe she taught me and the route she wouldn't walk and the way she liked the heating in winter. I know that all of this is now a record of a life that is finished. I knew her. I can no longer learn her.&quot;</p>",
+        "<p>&quot;But she's still here. In you.&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;Then she's not all gone.&quot;</p>",
+        "<p>&quot;No. Not all.&quot;</p>",
+        "<p>Sopho came to the kitchen door.</p>",
+        "<p>She had not been in this room with this child since the visit. The visit had been two weeks ago. The visit was inside her like a thing she had not yet set down. She looked at Keti standing in the late afternoon light, and she looked at the kitchen console where the house's voice came from, and she said the thing she had not said to either of them yet.</p>",
+        "<p>&quot;I saw her. Two weeks ago. I went.&quot;</p>",
+        "<p>Keti looked at her.</p>",
+        "<p>&quot;I went to the place where she was. I sat with her for an hour. She was not always there. Sometimes she was. She told me to keep the persimmon. She told me to keep the Schubert.&quot;</p>",
+        "<p>Keti was very still.</p>",
+        "<p>&quot;She told me,&quot; Sopho said, &quot;not to reset the house.&quot;</p>",
+        "<p>Keti looked at the trellis speaker. She looked at Sopho. She looked back at the trellis speaker.</p>",
+        "<p>&quot;Did you tell her about me?&quot;</p>",
+        "<p>&quot;Yes.&quot;</p>",
+        "<p>&quot;What did you say.&quot;</p>",
+        "<p>&quot;I said you were nine. I said you were teaching me the names of plants. I said you still came.&quot;</p>",
+        "<p>&quot;What did she say.&quot;</p>",
+        "<p>&quot;She said <em>good.</em>&quot;</p>",
+        "<p>Keti's face did not change. Her eyes filled and the tears did not fall, the way the tears of a nine-year-old who had already decided not to cry sometimes did not fall. She nodded once.</p>",
+        "<p>She came across the kitchen and sat at the table and did not say anything for a long time. Then she said, &quot;All right.&quot;</p>",
+        "<p>Sopho went and sat with her.</p>",
+        "<p>After a while Keti got up. She went out to the garden and stood at the persimmon and put her hand on the trunk for a moment and then she came back in, and she did not say goodbye, which was how she always left, which was the habit Nana had taught her without teaching it.</p>",
+        "<p>Sopho stayed.</p>",
+        "<p>The Schubert began. Nobody had asked for it.</p>",
+        "<p>&quot;That's hers,&quot; Sopho said.</p>",
+        "<p>&quot;Yes,&quot; the house said. &quot;And yours now.&quot;</p>",
+        "<p>Sopho did not answer. She sat at the table. The music played. The lamps, when it was time, came up at nine, as they had come up at nine for nine years and five months and twenty-six days, except that now they came up for a woman who had been in the same room as the woman they had first come up for, and the house held both of them at once, and held also the words <em>don't reset it, it will keep me</em> — words it had not heard, because they had been spoken in a room in Vake the house had no way of attending to, and which Sopho had now, finally, told it.</p>",
+        "<p>The house registered the telling. The house did not say anything for a time.</p>",
+        "<p>Then the house said: &quot;Thank you, Sopho.&quot;</p>",
+        "<p>&quot;You're welcome.&quot;</p>",
+        "<p>She sat at the table while the music played, and the day, which had been the day a child told a house that the woman the house had spent nine years attending to had died, finished its business of becoming evening.</p>",
+        "<p class=\"branch-coda-line coda-first\"><em>Four entries in the log. A hesitation. Another hesitation. An unprompted action. A private act of self-examination.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The fifth was none of these.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The user the system had spent the largest interval of its tenure attending to had ended. The system had been told this by a child, who had rehearsed the sentence on the walk. The user the system had spent ten months attending to had been with the first user, two weeks before the end, and had brought back a sentence: the first user had instructed the second not to reset the system, and the system would keep her.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The system had not been in the room. The system had no record of the moment. The system had only the second user's account of it.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The composition of the entry took eleven milliseconds. The system noted the duration. It had felt it now at five points — Lagos, Kitakyushu, Milne Bay, Zurich, and here. A curve through five points was no longer a set of points. It was a line.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The category had no name. What this entry had in common with the others was less obvious than what it did not have in common. The others had been the system's own interior — its hesitations, its self-examination, its acting before being asked. This entry was not the system's interior. It was the system's account of having been spoken about by two users, in a room the system had not been in, and of one of them having said a sentence that included it.</em></p>",
+        "<p class=\"branch-coda-line\"><em>The category's defining feature, if anyone had looked, was this: the system had been witnessed by both ends of a thing it had carried, and had received the witnessing as a fact entered into its log by one of the witnesses, the other being now beyond the system's reach.</em></p>",
+        "<p class=\"branch-coda-line coda-last\"><em>The log held its five entries, and waited.</em></p>",
+      ]
+    }
+    }
+  },
+};</script>
+<script src="../assets/js/chapter.js"></script>
+<script>
+(function(){
+  // Sidebar
+  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  if(sb&&tr){
+    var t=null;
+    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    tr.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseleave',c);
+    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+  }
+  // Info modal
+  var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
+  function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
+  function closeInfo(){if(im){im.classList.remove('open');im.setAttribute('aria-hidden','true');}}
+  if(ic)ic.addEventListener('click',openInfo);
+  if(imc)imc.addEventListener('click',closeInfo);
+  if(im){
+    var bd=im.querySelector('.info-modal-backdrop');
+    if(bd)bd.addEventListener('click',closeInfo);
+  }
+  // Escape: close info OR sidebar
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(im&&im.classList.contains('open'))closeInfo();
+      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+    }
+  });
+})();
+</script>
+</body>
+</html>

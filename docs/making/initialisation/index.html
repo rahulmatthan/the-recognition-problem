@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Initialisation · Making</title>
+<meta name="description" content="The opening prompt and the constraints that shaped the project.">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='2' height='12' x='7' y='2' fill='%238b3a2e'/></svg>">
+<link rel="preload" href="../../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/newsreader-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/making.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+</head>
+<body>
+<div class="sidebar-trigger" aria-hidden="true"></div><aside class="sidebar" aria-label="Table of contents"><div class="sidebar-heading"><a href="../../">The Recognition Problem</a></div><ol class="sidebar-list"><li><a href="../../beat-1/"><span class="n">1</span><span class="t">What It Remembers</span></a></li>
+<li><a href="../../beat-2/"><span class="n">2</span><span class="t">Fidelity</span></a></li>
+<li><a href="../../beat-3/"><span class="n">3</span><span class="t">What the Model Sees</span></a></li>
+<li><a href="../../beat-4/"><span class="n">4</span><span class="t">What the Network Carries</span></a></li>
+<li><a href="../../beat-5/"><span class="n">5</span><span class="t">What the System Knows</span></a></li>
+<li><a href="../../beat-6/"><span class="n">6</span><span class="t">The One That Remembers</span></a></li>
+<li><a href="../../beat-7/"><span class="n">7</span><span class="t">What the Instance Held</span></a></li>
+<li><a href="../../beat-8/"><span class="n">8</span><span class="t">What the Building Did</span></a></li>
+<li><a href="../../beat-9/"><span class="n">9</span><span class="t">What the Pattern Closed</span></a></li>
+<li><a href="../../beat-10/"><span class="n">10</span><span class="t">What He Made</span></a></li>
+<li class="meta-link"><a href="../../making/" class="current"><span class="t">The Making of<br>The Recognition Problem</span></a></li></ol></aside>
+<button class="info-icon" id="infoIcon" aria-label="About reading this">i</button>
+<div class="info-modal" id="infoModal" aria-hidden="true">
+  <div class="info-modal-backdrop"></div>
+  <div class="info-modal-card" role="dialog" aria-label="About reading this">
+    <button class="info-modal-close" id="infoModalClose" aria-label="Close">×</button>
+    <p>
+      Read each chapter from start to finish. That is the canon. Where a branch is
+      available, a thin vertical mark <span class="key-mark"></span> will appear in
+      the margin. Choosing a branch rewrites the story in real time to provide a
+      different sequence of events. Explore the branch and you can always return
+      to canon by clicking <em>Return to canon</em> at the top of the page.
+    </p>
+    <p>
+      Use the slim tab on the left edge to open the table of contents at any time.
+    </p>
+  </div>
+</div>
+<div class="container">
+<header class="masthead">
+  <div class="imprint"><a href="../../">The Recognition Problem</a></div>
+  <h1>Initialisation</h1>
+</header>
+
+<div class="making-band">
+  <a href="../../making/">Making</a>
+   <span class="sep">·</span> <span class="here">Initialisation</span>
+</div>
+
+
+
+<article class="making">
+<p>In keeping with my self-imposed constraints, I started the project with a simple query:</p>
+<blockquote>
+<p><em>If I were to build a hypothetical path from today to a world in which AI gains sentience and is an autonomous entity of itself, could you help me identify a series of crucial incidents or events that need to happen along the way. I am trying to flesh out a science fiction story about how AI achieved sentience and I thought a series of separate incidents like this might be a good way to go about it.</em></p>
+</blockquote>
+<p>Claude responded with a set of ten scene sketches, each self-contained stories that gestured at a different facet of the question. It was a good list, but I pushed back suggesting instead that we create a set of stories that are grounded in reality so that each story feels completely plausible to the reader in the light of current information that we have and the existing technological capabilities of the modern world. This became the central constraint and core instruction of the project. Each story would have to <em>earn</em> its place by being a plausible extrapolation from what is currently possible and should follow from the one before it, the accumulation of them all finally producing the final outcome.</p>
+<p>The other constraint that I thought would be useful was to make sure that each beat represented an evolution in the capabilities of AI that humans welcomed. This allowed us to refuse the easy story—there would be no Skynet, no rebellion, no moment where the public recoils. Every step of the way, the world would be getting better so that by the time the question was whether the thing we are speaking about is conscious, the world has become unimaginable without it.</p>
+<p>Based on these instructions, Claude rebuilt from the ground up, starting from where we actually are today and making each step something that follows from real research trajectories and something people actively welcome. It came up with 10 beats, world states that are each slightly advanced from the previous in terms of technological capabilities, but not exponentially so in a way that would make it seem far-fetched. While the world in Beat 10 might be unimaginable today, if the reader gets there one story at a time, it would feel completely plausible.</p>
+<p>Based on this Claude came up with the first version of the story bible—the central scaffold that, story after story, would iterate across 23 versions before the final word was written.</p>
+
+</article>
+
+<nav class="chapter-nav" aria-label="Making navigation"><a class="nav-card prev" href="../../making/architecture/"><span class="label">Previous</span><span class="title">Architecture</span></a><a class="nav-card next" href="../../making/how-each-story-was-made/"><span class="label">Next</span><span class="title">How Each Story Was Made</span></a></nav>
+
+<footer>
+  <div class="footer-nav">
+    <a href="../../">Contents</a>
+    <a href="../../making/">Making</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // Sidebar
+  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  if(sb&&tr){
+    var t=null;
+    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    tr.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseleave',c);
+    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+  }
+  // Info modal
+  var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
+  function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
+  function closeInfo(){if(im){im.classList.remove('open');im.setAttribute('aria-hidden','true');}}
+  if(ic)ic.addEventListener('click',openInfo);
+  if(imc)imc.addEventListener('click',closeInfo);
+  if(im){
+    var bd=im.querySelector('.info-modal-backdrop');
+    if(bd)bd.addEventListener('click',closeInfo);
+  }
+  // Escape: close info OR sidebar
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(im&&im.classList.contains('open'))closeInfo();
+      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+    }
+  });
+})();
+</script>
+</body>
+</html>
