@@ -6,7 +6,9 @@
 
 **Phase 2 — Parallel execution.** Phase 1 approved 2026-05-03. **Phase 2.1 + 2.2 + 2.3 + 2.4 complete (2026-05-08)** — all 23 narrative branches locked.
 
-**Website rebuild (2026-05-09 — 2026-05-10).** Per `process/architecture-v2.md`. Single-file HTML harness rewritten as a multi-page static site at `dist/`: 10 canon chapter pages + 23 branch deep-links + intro slideshow + 6 Making essays. Self-hosted Newsreader / IBM Plex Sans / IBM Plex Mono. Persistent slide-in sidebar TOC. Bookmark-on-scroll persisted to localStorage. Multi-section runtime issue resolved by per-beat page architecture. Pending: GitHub Pages deploy with custom domain.
+**Website rebuild (2026-05-09 — 2026-05-10).** Per `process/architecture-v2.md`. Single-file HTML harness rewritten as a multi-page static site at `dist/`: 10 canon chapter pages + 23 branch deep-links + intro slideshow + 6 Making essays. Self-hosted Newsreader / IBM Plex Sans / IBM Plex Mono. Persistent slide-in sidebar TOC. Bookmark-on-scroll persisted to localStorage. Multi-section runtime issue resolved by per-beat page architecture.
+
+**Live (2026-05-10):** `https://the-recognition-problem.com` — served by GitHub Pages from `main:/docs` with custom domain CNAME. All paths verified (apex, chapters, branch deep-links, Making, fonts). Update workflow: edit source → `python3 build/build.py --deploy` → commit → push.
 
 ## Phase 1 progress
 
