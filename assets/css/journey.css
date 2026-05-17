@@ -1,0 +1,1032 @@
+/* ============================================================
+ * journey.css — /making/journey/ scrollytelling page
+ * Inherits tokens from base.css. No new vocabulary; only new
+ * arrangements of existing typography, paper, branch-red and
+ * faint rules.
+ * ============================================================ */
+
+/* --- Container override: wider than the text essays --------- */
+
+.journey-container {
+  max-width: 70rem;
+  padding: 3rem 1.5rem 8rem;
+}
+
+.journey-container .masthead {
+  margin-bottom: 0;
+  padding-bottom: 1.2rem;
+  border-bottom: none;
+}
+
+/* --- Section primitive -------------------------------------- */
+
+.j-section {
+  max-width: 56rem;
+  margin: 0 auto;
+  padding: 7rem 0;
+  position: relative;
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 900ms ease, transform 900ms ease;
+}
+
+.j-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .j-section { opacity: 1; transform: none; transition: none; }
+}
+
+.j-section:first-of-type { padding-top: 3rem; }
+
+@media (max-width: 720px) {
+  .j-section { padding: 4.5rem 0; }
+}
+
+/* Section eyebrows (mono caps small labels) */
+.j-eyebrow {
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--branch);
+  text-align: center;
+  margin-bottom: 2.2rem;
+}
+
+/* --- Section 1: Hero ---------------------------------------- */
+
+.j-hero {
+  text-align: center;
+  min-height: 70vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4rem 0 5rem;
+}
+
+.j-hero-title {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(2.2rem, 5.5vw, 3.8rem);
+  letter-spacing: -0.01em;
+  line-height: 1.1;
+  color: var(--ink);
+  margin-bottom: 1.6rem;
+  max-width: 24ch;
+}
+.j-hero-title em { font-style: italic; }
+
+.j-hero-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1rem, 1.6vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+.j-scroll-hint {
+  margin-top: 4rem;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.24em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+/* --- Conversation component (reusable) ----------------------
+   Renders to look like a screenshot of a Claude.ai conversation:
+   user message in a rounded bubble (right-aligned, warm cream
+   background, sans-serif); Claude reply as plain prose, full
+   width, no bubble, prefixed by a small starburst icon and
+   the word "Claude". */
+
+.claude-conversation {
+  font-family: 'IBM Plex Sans', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  max-width: 44rem;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+  /* Subtle inner frame, like a chat panel pasted into the page */
+  padding: 1.4rem 1rem;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  box-shadow: 0 1px 0 rgba(26, 22, 18, 0.03);
+}
+
+.claude-conversation .turn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  box-shadow: none;
+  position: relative;
+}
+
+/* --- USER (Rahul) — bubble, right-aligned ----------------- */
+
+.claude-conversation .turn.from-rahul {
+  align-self: flex-end;
+  max-width: 86%;
+  background: #ece5d3;       /* warm cream, slightly darker than paper */
+  border-radius: 1.1rem 1.1rem 0.3rem 1.1rem;  /* tail on bottom-right */
+  padding: 0.9rem 1.2rem 1rem;
+}
+
+.claude-conversation .turn.from-rahul .who {
+  display: none;
+}
+
+.claude-conversation .turn.from-rahul p {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.55;
+  color: #1a1612;
+  font-style: normal;
+  margin: 0 0 0.65rem;
+  letter-spacing: -0.005em;
+  text-wrap: pretty;
+}
+.claude-conversation .turn.from-rahul p:last-child { margin-bottom: 0; }
+.claude-conversation .turn.from-rahul em { font-style: italic; }
+
+/* --- CLAUDE — plain prose, left-aligned, no bubble -------- */
+
+.claude-conversation .turn.from-claude {
+  align-self: stretch;
+  padding-left: 0;
+}
+
+.claude-conversation .turn.from-claude .who {
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0;
+  text-transform: none;
+  color: var(--ink);
+  margin-bottom: 0.7rem;
+}
+
+/* Claude starburst marker — orange asterisk, Anthropic-ish */
+.claude-conversation .turn.from-claude .who::before {
+  content: "";
+  display: inline-block;
+  width: 1.05rem;
+  height: 1.05rem;
+  flex-shrink: 0;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'><g fill='%23d97757'><path d='M12 1.5 L13 9 L20.5 7 L15 12 L20.5 17 L13 15 L12 22.5 L11 15 L3.5 17 L9 12 L3.5 7 L11 9 Z'/></g></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+/* When the .who text holds extra context (e.g. "Claude · Beat 1"),
+   keep it readable. */
+.claude-conversation .turn.from-claude .who-context {
+  color: var(--ink-faint);
+  font-weight: 400;
+  font-size: 0.78rem;
+  margin-left: 0.15rem;
+}
+
+.claude-conversation .turn.from-claude p {
+  font-family: 'IBM Plex Sans', system-ui, sans-serif;
+  font-size: 0.95rem;
+  font-weight: 400;
+  line-height: 1.62;
+  color: #1a1612;
+  margin: 0 0 0.85rem;
+  letter-spacing: -0.003em;
+  text-wrap: pretty;
+}
+.claude-conversation .turn.from-claude p:last-child { margin-bottom: 0; }
+.claude-conversation .turn.from-claude em { font-style: italic; }
+
+/* Right-aligned signature line inside Claude turns (e.g. "— Claude") */
+.claude-conversation .turn.from-claude .sig {
+  text-align: right;
+  font-style: italic;
+  color: var(--ink-soft);
+  margin-top: 0.2rem;
+}
+
+/* "Chip" — used when we summarise rather than quote a long response */
+.j-chip {
+  font-style: italic !important;
+  color: var(--ink-soft) !important;
+  font-size: 0.9rem !important;
+}
+
+@media (max-width: 720px) {
+  .claude-conversation { padding: 1rem 0.7rem; }
+  .claude-conversation .turn.from-rahul { max-width: 92%; }
+}
+
+/* --- Section 3: Two constraints ----------------------------- */
+
+.j-constraints {
+  margin-top: 4rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  max-width: 48rem;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.j-constraint {
+  text-align: center;
+  padding: 1.4rem 0.4rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.j-constraint .j-eyebrow {
+  margin-bottom: 1rem;
+}
+
+.j-constraint-text {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  letter-spacing: -0.005em;
+  color: var(--ink);
+  margin-bottom: 0.8rem;
+}
+
+.j-constraint-sub {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-soft);
+  line-height: 1.55;
+}
+
+@media (max-width: 720px) {
+  .j-constraints { grid-template-columns: 1fr; gap: 1.6rem; }
+}
+
+/* --- Thesis hinges (between scaffolding sections) ----------- */
+
+.j-hinge, .j-thesis-close {
+  text-align: center;
+  padding: 7rem 0;
+}
+
+.j-thesis {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.2rem, 2.2vw, 1.6rem);
+  line-height: 1.75;
+  color: var(--ink);
+  max-width: 40rem;
+  margin: 0 auto;
+}
+
+.j-thesis em { font-style: italic; color: var(--branch); }
+
+.j-thesis .br-spacer { display: block; margin: 0.6rem 0; }
+
+/* --- Section 4: Timeline ------------------------------------ */
+
+.j-timeline-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 44rem;
+  position: relative;
+}
+
+/* The vertical spine */
+.j-timeline-list::before {
+  content: "";
+  position: absolute;
+  left: 7rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1px;
+  background: var(--branch-faint);
+}
+
+.j-beat {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  column-gap: 2.2rem;
+  margin-bottom: 2.6rem;
+  position: relative;
+  align-items: baseline;
+}
+
+.j-beat::before {
+  content: "";
+  position: absolute;
+  left: calc(7rem - 4px);
+  top: 0.7rem;
+  width: 9px;
+  height: 9px;
+  background: var(--paper);
+  border: 1.5px solid var(--branch);
+  border-radius: 50%;
+  z-index: 2;
+}
+
+.j-year {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-faint);
+  text-align: right;
+  padding-top: 0.3rem;
+}
+
+.j-beat-body {
+  padding-left: 0.5rem;
+}
+
+.j-beat-title {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: 1.18rem;
+  color: var(--ink);
+  margin: 0 0 0.3rem;
+  line-height: 1.35;
+}
+
+.j-beat-marker {
+  font-family: var(--serif);
+  font-size: 0.92rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .j-timeline-list::before { left: 4.5rem; }
+  .j-beat { grid-template-columns: 4rem 1fr; column-gap: 1.2rem; }
+  .j-beat::before { left: calc(4.5rem - 4px); }
+}
+
+/* --- Section 5: The bible table ----------------------------- */
+
+.j-bible-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 auto;
+  font-size: 0.92rem;
+  max-width: 48rem;
+}
+
+.j-bible-table th {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  font-weight: 500;
+  color: var(--ink-faint);
+  text-align: left;
+  padding: 0.4rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+}
+
+.j-bible-table td {
+  padding: 0.55rem 0.7rem;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+  font-family: var(--serif);
+}
+
+.j-bible-table tbody tr:nth-child(odd) { background: rgba(212, 201, 176, 0.18); }
+
+.j-bible-table .col-n {
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+  width: 2rem;
+}
+
+.j-bible-table .col-title {
+  font-style: italic;
+  color: var(--ink);
+}
+
+.j-bible-table .col-words {
+  font-family: var(--mono);
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  text-align: right;
+  white-space: nowrap;
+}
+
+.j-bible-table tfoot td {
+  padding-top: 0.9rem;
+  border-bottom: none;
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  color: var(--branch);
+}
+
+@media (max-width: 720px) {
+  .j-bible-table { font-size: 0.82rem; }
+  .j-bible-table .col-pov { display: none; }
+  .j-bible-table th:nth-child(4) { display: none; }
+}
+
+/* --- Section 6: Ten geographies / lenses -------------------- */
+
+.j-map-intro {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 36rem;
+  margin: 0 auto 3rem;
+}
+
+.j-map-wrap {
+  margin: 0 auto 3rem;
+  max-width: 56rem;
+  text-align: center;
+}
+
+.j-map-wrap svg {
+  width: 100%;
+  height: auto;
+  max-width: 56rem;
+}
+
+.j-map-wrap .map-outline {
+  fill: none;
+  stroke: var(--ink-faint);
+  stroke-width: 0.4;
+  opacity: 0.5;
+}
+
+.j-map-wrap .map-pin {
+  fill: var(--branch);
+}
+
+.j-map-wrap .map-halo {
+  fill: var(--branch);
+  opacity: 0.15;
+}
+
+.j-map-wrap .map-label {
+  font-family: var(--mono);
+  font-size: 5px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-soft);
+}
+
+.j-lens-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 44rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.6rem 2rem;
+}
+
+.j-lens-list li {
+  font-family: var(--serif);
+  font-size: 0.94rem;
+  line-height: 1.55;
+  color: var(--ink-soft);
+  padding: 0.4rem 0;
+  border-bottom: 1px dotted var(--rule);
+}
+
+.j-lens-list strong {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--ink);
+  font-size: 1rem;
+}
+
+.j-lens-list .lens-meta {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.12em;
+  color: var(--ink-faint);
+  text-transform: uppercase;
+  margin-top: 0.15rem;
+}
+
+@media (max-width: 720px) {
+  .j-lens-list { grid-template-columns: 1fr; }
+}
+
+/* --- Section 7: Per-story process steps --------------------- */
+
+.j-process-steps {
+  list-style: none;
+  counter-reset: step;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 32rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.j-process-steps li {
+  counter-increment: step;
+  position: relative;
+  padding-left: 3rem;
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.55;
+  color: var(--ink);
+}
+
+.j-process-steps li::before {
+  content: counter(step, decimal-leading-zero);
+  position: absolute;
+  left: 0;
+  top: 0.05rem;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  letter-spacing: 0.18em;
+  color: var(--branch);
+}
+
+.j-process-steps li em {
+  font-style: italic;
+  color: var(--ink-soft);
+  display: block;
+  font-size: 0.86rem;
+  margin-top: 0.15rem;
+}
+
+.j-aside {
+  max-width: 32rem;
+  margin: 2.5rem auto 0;
+  padding: 1.2rem 1.4rem;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+}
+
+.j-aside p {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  margin: 0;
+}
+
+/* --- Section 8: Bible diagram ------------------------------- */
+
+.j-bible-diagram {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 2rem;
+  align-items: stretch;
+  max-width: 48rem;
+  margin: 0 auto;
+}
+
+.j-bible-pane {
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  padding: 1.2rem 1rem 1.4rem;
+}
+
+.j-bible-pane .pane-label {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.j-bible-pane.v1 .pane-label { color: var(--ink-faint); }
+.j-bible-pane.v23 .pane-label { color: var(--branch); }
+
+.j-bible-rows {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.j-bible-rows li {
+  font-family: var(--serif);
+  font-size: 0.78rem;
+  line-height: 1.5;
+  color: var(--ink-soft);
+  padding: 0.32rem 0;
+  border-bottom: 1px dotted var(--rule);
+  display: flex;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+.j-bible-rows li:last-child { border-bottom: none; }
+
+.j-bible-rows .n {
+  font-family: var(--mono);
+  font-size: 0.6rem;
+  color: var(--ink-faint);
+  flex: 0 0 1.4rem;
+}
+
+.j-bible-pane.v1 .j-bible-rows li {
+  color: var(--ink-faint);
+}
+
+.j-bible-pane.v1 .j-bible-rows .t {
+  font-style: italic;
+  opacity: 0.5;
+}
+
+.j-bible-pane.v23 .j-bible-rows .t {
+  color: var(--ink);
+  font-style: italic;
+}
+
+.j-bible-pane.v23 .j-bible-rows .city {
+  color: var(--branch);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  flex: 0 0 auto;
+  margin-left: auto;
+}
+
+.j-bible-arrow {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  color: var(--branch);
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.j-bible-arrow .arrow-line {
+  font-size: 1.3rem;
+  margin-bottom: 0.4rem;
+}
+
+@media (max-width: 720px) {
+  .j-bible-diagram { grid-template-columns: 1fr; }
+  .j-bible-arrow { transform: rotate(90deg); margin: 0.6rem 0; }
+}
+
+/* --- Section 9: Process loop SVG ---------------------------- */
+
+.j-loop-wrap {
+  max-width: 36rem;
+  margin: 0 auto 2.5rem;
+  text-align: center;
+}
+
+.j-loop-wrap svg { width: 100%; height: auto; }
+
+.j-loop-wrap .loop-arc {
+  fill: none;
+  stroke: var(--branch-faint);
+  stroke-width: 1;
+  stroke-dasharray: 3 3;
+}
+
+.j-loop-wrap .loop-arrow {
+  fill: var(--branch);
+}
+
+.j-loop-wrap .loop-node-bg {
+  fill: var(--paper);
+  stroke: var(--branch);
+  stroke-width: 0.6;
+}
+
+.j-loop-wrap .loop-node-label {
+  font-family: var(--mono);
+  font-size: 7px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  fill: var(--ink);
+  text-anchor: middle;
+}
+
+.j-loop-wrap .loop-center {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 8px;
+  fill: var(--branch);
+  text-anchor: middle;
+}
+
+.j-loop-note {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.96rem;
+  line-height: 1.7;
+  color: var(--ink-soft);
+  max-width: 32rem;
+  margin: 0 auto;
+}
+
+/* --- Section 10: The 11ms hidden seam ----------------------- */
+
+.j-curve-wrap {
+  max-width: 56rem;
+  margin: 0 auto 2.5rem;
+}
+
+.j-curve-wrap svg { width: 100%; height: auto; }
+
+.j-curve-wrap .curve-path {
+  fill: none;
+  stroke: var(--branch);
+  stroke-width: 0.8;
+  opacity: 0.7;
+}
+
+.j-curve-wrap .curve-dot {
+  fill: var(--paper);
+  stroke: var(--branch);
+  stroke-width: 1.2;
+}
+
+.j-curve-wrap .curve-label {
+  font-family: var(--mono);
+  font-size: 6.5px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-soft);
+  text-anchor: middle;
+}
+
+.j-curve-wrap .curve-year {
+  font-family: var(--mono);
+  font-size: 5.5px;
+  fill: var(--ink-faint);
+  text-anchor: middle;
+}
+
+.j-curve-caption {
+  text-align: center;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 1rem;
+  line-height: 1.65;
+  color: var(--ink-soft);
+  max-width: 36rem;
+  margin: 0 auto;
+}
+
+/* --- Section 11: Polishing ---------------------------------- */
+
+.j-polish-list {
+  list-style: none;
+  margin: 0 auto;
+  padding: 0;
+  max-width: 40rem;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.4rem;
+}
+
+.j-polish-list li {
+  padding: 1.2rem 1.2rem 1.4rem;
+  border-top: 1px solid var(--branch);
+  background: var(--paper);
+}
+
+.j-polish-list li strong {
+  display: block;
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--branch);
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.j-polish-list li p {
+  font-family: var(--serif);
+  font-size: 0.94rem;
+  line-height: 1.6;
+  color: var(--ink);
+  margin: 0;
+}
+
+@media (max-width: 720px) {
+  .j-polish-list { grid-template-columns: 1fr; }
+}
+
+/* --- Section 12: The forest --------------------------------- */
+
+.j-forest-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem;
+  max-width: 40rem;
+  margin: 0 auto 3rem;
+}
+
+.j-stat {
+  text-align: center;
+}
+
+.j-stat .stat-num {
+  display: block;
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(2.2rem, 4.5vw, 3rem);
+  color: var(--branch);
+  line-height: 1;
+  margin-bottom: 0.4rem;
+}
+
+.j-stat .stat-label {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--ink-faint);
+}
+
+.j-tree-wrap {
+  max-width: 46rem;
+  margin: 0 auto;
+}
+
+.j-tree-wrap svg { width: 100%; height: auto; }
+
+.j-tree-wrap .tree-trunk {
+  stroke: var(--ink);
+  stroke-width: 1.4;
+  fill: none;
+}
+
+.j-tree-wrap .tree-branch {
+  stroke: var(--branch);
+  stroke-width: 0.7;
+  fill: none;
+  opacity: 0.75;
+}
+
+.j-tree-wrap .tree-label {
+  font-family: var(--mono);
+  font-size: 6px;
+  letter-spacing: 0.06em;
+  fill: var(--ink-faint);
+}
+
+.j-tree-wrap .tree-label.canon { fill: var(--ink); font-weight: 500; }
+
+@media (max-width: 720px) {
+  .j-forest-stats { grid-template-columns: 1fr; gap: 1rem; }
+}
+
+/* --- Section 13: Reflections -------------------------------- */
+
+.j-reflection-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: clamp(1.3rem, 2.6vw, 1.8rem);
+  line-height: 1.45;
+  text-align: center;
+  color: var(--ink);
+  max-width: 36rem;
+  margin: 0 auto 2.5rem;
+  border-left: none;
+  padding: 0;
+}
+
+.j-reflection-quote::before, .j-reflection-quote::after {
+  content: "";
+  display: block;
+  width: 3rem;
+  height: 1px;
+  background: var(--branch);
+  margin: 0 auto 1.4rem;
+}
+.j-reflection-quote::after {
+  margin: 1.4rem auto 0;
+}
+
+.j-reflection-body {
+  max-width: 34rem;
+  margin: 0 auto;
+  font-family: var(--serif);
+  font-size: 1rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+}
+
+.j-reflection-body p { margin-bottom: 1.1rem; }
+
+/* --- Section 14: Attribution dialogue ----------------------- */
+
+.j-attribution {
+  padding-top: 9rem;
+}
+
+.j-pull-quote {
+  font-family: var(--serif);
+  font-style: italic;
+  font-weight: 400;
+  font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+  line-height: 1.35;
+  text-align: center;
+  color: var(--branch);
+  max-width: 32rem;
+  margin: 0 auto 4rem;
+  letter-spacing: -0.005em;
+}
+
+.j-attribution-conversation {
+  max-width: 42rem;
+}
+
+.j-attribution-conversation .turn p {
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* --- Section 15: CTA ---------------------------------------- */
+
+.j-cta {
+  text-align: center;
+  padding: 8rem 0 4rem;
+}
+
+.j-cta .j-eyebrow {
+  margin-bottom: 2.4rem;
+}
+
+.j-begin {
+  display: inline-block;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  letter-spacing: 0.22em;
+  text-transform: uppercase;
+  color: var(--branch);
+  border: 1px solid var(--branch);
+  padding: 0.95rem 2.2rem;
+  background: transparent;
+  background-image: none;
+  background-size: 0;
+  transition: background-color 220ms ease, color 220ms ease, transform 220ms ease;
+}
+.j-begin:hover, .j-begin:focus-visible {
+  background: var(--branch);
+  color: var(--paper);
+  background-image: none;
+  transform: translateY(-1px);
+  outline: none;
+}
+
+.j-cta-sub {
+  margin-top: 2rem;
+  font-family: var(--serif);
+  font-style: italic;
+  font-size: 0.92rem;
+  color: var(--ink-faint);
+}
+
+/* --- Section dividers (faint vertical mark, like a bookmark) */
+
+.j-divider {
+  display: block;
+  width: 1px;
+  height: 3rem;
+  background: var(--branch-faint);
+  margin: 0 auto;
+  opacity: 0.5;
+}
+
+/* --- Making band at top ------------------------------------- */
+
+.journey-container .making-band {
+  margin-bottom: 0;
+  padding-bottom: 0.8rem;
+}

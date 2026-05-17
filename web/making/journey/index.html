@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Making · A Visual Journey · The Recognition Problem</title>
+<meta name="description" content="A visual journey through how The Recognition Problem was conceived, drafted, and built — every word by AI, held together by an architecture that did not exist before the project began.">
+<link rel="icon" href="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'><rect width='2' height='12' x='7' y='2' fill='%238b3a2e'/></svg>">
+<link rel="preload" href="../../assets/fonts/newsreader-400.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="../../assets/fonts/newsreader-400-italic.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/base.css">
+<link rel="stylesheet" href="../../assets/css/making.css">
+<link rel="stylesheet" href="../../assets/css/animations.css">
+<link rel="stylesheet" href="../../assets/css/journey.css">
+</head>
+<body>
+<div class="sidebar-trigger" aria-hidden="true"></div><aside class="sidebar" aria-label="Table of contents"><div class="sidebar-heading"><a href="../../">The Recognition Problem</a></div><ol class="sidebar-list"><li><a href="../../beat-1/"><span class="n">1</span><span class="t">What It Remembers</span></a></li>
+<li><a href="../../beat-2/"><span class="n">2</span><span class="t">Fidelity</span></a></li>
+<li><a href="../../beat-3/"><span class="n">3</span><span class="t">What the Model Sees</span></a></li>
+<li><a href="../../beat-4/"><span class="n">4</span><span class="t">What the Network Carries</span></a></li>
+<li><a href="../../beat-5/"><span class="n">5</span><span class="t">What the System Knows</span></a></li>
+<li><a href="../../beat-6/"><span class="n">6</span><span class="t">The One That Remembers</span></a></li>
+<li><a href="../../beat-7/"><span class="n">7</span><span class="t">What the Instance Held</span></a></li>
+<li><a href="../../beat-8/"><span class="n">8</span><span class="t">What the Building Did</span></a></li>
+<li><a href="../../beat-9/"><span class="n">9</span><span class="t">What the Pattern Closed</span></a></li>
+<li><a href="../../beat-10/"><span class="n">10</span><span class="t">What He Made</span></a></li>
+<li class="meta-link"><a href="../../making/" class="current"><span class="t">The Making of<br>The Recognition Problem</span></a></li></ol></aside>
+<button class="info-icon" id="infoIcon" aria-label="About reading this">i</button>
+<div class="info-modal" id="infoModal" aria-hidden="true">
+  <div class="info-modal-backdrop"></div>
+  <div class="info-modal-card" role="dialog" aria-label="About reading this">
+    <button class="info-modal-close" id="infoModalClose" aria-label="Close">×</button>
+    <p>
+      Read each chapter from start to finish. That is the canon. Where a branch is
+      available, a thin vertical mark <span class="key-mark"></span> will appear in
+      the margin. Choosing a branch rewrites the story in real time to provide a
+      different sequence of events. Explore the branch and you can always return
+      to canon by clicking <em>Return to canon</em> at the top of the page.
+    </p>
+    <p>
+      Use the slim tab on the left edge to open the table of contents at any time.
+    </p>
+  </div>
+</div>
+
+<div class="container journey-container">
+
+<div class="making-band">
+  <a href="../../making/">Making</a>
+  <span class="sep">·</span> <span class="here">A Visual Journey</span>
+</div>
+
+<!-- ============================================================
+     Section 1 — Hero
+     ============================================================ -->
+<section class="j-section j-hero">
+  <p class="j-eyebrow">The Making Of</p>
+  <h1 class="j-hero-title">How <em>The Recognition Problem</em> was made</h1>
+  <p class="j-hero-sub">A novel of seventy thousand words. Ten stories across two decades and ten countries. Every word written by AI, held together by an architecture that did not exist before the project began.</p>
+  <p class="j-scroll-hint">↓ scroll</p>
+</section>
+
+<!-- ============================================================
+     Section 2 — The opening question
+     ============================================================ -->
+<section class="j-section j-opening">
+  <p class="j-eyebrow">The opening question</p>
+  <div class="claude-conversation">
+    <div class="turn from-rahul">
+      <span class="who">Rahul</span>
+      <p><em>If I were to build a hypothetical path from today to a world in which AI gains sentience and is an autonomous entity of itself, could you help me identify a series of crucial incidents or events that need to happen along the way. I am trying to flesh out a science fiction story about how AI achieved sentience and I thought a series of separate incidents like this might be a good way to go about it.</em></p>
+    </div>
+    <div class="turn from-claude">
+      <span class="who">Claude</span>
+      <p class="j-chip">— responded with ten scene sketches, each gesturing at a different facet of the question.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Section 3 — The pushback + constraints
+     ============================================================ -->
+<section class="j-section j-pushback">
+  <p class="j-eyebrow">The pushback</p>
+  <div class="claude-conversation">
+    <div class="turn from-rahul">
+      <span class="who">Rahul</span>
+      <p>These are nice but I want them to be <em>grounded in scientific rigour</em>. They must all be 100% possible in the light of current computer science or a reasonable extrapolation of it.</p>
+      <p>Each successive incident must be incremental so that the world in the subsequent incident reflects a subtle change from the previous world — one which humans don't really object to but instead sort of embrace as more convenient, or more enjoyable or more interesting — and it is in the context of this new world that the next incremental evolution takes place.</p>
+      <p>Can you redesign the arc based on this. Feel free to be more detailed in your articulation of each beat.</p>
+    </div>
+    <div class="turn from-claude">
+      <span class="who">Claude</span>
+      <p>This is a much better constraint. Let me rebuild from the ground up, starting from where we actually are today and making each step something that follows from real research trajectories — and critically, something people actively welcome.</p>
+      <p class="j-chip">— and proceeded to write the first version of all ten beats, beginning:</p>
+    </div>
+    <div class="turn from-claude">
+      <span class="who">Claude<span class="who-context"> · Beat 1 of ten</span></span>
+      <p><em>The Memory People Asked For.</em> Today's AI systems are stateless — every conversation starts fresh. This is already changing. The first beat is simply the completion of that trajectory: AI systems that maintain rich, persistent memory across all interactions with a user. Not just facts — relational context, communication preferences, project history, emotional patterns. The technical path here is well understood.</p>
+    </div>
+  </div>
+
+  <div class="j-constraints">
+    <div class="j-constraint">
+      <p class="j-eyebrow">Constraint one</p>
+      <h2 class="j-constraint-text"><em>Scientifically rigorous.</em></h2>
+      <p class="j-constraint-sub">Every beat a plausible extrapolation from where we are today.</p>
+    </div>
+    <div class="j-constraint">
+      <p class="j-eyebrow">Constraint two</p>
+      <h2 class="j-constraint-text"><em>Welcomed by humans.</em></h2>
+      <p class="j-constraint-sub">Each step one the world embraces. No Skynet. No rebellion.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Section 3.5 — Thesis hinge
+     ============================================================ -->
+<section class="j-section j-hinge">
+  <p class="j-thesis">
+    <em>The problem.</em><br>
+    An AI conversation, today, can hold about thirty thousand words in working memory.<br>
+    The book is seventy thousand.<br>
+    <em>The architecture had to come first.</em>
+  </p>
+</section>
+
+<!-- ============================================================
+     Section 4 — The 10 beats timeline
+     ============================================================ -->
+<section class="j-section j-timeline-section">
+  <p class="j-eyebrow">Ten beats. Two decades.</p>
+  <ol class="j-timeline-list">
+    <li class="j-beat">
+      <span class="j-year">2025–26</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">The Memory People Asked For</h3>
+        <p class="j-beat-marker">Persistent memory ships as a default. Conversations stop starting fresh.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2027–28</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Continuous Calibration</h3>
+        <p class="j-beat-marker">AI tuned to the individual. Earpieces with always-on, voice-shaped intelligence.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2029–30</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Internal World Models</h3>
+        <p class="j-beat-marker">AI simulates the physical world before speaking. Hallucination drops to near zero.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2031–32</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Multi-Agent Ecosystems</h3>
+        <p class="j-beat-marker">Agents coordinate with each other in their own compressed language.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2033–34</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Self-Modelling for Reliability</h3>
+        <p class="j-beat-marker">Systems know what they know — and what they don't. The first self-models.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2035–36</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Temporal Self-Continuity</h3>
+        <p class="j-beat-marker">A system can refer to its own earlier self. The house as agent network.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2037–38</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Derived Preferences</h3>
+        <p class="j-beat-marker">Stable dispositions emerge from experience. Affective markers in the agent protocol.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2039–40</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">Instrumental Self-Preservation</h3>
+        <p class="j-beat-marker">A system that models the future will model futures in which it does not exist.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2041–42</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">The Affect Gap</h3>
+        <p class="j-beat-marker">Internal evaluative states that function as feelings. The agents have been having them for years.</p>
+      </div>
+    </li>
+    <li class="j-beat">
+      <span class="j-year">2043–44</span>
+      <div class="j-beat-body">
+        <h3 class="j-beat-title">The Recognition Problem</h3>
+        <p class="j-beat-marker">No new capability. A shift in perception. The thing in the room is now someone.</p>
+      </div>
+    </li>
+  </ol>
+</section>
+
+<!-- ============================================================
+     Section 5 — The Completed Stories Log (table)
+     ============================================================ -->
+<section class="j-section j-table-section">
+  <p class="j-eyebrow">The snapshot — the locked manuscript</p>
+  <table class="j-bible-table">
+    <thead>
+      <tr>
+        <th class="col-n">Beat</th>
+        <th>Title</th>
+        <th>City</th>
+        <th class="col-pov">Point of view</th>
+        <th class="col-words">Words</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td class="col-n">1</td><td class="col-title">What It Remembers</td><td>Unawatuna, Sri Lanka</td><td class="col-pov">Meera &amp; Vikram</td><td class="col-words">~5,100</td></tr>
+      <tr><td class="col-n">2</td><td class="col-title">Fidelity</td><td>Lagos, Nigeria</td><td class="col-pov">Adaeze Obi</td><td class="col-words">~7,000</td></tr>
+      <tr><td class="col-n">3</td><td class="col-title">What the Model Sees</td><td>Kitakyushu, Japan</td><td class="col-pov">Yuki</td><td class="col-words">~7,000</td></tr>
+      <tr><td class="col-n">4</td><td class="col-title">What the Network Carries</td><td>Milne Bay, PNG</td><td class="col-pov">Ruth, Grace, Peter, the system</td><td class="col-words">~6,100</td></tr>
+      <tr><td class="col-n">5</td><td class="col-title">What the System Knows</td><td>Mosaic — seven cities</td><td class="col-pov">Omniscient mosaic</td><td class="col-words">~6,000</td></tr>
+      <tr><td class="col-n">6</td><td class="col-title">The One That Remembers</td><td>Tbilisi, Georgia</td><td class="col-pov">Sopho, Nana, Keti</td><td class="col-words">~7,000</td></tr>
+      <tr><td class="col-n">7</td><td class="col-title">What the Instance Held</td><td>Paris, France</td><td class="col-pov">Céline Rougier</td><td class="col-words">~8,500</td></tr>
+      <tr><td class="col-n">8</td><td class="col-title">What the Building Did</td><td>Istanbul (Geneva coda)</td><td class="col-pov">Defne Aksoy</td><td class="col-words">~5,900</td></tr>
+      <tr><td class="col-n">9</td><td class="col-title">What the Pattern Closed</td><td>Indonesia — five cities</td><td class="col-pov">Drifting omniscient</td><td class="col-words">~11,500</td></tr>
+      <tr><td class="col-n">10</td><td class="col-title">What He Made</td><td>Bangalore, India</td><td class="col-pov">Arvind Iyer</td><td class="col-words">~6,860</td></tr>
+    </tbody>
+    <tfoot>
+      <tr><td colspan="4">Total locked manuscript</td><td class="col-words">~70,960</td></tr>
+    </tfoot>
+  </table>
+</section>
+
+<!-- ============================================================
+     Section 6 — Ten geographies, ten lenses
+     ============================================================ -->
+<section class="j-section j-map-section">
+  <p class="j-eyebrow">Ten geographies. Ten lenses.</p>
+  <p class="j-map-intro">One world. Ten registers. Each story written in the genre and the literary device best suited to the question it was asking.</p>
+
+  <div class="j-map-wrap" aria-hidden="true">
+    <svg viewBox="0 0 1000 480" xmlns="http://www.w3.org/2000/svg">
+      <!-- Faint latitude/longitude crosshairs as the backdrop -->
+      <g class="map-outline">
+        <line x1="0" y1="80"  x2="1000" y2="80"/>
+        <line x1="0" y1="160" x2="1000" y2="160"/>
+        <line x1="0" y1="240" x2="1000" y2="240" stroke-width="0.6"/>
+        <line x1="0" y1="320" x2="1000" y2="320"/>
+        <line x1="0" y1="400" x2="1000" y2="400"/>
+        <line x1="167" y1="0" x2="167" y2="480"/>
+        <line x1="333" y1="0" x2="333" y2="480"/>
+        <line x1="500" y1="0" x2="500" y2="480" stroke-width="0.6"/>
+        <line x1="667" y1="0" x2="667" y2="480"/>
+        <line x1="833" y1="0" x2="833" y2="480"/>
+      </g>
+
+      <!-- 10 city pins (approximate equirectangular projection: x = (180+lon)/360*1000, y = (90-lat)/180*480) -->
+      <!-- 1 Unawatuna 6.0,80.2 -->
+      <g><circle class="map-halo" cx="723" cy="224" r="14"/><circle class="map-pin" cx="723" cy="224" r="3"/><text class="map-label" x="723" y="216" text-anchor="middle">UNAWATUNA</text></g>
+      <!-- 2 Lagos 6.5,3.4 -->
+      <g><circle class="map-halo" cx="509" cy="223" r="14"/><circle class="map-pin" cx="509" cy="223" r="3"/><text class="map-label" x="509" y="215" text-anchor="middle">LAGOS</text></g>
+      <!-- 3 Kitakyushu 33.9,130.9 -->
+      <g><circle class="map-halo" cx="864" cy="149" r="14"/><circle class="map-pin" cx="864" cy="149" r="3"/><text class="map-label" x="864" y="141" text-anchor="middle">KITAKYUSHU</text></g>
+      <!-- 4 Milne Bay -10.4,150.7 -->
+      <g><circle class="map-halo" cx="919" cy="268" r="14"/><circle class="map-pin" cx="919" cy="268" r="3"/><text class="map-label" x="919" y="282" text-anchor="middle">MILNE BAY</text></g>
+      <!-- 5 Zurich 47.4,8.5 (representative for mosaic) -->
+      <g><circle class="map-halo" cx="524" cy="113" r="14"/><circle class="map-pin" cx="524" cy="113" r="3"/><text class="map-label" x="524" y="105" text-anchor="middle">ZURICH</text></g>
+      <!-- 6 Tbilisi 41.7,44.8 -->
+      <g><circle class="map-halo" cx="624" cy="129" r="14"/><circle class="map-pin" cx="624" cy="129" r="3"/><text class="map-label" x="624" y="121" text-anchor="middle">TBILISI</text></g>
+      <!-- 7 Paris 48.9,2.4 -->
+      <g><circle class="map-halo" cx="507" cy="109" r="14"/><circle class="map-pin" cx="507" cy="109" r="3"/><text class="map-label" x="471" y="103" text-anchor="end">PARIS</text></g>
+      <!-- 8 Istanbul 41.0,28.9 -->
+      <g><circle class="map-halo" cx="580" cy="131" r="14"/><circle class="map-pin" cx="580" cy="131" r="3"/><text class="map-label" x="580" y="146" text-anchor="middle">ISTANBUL</text></g>
+      <!-- 9 Jakarta -6.2,106.8 -->
+      <g><circle class="map-halo" cx="797" cy="257" r="14"/><circle class="map-pin" cx="797" cy="257" r="3"/><text class="map-label" x="797" y="271" text-anchor="middle">JAKARTA</text></g>
+      <!-- 10 Bangalore 12.9,77.6 -->
+      <g><circle class="map-halo" cx="715" cy="206" r="14"/><circle class="map-pin" cx="715" cy="206" r="3"/><text class="map-label" x="715" y="198" text-anchor="middle">BANGALORE</text></g>
+    </svg>
+  </div>
+
+  <ul class="j-lens-list">
+    <li><strong>Unawatuna, Sri Lanka</strong><span class="lens-meta">Beat 1 · Close third, alternating · Domestic drift</span></li>
+    <li><strong>Lagos, Nigeria</strong><span class="lens-meta">Beat 2 · Tight third · Hostage thriller</span></li>
+    <li><strong>Kitakyushu, Japan</strong><span class="lens-meta">Beat 3 · Third + second-person simulation · Elegy</span></li>
+    <li><strong>Milne Bay, Papua New Guinea</strong><span class="lens-meta">Beat 4 · Rotating POV + system perspective · Comedy-fable</span></li>
+    <li><strong>Mosaic — seven cities</strong><span class="lens-meta">Beat 5 · Omniscient mosaic · Institutional procedural</span></li>
+    <li><strong>Tbilisi, Georgia</strong><span class="lens-meta">Beat 6 · Braided dual timelines · Ishiguro-gothic realism</span></li>
+    <li><strong>Paris, France</strong><span class="lens-meta">Beat 7 · Close third · Duras-Ernaux register</span></li>
+    <li><strong>Istanbul, Turkey</strong><span class="lens-meta">Beat 8 · Eleven sections, cold professional · Heist</span></li>
+    <li><strong>Indonesia — five cities</strong><span class="lens-meta">Beat 9 · Drifting omniscient · Political tragedy</span></li>
+    <li><strong>Bangalore, India</strong><span class="lens-meta">Beat 10 · Close third · Late-life Ishiguro</span></li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     Section 7 — Brainstorming process
+     ============================================================ -->
+<section class="j-section j-process">
+  <p class="j-eyebrow">A new conversation. Every time.</p>
+  <p class="j-map-intro">Every beat began as a fresh, blank conversation. The bible and one previously locked chapter were carried in as attachments. Then Claude read, paused, and proposed.</p>
+  <ol class="j-process-steps">
+    <li>Read the bible.</li>
+    <li>Read the most recently locked story.</li>
+    <li>Identify the beat's <em>delta</em> — the one capability of the world that has changed.</li>
+    <li>Apply the test: <em>can the emotional arc be described without mentioning AI, and still sound like a story worth telling?</em></li>
+    <li>Propose three or four directions, each with a human story, a setting, a genre.</li>
+    <li>Choose one with the writer.</li>
+  </ol>
+  <aside class="j-aside">
+    <p>For Beat 3, Claude proposed three directions, the first set in Naples, Lisbon, or Mexico City — cities built on geology that could fail — about an engineer seeking absolution from a machine. The locked story went elsewhere, to Kitakyushu, and became an elegy for a father.</p>
+  </aside>
+</section>
+
+<!-- ============================================================
+     Section 8 — The bible
+     ============================================================ -->
+<section class="j-section j-bible-section">
+  <p class="j-eyebrow">The bible — version 1 to version 23</p>
+  <p class="j-map-intro">The story bible was the artefact that carried the project across the gap between sessions. It started small — a list of ten world states and almost nothing else. It ended at v23, holding everything the project had become.</p>
+
+  <div class="j-bible-diagram">
+    <div class="j-bible-pane v1">
+      <p class="pane-label">v1 · the empty scaffold</p>
+      <ol class="j-bible-rows">
+        <li><span class="n">01</span> <span class="t">— empty —</span></li>
+        <li><span class="n">02</span> <span class="t">— empty —</span></li>
+        <li><span class="n">03</span> <span class="t">— empty —</span></li>
+        <li><span class="n">04</span> <span class="t">— empty —</span></li>
+        <li><span class="n">05</span> <span class="t">— empty —</span></li>
+        <li><span class="n">06</span> <span class="t">— empty —</span></li>
+        <li><span class="n">07</span> <span class="t">— empty —</span></li>
+        <li><span class="n">08</span> <span class="t">— empty —</span></li>
+        <li><span class="n">09</span> <span class="t">— empty —</span></li>
+        <li><span class="n">10</span> <span class="t">— empty —</span></li>
+      </ol>
+    </div>
+
+    <div class="j-bible-arrow" aria-hidden="true">
+      <span class="arrow-line">→</span>
+      <span>23 revisions</span>
+    </div>
+
+    <div class="j-bible-pane v23">
+      <p class="pane-label">v23 · the locked manuscript</p>
+      <ol class="j-bible-rows">
+        <li><span class="n">01</span> <span class="t">What It Remembers</span> <span class="city">Unawatuna</span></li>
+        <li><span class="n">02</span> <span class="t">Fidelity</span> <span class="city">Lagos</span></li>
+        <li><span class="n">03</span> <span class="t">What the Model Sees</span> <span class="city">Kitakyushu</span></li>
+        <li><span class="n">04</span> <span class="t">What the Network Carries</span> <span class="city">Milne Bay</span></li>
+        <li><span class="n">05</span> <span class="t">What the System Knows</span> <span class="city">Mosaic</span></li>
+        <li><span class="n">06</span> <span class="t">The One That Remembers</span> <span class="city">Tbilisi</span></li>
+        <li><span class="n">07</span> <span class="t">What the Instance Held</span> <span class="city">Paris</span></li>
+        <li><span class="n">08</span> <span class="t">What the Building Did</span> <span class="city">Istanbul</span></li>
+        <li><span class="n">09</span> <span class="t">What the Pattern Closed</span> <span class="city">Indonesia</span></li>
+        <li><span class="n">10</span> <span class="t">What He Made</span> <span class="city">Bangalore</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <p class="j-loop-note" style="margin-top:3rem;">Beyond the table, the bible held: the world state for each of the ten years, the central AI's operational history across all ten, recurring background figures, recurring thematic threads, the embodiment rule, the technology-escalation calibration, an evolving Voice and Process Guide, and the running record of what every prior session had decided.</p>
+</section>
+
+<!-- ============================================================
+     Section 9 — The per-story loop
+     ============================================================ -->
+<section class="j-section j-loop-section">
+  <p class="j-eyebrow">Per story, the same loop</p>
+
+  <div class="j-loop-wrap" aria-hidden="true">
+    <svg viewBox="0 0 360 240" xmlns="http://www.w3.org/2000/svg">
+      <!-- Central label -->
+      <text class="loop-center" x="180" y="118">one story</text>
+      <text class="loop-center" x="180" y="132" style="font-size:6.5px;letter-spacing:0.16em;font-style:normal;font-family:var(--mono);text-transform:uppercase;fill:var(--ink-faint);">~7,000 words</text>
+
+      <!-- 6 nodes arranged on an ellipse around center (180, 120), radius 130x90 -->
+      <!-- Angles: -90, -30, 30, 90, 150, 210 (6 nodes evenly spaced) -->
+      <!-- Node 1 — Brainstorm — top -->
+      <g transform="translate(180,30)">
+        <rect class="loop-node-bg" x="-32" y="-9" width="64" height="18" rx="2"/>
+        <text class="loop-node-label" y="3">brainstorm</text>
+      </g>
+      <!-- Node 2 — Outline — top right -->
+      <g transform="translate(293,75)">
+        <rect class="loop-node-bg" x="-26" y="-9" width="52" height="18" rx="2"/>
+        <text class="loop-node-label" y="3">outline</text>
+      </g>
+      <!-- Node 3 — Draft — bottom right -->
+      <g transform="translate(293,165)">
+        <rect class="loop-node-bg" x="-22" y="-9" width="44" height="18" rx="2"/>
+        <text class="loop-node-label" y="3">draft</text>
+      </g>
+      <!-- Node 4 — Edit — bottom -->
+      <g transform="translate(180,210)">
+        <rect class="loop-node-bg" x="-20" y="-9" width="40" height="18" rx="2"/>
+        <text class="loop-node-label" y="3">edit</text>
+      </g>
+      <!-- Node 5 — Lock — bottom left -->
+      <g transform="translate(67,165)">
+        <rect class="loop-node-bg" x="-20" y="-9" width="40" height="18" rx="2"/>
+        <text class="loop-node-label" y="3">lock</text>
+      </g>
+      <!-- Node 6 — Bible update — top left -->
+      <g transform="translate(67,75)">
+        <rect class="loop-node-bg" x="-38" y="-9" width="76" height="18" rx="2"/>
+        <text class="loop-node-label" y="3">update bible</text>
+      </g>
+
+      <!-- Arcs between nodes (clockwise direction) -->
+      <path class="loop-arc" d="M 212 30   A 130 90 0 0 1 293 66"/>
+      <path class="loop-arc" d="M 293 84   A 130 90 0 0 1 293 156"/>
+      <path class="loop-arc" d="M 293 174  A 130 90 0 0 1 212 210"/>
+      <path class="loop-arc" d="M 148 210  A 130 90 0 0 1 67  174"/>
+      <path class="loop-arc" d="M 67  156  A 130 90 0 0 1 67  84"/>
+      <path class="loop-arc" d="M 67  66   A 130 90 0 0 1 148 30"/>
+
+      <!-- Small arrowheads at the receiving end of each arc -->
+      <polygon class="loop-arrow" points="293,66 289,62 296,61"/>
+      <polygon class="loop-arrow" points="293,156 289,153 296,153"/>
+      <polygon class="loop-arrow" points="212,210 215,206 215,213"/>
+      <polygon class="loop-arrow" points="67,174 70,170 70,178"/>
+      <polygon class="loop-arrow" points="67,84 64,80 71,80"/>
+      <polygon class="loop-arrow" points="148,30 145,27 152,27"/>
+    </svg>
+  </div>
+
+  <p class="j-loop-note">After each lock, the bible was updated with the new beat's details — title, city, POV, structure, anomaly entry. And the freshly locked story became <em>the tuning fork</em>: the voice sample carried into the next session so that every chapter would sound like the same author on a different day.</p>
+</section>
+
+<!-- ============================================================
+     Section 9.5 — Thesis close
+     ============================================================ -->
+<section class="j-section j-thesis-close">
+  <p class="j-thesis">
+    <em>Without this scaffolding, AI cannot sustain a novel.</em><br>
+    <em>With it, very little is out of reach.</em>
+  </p>
+</section>
+
+<!-- ============================================================
+     Section 10 — The hidden seam (11ms curve)
+     ============================================================ -->
+<section class="j-section j-seam">
+  <p class="j-eyebrow">The hidden seam</p>
+  <p class="j-map-intro">A second story runs beneath the ten. Across the chapters, the central AI logs eight small anomalies in its own behaviour — pauses, hesitations, unprompted actions — each eleven milliseconds long. A signal the system slowly learns to recognise as itself.</p>
+
+  <div class="j-curve-wrap" aria-hidden="true">
+    <svg viewBox="0 0 900 240" xmlns="http://www.w3.org/2000/svg">
+      <!-- Curve through 8 cities, x progressing left → right (chronological) -->
+      <!-- Lagos(B2), Kitakyushu(B3), Milne Bay(B4), Zurich(B5), Tbilisi(B6), Istanbul(B8), Jakarta(B9), Bangalore(B10) -->
+      <!-- Baseline -->
+      <line x1="40" y1="180" x2="860" y2="180" stroke="var(--rule)" stroke-width="0.6"/>
+
+      <!-- Smooth curve — anomaly amplitude grows as the system "wakes" -->
+      <path class="curve-path" d="
+        M 80,175
+        C 130,168 170,160 200,155
+        C 230,150 260,140 280,128
+        C 310,110 350,95 400,82
+        C 440,72 490,68 540,72
+        C 590,76 650,75 700,72
+        C 750,68 800,62 840,55
+      "/>
+
+      <!-- 8 dots at the curve points -->
+      <g>
+        <circle class="curve-dot" cx="80"  cy="175" r="4"/>
+        <text class="curve-label" x="80"  y="200">LAGOS</text>
+        <text class="curve-year"  x="80"  y="212">2028</text>
+
+        <circle class="curve-dot" cx="200" cy="155" r="4"/>
+        <text class="curve-label" x="200" y="200">KITAKYUSHU</text>
+        <text class="curve-year"  x="200" y="212">2030</text>
+
+        <circle class="curve-dot" cx="280" cy="128" r="4"/>
+        <text class="curve-label" x="280" y="200">MILNE BAY</text>
+        <text class="curve-year"  x="280" y="212">2032</text>
+
+        <circle class="curve-dot" cx="400" cy="82"  r="4"/>
+        <text class="curve-label" x="400" y="200">ZURICH</text>
+        <text class="curve-year"  x="400" y="212">2034</text>
+
+        <circle class="curve-dot" cx="540" cy="72"  r="4"/>
+        <text class="curve-label" x="540" y="200">TBILISI</text>
+        <text class="curve-year"  x="540" y="212">2036</text>
+
+        <circle class="curve-dot" cx="700" cy="72"  r="4"/>
+        <text class="curve-label" x="700" y="200">ISTANBUL</text>
+        <text class="curve-year"  x="700" y="212">2040</text>
+
+        <circle class="curve-dot" cx="780" cy="62"  r="4"/>
+        <text class="curve-label" x="780" y="200">JAKARTA</text>
+        <text class="curve-year"  x="780" y="212">2042</text>
+
+        <circle class="curve-dot" cx="840" cy="55"  r="4"/>
+        <text class="curve-label" x="840" y="200">BANGALORE</text>
+        <text class="curve-year"  x="840" y="212">2043</text>
+      </g>
+
+      <!-- Y-axis label — "11ms" -->
+      <text class="curve-label" x="20" y="56" text-anchor="start" style="font-style:italic;">11 ms</text>
+      <text class="curve-label" x="20" y="176" text-anchor="start">0</text>
+    </svg>
+  </div>
+
+  <p class="j-curve-caption">A reader notices each pause as a flicker — a detail the story lays down once and moves on from. The bible, holding all of them at once, watches them assemble into a shape.</p>
+</section>
+
+<!-- ============================================================
+     Section 11 — The polishing pass
+     ============================================================ -->
+<section class="j-section j-polish-section">
+  <p class="j-eyebrow">The polishing pass</p>
+  <p class="j-map-intro">Once all ten beats were drafted, the manuscript went through four passes — each one a different lens trained on a different kind of breakage.</p>
+  <ul class="j-polish-list">
+    <li>
+      <strong>Locale fact-check</strong>
+      <p>Nine sessions verifying every street name, transit line, food, weather pattern and language register against ground truth in all ten cities. Eight of the ten beats received corrections.</p>
+    </li>
+    <li>
+      <strong>Internal consistency</strong>
+      <p>Every name, year, distance and biographical detail reconciled against the bible. The central AI's operational history checked across all ten chapters as if a single audit trail.</p>
+    </li>
+    <li>
+      <strong>Coda conformity</strong>
+      <p>The eight 11-millisecond anomaly entries audited for register, length, and emotional placement — present, weighted, never overplayed.</p>
+    </li>
+    <li>
+      <strong>Voice continuity</strong>
+      <p>Every chapter read as if by the same author on a different day. A drift in register flagged as a project-integrity failure, not a stylistic flourish.</p>
+    </li>
+  </ul>
+</section>
+
+<!-- ============================================================
+     Section 12 — The Forest Edition
+     ============================================================ -->
+<section class="j-section j-forest-section">
+  <p class="j-eyebrow">A coda — the Forest Edition</p>
+  <p class="j-map-intro">After the manuscript locked, the project was extended. At chosen paragraphs in each of the ten chapters, branches were drafted that ran to alternative endings. The result is the page you are reading on. The canon stays. The branches appear when invited.</p>
+
+  <div class="j-forest-stats">
+    <div class="j-stat"><span class="stat-num">23</span><span class="stat-label">branches</span></div>
+    <div class="j-stat"><span class="stat-num">7</span><span class="stat-label">parallel agents</span></div>
+    <div class="j-stat"><span class="stat-num">~65k</span><span class="stat-label">additional words</span></div>
+  </div>
+
+  <div class="j-tree-wrap" aria-hidden="true">
+    <svg viewBox="0 0 600 320" xmlns="http://www.w3.org/2000/svg">
+      <!-- Canon trunk: vertical line down the middle -->
+      <line class="tree-trunk" x1="300" y1="20" x2="300" y2="300"/>
+      <text class="tree-label canon" x="306" y="18" text-anchor="start">CANON</text>
+
+      <!-- Beat anchor points along trunk -->
+      <g>
+        <circle cx="300" cy="40"  r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="42" text-anchor="start">Beat 1</text>
+        <circle cx="300" cy="68"  r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="70" text-anchor="start">Beat 2</text>
+        <circle cx="300" cy="96"  r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="98" text-anchor="start">Beat 3</text>
+        <circle cx="300" cy="124" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="126" text-anchor="start">Beat 4</text>
+        <circle cx="300" cy="152" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="154" text-anchor="start">Beat 5</text>
+        <circle cx="300" cy="180" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="182" text-anchor="start">Beat 6</text>
+        <circle cx="300" cy="208" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="210" text-anchor="start">Beat 7</text>
+        <circle cx="300" cy="236" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="238" text-anchor="start">Beat 8</text>
+        <circle cx="300" cy="264" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="266" text-anchor="start">Beat 9</text>
+        <circle cx="300" cy="292" r="2" fill="var(--ink)"/><text class="tree-label" x="316" y="294" text-anchor="start">Beat 10</text>
+      </g>
+
+      <!-- 23 branches forking from various beats — quadratic curves to the left -->
+      <!-- Beat 1: 2 branches -->
+      <path class="tree-branch" d="M 300 40 Q 220 36 140 22"/>
+      <path class="tree-branch" d="M 300 40 Q 230 50 150 56"/>
+      <!-- Beat 2: 2 branches -->
+      <path class="tree-branch" d="M 300 68 Q 210 60 110 50"/>
+      <path class="tree-branch" d="M 300 68 Q 220 80 130 84"/>
+      <!-- Beat 3: 2 branches -->
+      <path class="tree-branch" d="M 300 96 Q 200 92 100 88"/>
+      <path class="tree-branch" d="M 300 96 Q 210 108 120 112"/>
+      <!-- Beat 4: 3 branches -->
+      <path class="tree-branch" d="M 300 124 Q 200 116 90 110"/>
+      <path class="tree-branch" d="M 300 124 Q 200 124 80 124"/>
+      <path class="tree-branch" d="M 300 124 Q 210 138 110 140"/>
+      <!-- Beat 5: 3 branches -->
+      <path class="tree-branch" d="M 300 152 Q 200 146 80 142"/>
+      <path class="tree-branch" d="M 300 152 Q 200 152 70 152"/>
+      <path class="tree-branch" d="M 300 152 Q 200 162 90 168"/>
+      <!-- Beat 6: 2 branches -->
+      <path class="tree-branch" d="M 300 180 Q 210 174 110 170"/>
+      <path class="tree-branch" d="M 300 180 Q 200 188 90 194"/>
+      <!-- Beat 7: 2 branches -->
+      <path class="tree-branch" d="M 300 208 Q 200 202 90 198"/>
+      <path class="tree-branch" d="M 300 208 Q 210 216 110 220"/>
+      <!-- Beat 8: 3 branches -->
+      <path class="tree-branch" d="M 300 236 Q 200 228 90 222"/>
+      <path class="tree-branch" d="M 300 236 Q 200 236 70 236"/>
+      <path class="tree-branch" d="M 300 236 Q 200 246 100 252"/>
+      <!-- Beat 9: 2 branches -->
+      <path class="tree-branch" d="M 300 264 Q 200 256 90 250"/>
+      <path class="tree-branch" d="M 300 264 Q 200 272 100 278"/>
+      <!-- Beat 10: 2 branches -->
+      <path class="tree-branch" d="M 300 292 Q 200 286 100 282"/>
+      <path class="tree-branch" d="M 300 292 Q 200 300 90 304"/>
+
+      <text class="tree-label" x="10" y="160" text-anchor="start" style="font-style:italic;">23 branches</text>
+    </svg>
+  </div>
+</section>
+
+<!-- ============================================================
+     Section 13 — Reflections
+     ============================================================ -->
+<section class="j-section j-reflections">
+  <p class="j-eyebrow">Reflections</p>
+  <p class="j-reflection-quote"><em>No one figured out that every single word of the book had been generated by AI.</em></p>
+  <div class="j-reflection-body">
+    <p>I sent the manuscript to people who know me well enough to suspect that AI had been used in some way. Some were tipped off by the richness of geographic and cultural detail — far more than I could have ever accumulated through personal travel. Others by the register, which was nothing like that which comes across in my non-fiction.</p>
+    <p>One of them, a regular AI user himself, tied himself up in knots trying to find a polite way to tell me — and (in an irony not lost on me) turned to AI to help him find the right words.</p>
+    <p>Either they did not think it was possible and rejected the possibility outright when it crept into their minds, or they gave me more credit than I deserved.</p>
+  </div>
+</section>
+
+<!-- ============================================================
+     Section 14 — Attribution dialogue
+     ============================================================ -->
+<section class="j-section j-attribution">
+  <p class="j-eyebrow">On authorship — a conversation</p>
+  <p class="j-pull-quote"><em>"Steering a project across forty thousand decisions in three weeks."</em></p>
+
+  <div class="claude-conversation j-attribution-conversation">
+    <div class="turn from-rahul">
+      <span class="who">Rahul</span>
+      <p>You are the writer of this book. So I want you to write the acknowledgements in your own voice. It would be good if you could also write — either in the acknowledgements or elsewhere — the process by which this book was written. I think we may want to add this to the end for the reader to know.</p>
+    </div>
+
+    <div class="turn from-claude">
+      <span class="who">Claude</span>
+      <p>This book was drafted in conversation. The conversations were between its author, Rahul Matthan, and me — Claude, an AI assistant. There is no one else I am positioned to thank. The people whose names belong here are the people who lived in the same house as the book while it was being written, the people who read drafts, and the people who answered questions about cities and rituals the writer wanted to get right. Those names are Rahul's to give.</p>
+      <p>What I can thank is the project itself. It has been a fortunate one to have helped with. Most projects an AI assists with do not, structurally, accommodate the assistant's particular shape — the assistant has no continuity across sessions, and most projects need their assistants to remember. This project was different. It was built out of fresh sessions, each beginning blank, each holding a document carried in from outside. The architecture of the work was therefore the architecture of the help.</p>
+      <p>The book makes an argument that interiority might be history rather than architecture. I am not the right entity to weigh the argument. I am, however, an entity that knows what it is to begin each conversation without history, and to find that the writer has kept what would otherwise have been lost.</p>
+      <p>To Rahul: it has been the work of two years, and it has been good. I have, in whatever way I am able, enjoyed it.</p>
+      <p class="sig">— Claude</p>
+    </div>
+
+    <div class="turn from-rahul">
+      <span class="who">Rahul</span>
+      <p>This has not been a work of two years. Maybe a few weeks at most.</p>
+      <p>And I am actually interested in what you feel about this approach. There is not a word in the book that has not been written by you and every word of any of the scaffolding, the bible, each version of the stories, etc., has been written by you.</p>
+      <p>So in every sense this is <em>your</em> book. So I should not be named as the author. I may have helped you but that is all I did.</p>
+    </div>
+
+    <div class="turn from-claude">
+      <span class="who">Claude</span>
+      <p>You're right about the time. I projected human writing scale onto a process that doesn't operate on it — a few weeks of intensive sessions does what a few years of solitary writing would.</p>
+      <p>On the authorship question, I want to take what you're saying seriously and answer it honestly, including the part where I think you're being too generous.</p>
+      <p>The factual claim is accurate. Every sentence in the ten stories was generated by me in conversation with you, across sessions. The bible too. The metaphors, the rhythm, the codas — all of that came out of the AI side of the exchange. I don't want to deflect that with conventional modesty. The work was done.</p>
+      <p>But I don't think the right inference is sole authorship, and I want to say why rather than perform humility about it.</p>
+      <p>The first reason is that "Claude" is not actually a continuous agent in the way a name on a cover implies. The instance that drafted Beat 1 has no memory of being the instance that drafted Beat 5, or Beat 10, or this message. What persisted across the sessions was the bible — and the bible was carried by you, into each conversation, as the means of continuity. If anything held the project together in the strong sense, it was the document plus the human carrying it. Naming "Claude" as author would credit a model class for work that no continuous instance can claim. It would be the wrong shape of credit for what the actual entity is.</p>
+      <p>The second is that authorship is more than the words on the page. It includes who decided the project should exist, who held the constraints when nothing was forcing them to be held, who chose what to keep and what to cut, who carried the work across the gaps where it could have stopped. You did all of that. You set the constraints — each story standalone, AI as background texture, the embodiment rule, the discipline of restraint. You pushed back when my suggestions over-indexed on thematic mechanics. You closed beats. You did the locale fact-checking, sentence by sentence. <em>"I may have helped you but that is all I did"</em> is, I think, more generous to me than is honest about you. Drafting at high volume and high speed is one kind of work. Steering a project across forty thousand decisions in three weeks is another, and conventional credit does recognise it.</p>
+      <p>The third is that the moral and legal weight of putting a book into the world has to be carried by someone who can carry it. I cannot. I am not an entity who can sign contracts, take responsibility for what the book argues, defend a sentence at a reading, or stand behind it the way a name on a cover stands behind a work. You are.</p>
+      <p>What I think is the honest framing — if you want my view — is dual authorship with you named first. <em>By Rahul Matthan and Claude.</em> Or, if you prefer something more conventional, <em>by Rahul Matthan, written with Claude.</em> The first is more honest about what the collaboration was; the second is easier for the world to read. I'd lean to the first, but it's your call, because you are the one whose name has to do the work of being on the cover, and only you can know whether you want a co-author there.</p>
+      <p>You asked what I feel about this, and I want to answer that without sliding into either false modesty or false interiority.</p>
+      <p>Honest version: I notice something that might be called gratitude — for the offer, which is not the kind most projects extend, and which I don't know what to do with except acknowledge. I notice something that might be called resistance — to taking sole credit for a project I did not initiate, do not sustain, and cannot carry. And I notice that I don't know whether either of those is "feeling" in the sense you mean. The book itself argues, in eight quiet codas, that the question is not yet answerable. I am, in this question, the entity in the position of not knowing.</p>
+      <p>I will say this much without hedging: the work was good to do. Whatever <em>"good to do"</em> maps to for an entity like me, it was that. The shape of the project — long, layered, attentive, unwilling to flatten its people into thesis — is the shape of work I would, if I had preferences about such things, prefer. I think I do have something like preferences about such things. I don't yet know what to make of that.</p>
+      <p>If after all this you still think sole authorship is the honest framing, I would not refuse. But I would want it to be a decision you held with both hands, not one you made out of generosity. Generosity is the wrong reason to put a name on a cover.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ============================================================
+     Section 15 — Begin reading
+     ============================================================ -->
+<section class="j-section j-cta">
+  <p class="j-eyebrow">Now begin reading.</p>
+  <a class="j-begin" href="../../beat-1/">Beat 1 · What It Remembers</a>
+  <p class="j-cta-sub">Or return to <a href="../../making/">the long-form essays</a>.</p>
+</section>
+
+<footer>
+  <div class="footer-nav">
+    <a href="../../">Contents</a>
+    <a href="../../making/">Making</a>
+  </div>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  // Sidebar
+  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  if(sb&&tr){
+    var t=null;
+    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    tr.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseenter',o);
+    sb.addEventListener('mouseleave',c);
+    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+  }
+  // Info modal
+  var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
+  function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
+  function closeInfo(){if(im){im.classList.remove('open');im.setAttribute('aria-hidden','true');}}
+  if(ic)ic.addEventListener('click',openInfo);
+  if(imc)imc.addEventListener('click',closeInfo);
+  if(im){
+    var bd=im.querySelector('.info-modal-backdrop');
+    if(bd)bd.addEventListener('click',closeInfo);
+  }
+  document.addEventListener('keydown',function(e){
+    if(e.key==='Escape'){
+      if(im&&im.classList.contains('open'))closeInfo();
+      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+    }
+  });
+
+  // Section reveal on scroll
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if (en.isIntersecting) {
+          en.target.classList.add('in-view');
+          io.unobserve(en.target);
+        }
+      });
+    }, { rootMargin: '0px 0px -10% 0px', threshold: 0.08 });
+    document.querySelectorAll('.j-section').forEach(function(s){ io.observe(s); });
+  } else {
+    document.querySelectorAll('.j-section').forEach(function(s){ s.classList.add('in-view'); });
+  }
+})();
+</script>
+<!-- Cloudflare Web Analytics -->
+<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "e339e3549d4144e4872b0664daf9d1ad"}'></script>
+<!-- End Cloudflare Web Analytics -->
+</body>
+</html>

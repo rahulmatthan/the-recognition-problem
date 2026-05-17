@@ -133,7 +133,7 @@ def normalize_ws(s: str) -> str:
 # Markdown rendering helpers
 # -----------------------------------------------------------------------------
 
-_md = mistune.create_markdown(renderer="html", plugins=["table"])
+_md = mistune.create_markdown(renderer="html", plugins=["table"], escape=False)
 
 _PARA_WRAP_RE = re.compile(r"^\s*<p>(.*)</p>\s*$", re.DOTALL)
 _EM_ONLY_RE = re.compile(r"^\s*<em>(.*)</em>\s*$", re.DOTALL)
@@ -1077,6 +1077,23 @@ def _emit_one_making_page(entry: dict, out_dir: Path, slug: str, kind: str, root
     (out_dir / "index.html").write_text(html, encoding="utf-8")
 
 
+def emit_journey_page() -> None:
+    """Emit the bespoke /making/journey/ scrollytelling page.
+
+    Source: web/making/journey/index.html (hand-authored HTML, not markdown).
+    Copied as-is into dist/making/journey/index.html. Inherits the site's
+    CSS via root-relative links (../../assets/...). Future essay-style
+    additions stay in web/making/*.md; this single bespoke page bypasses
+    the markdown→HTML path.
+    """
+    src = WEB_DIR / "making" / "journey" / "index.html"
+    if not src.exists():
+        return
+    out_dir = DIST / "making" / "journey"
+    out_dir.mkdir(parents=True, exist_ok=True)
+    shutil.copy(src, out_dir / "index.html")
+
+
 def emit_404_page() -> None:
     body_map = {
         "page_title": "Not found",
@@ -1202,6 +1219,11 @@ def main():
         print(f"  emitted making/  ({n_essays} essays + {n_notes} notes)")
     else:
         print("  (no making-pages.yaml; skipped /making/)")
+
+    # Bespoke /making/journey/ scrollytelling page
+    emit_journey_page()
+    if (WEB_DIR / "making" / "journey" / "index.html").exists():
+        print("  emitted making/journey/  (bespoke scrollytelling page)")
 
     # 404
     emit_404_page()

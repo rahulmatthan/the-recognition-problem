@@ -44,4 +44,10 @@ essays:
     description: "The branches, and how this site came to be."
     source: web/making/coda.md
 
+  - slug: authorship
+    title: "Authorship · Making"
+    page_title: "On Authorship"
+    description: "The conversation, verbatim, that decided whose names belong on the cover."
+    source: web/making/authorship.md
+
 notes: []
