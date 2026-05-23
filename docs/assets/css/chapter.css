@@ -413,10 +413,11 @@ body.branched .return-to-canon { display: inline-block; }
     left: -1.1rem;
     width: 1rem;
   }
-  .branch-mark .label {
-    left: 1.4rem;     /* inside the paragraph if it appears */
-    top: 0.4em;
-  }
+  /* On mobile, suppress the "branch" hover label entirely. On
+     touch the hover state sticks after a tap and the label
+     would overlap the paragraph text. The decision card that
+     opens below the paragraph carries the same information. */
+  .branch-mark .label { display: none; }
   body.branched .post-fork { margin-left: -0.8rem; padding-left: 0.6rem; }
 }
 
