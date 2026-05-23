@@ -13,7 +13,7 @@
 <link rel="stylesheet" href="../../assets/css/animations.css">
 </head>
 <body>
-<div class="sidebar-trigger" aria-hidden="true"></div><aside class="sidebar" aria-label="Table of contents"><div class="sidebar-heading"><a href="../../">The Recognition Problem</a></div><ol class="sidebar-list"><li><a href="../../beat-1/"><span class="n">1</span><span class="t">What It Remembers</span></a></li>
+<button class="menu-trigger" id="menuTrigger" aria-label="Open table of contents" aria-controls="sidebar"><span></span></button><div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div><div class="sidebar-trigger" aria-hidden="true"></div><aside class="sidebar" id="sidebar" aria-label="Table of contents"><div class="sidebar-heading"><a href="../../">The Recognition Problem</a></div><ol class="sidebar-list"><li><a href="../../beat-1/"><span class="n">1</span><span class="t">What It Remembers</span></a></li>
 <li><a href="../../beat-2/"><span class="n">2</span><span class="t">Fidelity</span></a></li>
 <li><a href="../../beat-3/"><span class="n">3</span><span class="t">What the Model Sees</span></a></li>
 <li><a href="../../beat-4/" class="current"><span class="n">4</span><span class="t">What the Network Carries</span></a></li>
@@ -373,16 +373,26 @@
 <script>
 (function(){
   // Sidebar
-  var sb=document.querySelector('.sidebar'),tr=document.querySelector('.sidebar-trigger');
+  var sb=document.querySelector('.sidebar'),
+      tr=document.querySelector('.sidebar-trigger'),
+      mt=document.querySelector('.menu-trigger'),
+      sbd=document.querySelector('.sidebar-backdrop');
+  function openSB(){sb&&sb.classList.add('open');sbd&&sbd.classList.add('open');mt&&mt.setAttribute('aria-expanded','true');}
+  function closeSB(){sb&&sb.classList.remove('open');sbd&&sbd.classList.remove('open');mt&&mt.setAttribute('aria-expanded','false');}
+  function toggleSB(){(sb&&sb.classList.contains('open'))?closeSB():openSB();}
   if(sb&&tr){
     var t=null;
-    function o(){if(t){clearTimeout(t);t=null;}sb.classList.add('open');}
-    function c(){t&&clearTimeout(t);t=setTimeout(function(){sb.classList.remove('open');},250);}
+    function o(){if(t){clearTimeout(t);t=null;}openSB();}
+    function c(){t&&clearTimeout(t);t=setTimeout(function(){closeSB();},250);}
     tr.addEventListener('mouseenter',o);
     sb.addEventListener('mouseenter',o);
     sb.addEventListener('mouseleave',c);
-    tr.addEventListener('click',function(){sb.classList.toggle('open');});
+    tr.addEventListener('click',toggleSB);
   }
+  if(mt)mt.addEventListener('click',toggleSB);
+  if(sbd)sbd.addEventListener('click',closeSB);
+  // On mobile, close sidebar after tapping a link
+  if(sb)sb.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeSB);});
   // Info modal
   var ic=document.getElementById('infoIcon'),im=document.getElementById('infoModal'),imc=document.getElementById('infoModalClose');
   function openInfo(){if(im){im.classList.add('open');im.setAttribute('aria-hidden','false');}}
@@ -397,7 +407,7 @@
   document.addEventListener('keydown',function(e){
     if(e.key==='Escape'){
       if(im&&im.classList.contains('open'))closeInfo();
-      else if(sb&&sb.classList.contains('open'))sb.classList.remove('open');
+      else if(sb&&sb.classList.contains('open'))closeSB();
     }
   });
 })();

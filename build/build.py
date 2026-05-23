@@ -735,8 +735,12 @@ def render_sidebar(beats: list, current_beat_n: int = 0, on_making: bool = False
         f'<span class="t">The Making of<br>The Recognition Problem</span></a></li>'
     )
     return (
+        '<button class="menu-trigger" id="menuTrigger" '
+        'aria-label="Open table of contents" aria-controls="sidebar">'
+        '<span></span></button>'
+        '<div class="sidebar-backdrop" id="sidebarBackdrop" aria-hidden="true"></div>'
         '<div class="sidebar-trigger" aria-hidden="true"></div>'
-        '<aside class="sidebar" aria-label="Table of contents">'
+        '<aside class="sidebar" id="sidebar" aria-label="Table of contents">'
         '<div class="sidebar-heading">'
         '<a href="{root}">The Recognition Problem</a></div>'
         '<ol class="sidebar-list">' + "\n".join(items) + '</ol>'
